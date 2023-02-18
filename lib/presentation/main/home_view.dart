@@ -9,47 +9,43 @@ import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
+import 'drawer_widgets.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //header
+      appBar: AppBar(
+        backgroundColor: ColorManager.mainColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(AppSize.hs25),
+          ),
+        ),
+        centerTitle: true,
+        title: MediumTextWidget(
+          text: "Liste des interventions",
+          color: ColorManager.white,
+          size: FontSize.fs20,
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: AppPadding.wp14),
+            child: IconWidget(
+              icon: Icons.notifications,
+              size: AppSize.hs25,
+            ),
+          ),
+        ],
+      ),
       backgroundColor: ColorManager.white,
+      drawer: MyDrawer(),
       body: Column(
         children: [
           //header
-          Container(
-            padding: EdgeInsets.only(
-              top: AppSize.hs25 * 2.5,
-              left: AppSize.ws20,
-              right: AppSize.ws20,
-              bottom: AppSize.hs20,
-            ),
-            decoration: BoxDecoration(
-                color: ColorManager.mainColor,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(AppSize.hs25),
-                    bottomRight: Radius.circular(AppSize.hs25))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconWidget(
-                  icon: Icons.menu_sharp,
-                  size: AppSize.hs25,
-                ),
-                MediumTextWidget(
-                  text: "Liste des interventions",
-                  color: ColorManager.white,
-                  size: FontSize.fs20,
-                ),
-                IconWidget(
-                  icon: Icons.notifications,
-                  size: AppSize.hs25,
-                ),
-              ],
-            ),
-          ),
           SizedBox(
             height: AppSize.hs20,
           ),
@@ -72,7 +68,7 @@ class HomeView extends StatelessWidget {
           ),
 
           SizedBox(
-            height: AppSize.hs10,
+            height: AppSize.hs14,
           ),
           //liste of intervention cart
           Expanded(

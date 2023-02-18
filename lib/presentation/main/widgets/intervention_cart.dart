@@ -1,7 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../../resources/colors_manager.dart';
 import '../../resources/fonst_manager.dart';
 import '../../resources/values_manager.dart';
@@ -171,7 +169,7 @@ class InterventionCart extends StatelessWidget {
             ),
             // padding: EdgeInsets.symmetric(horizontal: AppPadding.wp5),
             child: IconWidget(
-              icon: Icons.arrow_right,
+              icon: CupertinoIcons.forward,
               iconColor: ColorManager.white,
             ),
           )
