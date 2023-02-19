@@ -1,11 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'package:installateur/presentation/main/widgets/planification_cart.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-import 'package:installateur/presentation/resources/fonst_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
-import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
@@ -19,6 +17,26 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       //header
       appBar: AppBar(
+        leading: Builder(
+          builder: (BuildContext context) {
+            return Padding(
+              padding: EdgeInsets.only(left: AppPadding.wp20),
+              child: IconButton(
+                icon: const Icon(
+                  CupertinoIcons.bars,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            );
+          },
+        ),
+        iconTheme: IconThemeData(
+          color: ColorManager.white,
+          size: AppSize.hs25 * 1.3,
+        ),
         backgroundColor: ColorManager.mainColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -33,42 +51,45 @@ class HomeView extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: AppPadding.wp14),
+            padding: EdgeInsets.only(right: AppPadding.wp20),
             child: IconWidget(
               icon: Icons.notifications,
-              size: AppSize.hs25,
+              size: AppSize.hs25 * 1.3,
             ),
           ),
         ],
       ),
       backgroundColor: ColorManager.white,
-      drawer: MyDrawer(),
+      //nav bar
+      drawer: const MyDrawer(),
       body: Column(
         children: [
-          //header
           SizedBox(
             height: AppSize.hs20,
           ),
           //liste of planification cart
-          SizedBox(
+          Container(
             height: AppSize.hs25 * 1.5,
+            padding: EdgeInsets.only(left: AppPadding.wp20),
             child: ListView.separated(
-              itemCount: 10,
+              itemCount: 6,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => PlanificationCart(
                 text: "A planifier",
-                onClick: true,
+                onClick: index % 2 == 0 ? true : false,
                 textSize: FontSize.fs18,
                 vpadding: AppSize.hs8,
               ),
               separatorBuilder: (BuildContext context, int index) {
-                return Padding(padding: EdgeInsets.only(right: AppSize.ws10));
+                return Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: AppPadding.wp5 / 5));
               },
             ),
           ),
 
           SizedBox(
-            height: AppSize.hs14,
+            height: AppSize.hs20,
           ),
           //liste of intervention cart
           Expanded(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
+import 'package:installateur/presentation/resources/fonst_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
@@ -18,7 +19,7 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: ColorManager.white),
+            decoration: const BoxDecoration(color: ColorManager.white),
             child: Center(
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: AppPadding.wp25),
@@ -39,16 +40,20 @@ class MyDrawer extends StatelessWidget {
                 ),
                 //body
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ...(HomeViewModel.menus).map((item) {
                         return ListTile(
+                          horizontalTitleGap: AppSize.ws10,
+                          // contentPadding:
+                          //     EdgeInsets.only(left: AppPadding.wp25 * 2.5),
                           title: MediumTextWidget(
                             text: item['title'],
                             size: FontSize.fs24,
                             color: ColorManager.white,
+                            fontWeight: FontWeightManager.regular,
                           ),
                           leading: IconWidget(
                             icon: item['icon'],
@@ -70,7 +75,7 @@ class MyDrawer extends StatelessWidget {
           //footer
           // Spacer(),
 
-          SizedBox(height: 80),
+          SizedBox(height: 100),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -86,6 +91,7 @@ class MyDrawer extends StatelessWidget {
                 text: "Se déconnecter",
                 size: FontSize.fs24,
                 color: ColorManager.mainColor,
+                fontWeight: FontWeightManager.regular,
               ),
             ],
           )
