@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/intervention_details.dart/inter_details_view.dart';
 import 'package:installateur/presentation/main/home_view.dart';
 import 'package:installateur/presentation/splash/splash_view.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeView());
+        debugShowCheckedModeBanner: false,
+        home: InterventionDetailsView());
   }
 }

@@ -60,6 +60,7 @@ class HomeView extends StatelessWidget {
         ],
       ),
       backgroundColor: ColorManager.white,
+
       //nav bar
       drawer: const MyDrawer(),
       body: Column(
