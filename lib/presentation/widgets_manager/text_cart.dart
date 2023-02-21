@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
+import 'package:installateur/presentation/resources/values_manager.dart';
 
-import '../../widgets_manager/big_text_widget.dart';
-import '../../widgets_manager/medium_text_widget.dart';
+import 'big_text_widget.dart';
+import 'medium_text_widget.dart';
 
-class PlanificationCart extends StatelessWidget {
+class TextCart extends StatelessWidget {
   double hpadding;
   double vpadding;
   double bReduis;
@@ -14,7 +15,7 @@ class PlanificationCart extends StatelessWidget {
   Color textColor;
   bool onClick;
 
-  PlanificationCart(
+  TextCart(
       {super.key,
       required this.text,
       required this.onClick,
@@ -29,6 +30,7 @@ class PlanificationCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.minPositive,
+      margin: EdgeInsets.only(left: AppMargin.wm20),
       padding: EdgeInsets.symmetric(
         horizontal: hpadding,
         vertical: vpadding,

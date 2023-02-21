@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
-import 'package:installateur/presentation/main/widgets/planification_cart.dart';
+import 'package:installateur/presentation/widgets_manager/text_cart.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
@@ -71,26 +71,24 @@ class HomeView extends StatelessWidget {
           //liste of planification cart
           Container(
             height: AppSize.hs25 * 1.5,
-            padding: EdgeInsets.only(left: AppPadding.wp20),
+            // padding: EdgeInsets.only(left: AppPadding.wp20),
             child: ListView.separated(
               itemCount: 6,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => PlanificationCart(
+              itemBuilder: (context, index) => TextCart(
                 text: "A planifier",
                 onClick: index % 2 == 0 ? true : false,
                 textSize: FontSize.fs18,
                 vpadding: AppSize.hs8,
               ),
               separatorBuilder: (BuildContext context, int index) {
-                return Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: AppPadding.wp5 / 5));
+                return Container();
               },
             ),
           ),
 
           SizedBox(
-            height: AppSize.hs20,
+            height: AppSize.hs10,
           ),
           //liste of intervention cart
           Expanded(
@@ -98,7 +96,7 @@ class HomeView extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) => const InterventionCart(),
               separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(height: AppSize.hs10);
+                return Container();
               },
             ),
           ),

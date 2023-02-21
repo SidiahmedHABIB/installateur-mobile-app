@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
@@ -40,7 +41,7 @@ class MyDrawer extends StatelessWidget {
                 ),
                 //body
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
+                  padding: EdgeInsets.only(left: AppPadding.wp20 * 3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -72,10 +73,8 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
 
-          //footer
           // Spacer(),
-
-          SizedBox(height: 100),
+          SizedBox(height: AppSize.hs100),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
