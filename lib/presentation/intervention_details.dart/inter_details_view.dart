@@ -77,7 +77,7 @@ class InterventionDetailsView extends StatelessWidget {
             ),
             //header
             Positioned(
-                top: AppPadding.hp25 * 2.5,
+                top: AppPadding.hp25 * 1.8,
                 left: AppPadding.wp20,
                 right: AppPadding.wp20,
                 child: Row(

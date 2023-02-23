@@ -6,6 +6,7 @@ import 'package:installateur/presentation/main/home_view.dart';
 import 'package:installateur/presentation/splash/splash_view.dart';
 import 'package:installateur/test.dart';
 
+import 'presentation/box_details/box_details_view.dart';
 import 'presentation/box_table/box_table_view.dart';
 
 void main() {
@@ -23,6 +24,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: BoxTableView());
+        home: BoxDetailsView());
   }
 }

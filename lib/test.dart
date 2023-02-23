@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
+import 'package:installateur/presentation/resources/fonst_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
+import 'package:installateur/presentation/widgets_manager/button_widget.dart';
+import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -8,21 +12,89 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Row(
+        backgroundColor: ColorManager.white,
+        body: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // FixedColumnWidget(),
-              // ScrollableColumnWidget(),
+              GestureDetector(
+                onTap: () => dialog(),
+                child: ButtonWidget(text: "dialog", hdn: false),
+              ),
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
+Widget cont() {
+  return AlertDialog(
+    actions: [
+      Container(
+        width: 200,
+        height: 150,
+        color: Colors.yellow,
+        child: Text("data"),
+      ),
+    ],
+  );
+}
+
+Future dialog() {
+  return Get.defaultDialog(
+    radius: AppSize.hs10,
+    title: "Confirmation",
+    titleStyle: TextStyle(
+      fontFamily: FontConstants.fontFamily,
+      fontSize: FontSize.fs24,
+      fontWeight: FontWeightManager.bold,
+      color: ColorManager.mainColor,
+    ),
+    middleText: "Voulez vous désinstaller ce boitier",
+    middleTextStyle: TextStyle(
+      fontFamily: FontConstants.fontFamily,
+      fontSize: FontSize.fs18,
+      fontWeight: FontWeightManager.regular,
+      color: ColorManager.mainColor,
+    ),
+    backgroundColor: ColorManager.white,
+    confirm: Container(
+      margin: EdgeInsets.only(top: AppPadding.hp18),
+      padding: EdgeInsets.symmetric(
+          vertical: AppPadding.hp10, horizontal: AppPadding.wp18 * 2),
+      decoration: BoxDecoration(
+          color: ColorManager.mainColor,
+          borderRadius: BorderRadius.circular(AppSize.hs5)),
+      child: MediumTextWidget(
+        text: "OUI",
+        color: ColorManager.white,
+      ),
+    ),
+    // MaterialButton(
+    //   color: ColorManager.mainColor,
+    //   onPressed: () => {},
+    // child: MediumTextWidget(
+    //   text: "OUI",
+    //   color: ColorManager.white,
+    // ),
+    // ),
+    cancel: Container(
+      margin: EdgeInsets.only(top: AppPadding.hp18),
+      padding: EdgeInsets.symmetric(
+          vertical: AppPadding.hp10, horizontal: AppPadding.wp18 * 2),
+      decoration: BoxDecoration(
+          color: ColorManager.mainColor,
+          borderRadius: BorderRadius.circular(AppSize.hs5)),
+      child: MediumTextWidget(
+        text: "NON",
+        color: ColorManager.white,
+      ),
+    ),
+  );
+}
+
+// box table model
 class Team {
   Team({
     required this.position,
