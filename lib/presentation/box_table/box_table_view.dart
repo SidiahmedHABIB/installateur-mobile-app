@@ -61,7 +61,7 @@ class BoxTableView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: AppPadding.wp20),
             child: IconWidget(
-              icon: Icons.notifications,
+              icon: CupertinoIcons.wrench_fill,
               size: AppSize.hs25 * 1.3,
             ),
           ),

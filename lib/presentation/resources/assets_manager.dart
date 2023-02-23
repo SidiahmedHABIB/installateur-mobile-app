@@ -8,4 +8,7 @@ class AssetsManager {
   static const String navBarBackground = "$imagePath/navbar-background.png";
   static const String settingBackground = "$imagePath/settings.png";
   static const String login = "$imagePath/onboarding_logo1.svg";
+  static const String truckTop = "$imagePath/truck_top_view.png";
+  static const String truckSide = "$imagePath/truck_side_view.png";
+  static const String imgInstallation = "$imagePath/img_installation.png";
 }

@@ -34,6 +34,7 @@ dependencies:
   get: ^4.6.5
   animated_text_kit: ^4.2.2
   expandable_text: ^2.3.0
+  dotted_border: ^2.0.0+3  #border dashed  
 
 dev_dependencies:
   flutter_test:

@@ -305,10 +305,32 @@ class BoxDetailsView extends StatelessWidget {
                 ],
               ),
               SizedBox(height: AppSize.hs25 * 2),
-              //button
-              ButtonWidget(text: "DIAGNOSTIC DU BOITIER", hdn: false),
               SizedBox(height: AppSize.hs25),
             ],
+          ),
+        ),
+      ),
+
+      //footer
+      bottomNavigationBar: Container(
+        height: AppSize.hs100,
+        padding: EdgeInsets.symmetric(
+            vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: AppSize.hs5,
+              color: ColorManager.whiteGrey,
+              offset: const Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Center(
+          child: ButtonWidget(
+            text: "DIAGNOSTIC DU BOITIER",
+            hdn: false,
+            textSize: FontSize.fs20,
           ),
         ),
       ),
