@@ -247,6 +247,7 @@ class BoxEmplacementView extends StatelessWidget {
           ],
         ),
       ),
+      //footer
       bottomNavigationBar: Container(
         height: AppSize.hs100,
         padding: EdgeInsets.symmetric(
