@@ -107,7 +107,7 @@ class InterventionDetailsView extends StatelessWidget {
                     backgroundColor: ColorManager.white,
                     radius: AppSize.hs25 * 2.5,
                     child: IconWidget(
-                      icon: Icons.location_city,
+                      icon: CupertinoIcons.building_2_fill,
                       iconColor: ColorManager.mainColor,
                       size: AppSize.hs25 * 3,
                     ),

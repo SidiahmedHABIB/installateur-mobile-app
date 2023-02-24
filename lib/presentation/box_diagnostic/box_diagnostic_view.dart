@@ -532,7 +532,7 @@ class BoxDiagnosticView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "VALIDER",
+            text: "FINALISER DEPANNAGE",
             hdn: true,
             textSize: FontSize.fs20,
           ),

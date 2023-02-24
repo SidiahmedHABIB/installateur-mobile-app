@@ -10,6 +10,7 @@ import 'presentation/box_details/box_details_view.dart';
 import 'presentation/box_diagnostic/box_diagnostic_view.dart';
 import 'presentation/box_emplacement/box_emplacement_view.dart';
 import 'presentation/box_table/box_table_view.dart';
+import 'presentation/intervention_rapport/inter_rapport_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,6 +27,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: BoxDiagnosticView());
+        home: InterventionRapportView());
   }
 }

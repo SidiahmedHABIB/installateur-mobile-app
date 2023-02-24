@@ -50,7 +50,7 @@ class InterventionCart extends StatelessWidget {
                         backgroundColor: ColorManager.mainColor,
                         radius: AppSize.hs25,
                         child: IconWidget(
-                          icon: Icons.location_city,
+                          icon: CupertinoIcons.building_2_fill,
                           iconColor: ColorManager.white,
                           size: AppSize.hs25,
                         ),
