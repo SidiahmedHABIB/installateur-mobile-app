@@ -236,7 +236,6 @@ class InterventionRapportView extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(height: AppSize.hs14),
                 ],
               ),

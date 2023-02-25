@@ -7,7 +7,7 @@ import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
-import 'drawer_widgets.dart';
+import '../drawer/drawer_widgets.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
