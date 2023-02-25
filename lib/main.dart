@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:installateur/presentation/intervention_details/inter_details_view.dart';
 import 'package:installateur/presentation/login/login_view.dart';
 import 'package:installateur/presentation/main/home_view.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/splash/splash_view.dart';
 import 'package:installateur/test.dart';
 
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: ProfileView(),
+      // home: ProfileView(),
+      getPages: RoutesManager.routes,
+      initialRoute: RoutesManager.getInitial(),
+
       // initialRoute: "/",
       // routes: {
       //   "/": (context) => HomeView(),

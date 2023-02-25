@@ -10,6 +10,7 @@ import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
 import '../widgets_manager/icon_widget.dart';
+import 'drawer_view_model.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -45,7 +46,7 @@ class MyDrawer extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ...(HomeViewModel.menus).map((item) {
+                      ...(DrawerViewModel.menus).map((item) {
                         return ListTile(
                           horizontalTitleGap: AppSize.ws10,
                           // contentPadding:
@@ -61,8 +62,10 @@ class MyDrawer extends StatelessWidget {
                             size: AppSize.hs25 * 1.2,
                           ),
                           onTap: () {
-                            Navigator.of(context).pop();
-                            Navigator.pushNamed(context, '${item['route']}');
+                            Get.back();
+                            Get.offNamed('${item['route']}');
+                            // Navigator.of(context).pop();
+                            // Navigator.pushNamed(context, '${item['route']}');
                           },
                         );
                       })
