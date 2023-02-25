@@ -12,33 +12,10 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.white,
-        body: Container(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () => dialog(),
-                child: ButtonWidget(text: "dialog", hdn: false),
-              ),
-            ],
-          ),
-        ));
+      backgroundColor: ColorManager.white,
+      body: Container(),
+    );
   }
-}
-
-Widget cont() {
-  return AlertDialog(
-    actions: [
-      Container(
-        width: 200,
-        height: 150,
-        color: Colors.yellow,
-        child: Text("data"),
-      ),
-    ],
-  );
 }
 
 Future dialog() {

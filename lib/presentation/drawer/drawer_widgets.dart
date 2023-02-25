@@ -63,7 +63,7 @@ class MyDrawer extends StatelessWidget {
                           ),
                           onTap: () {
                             Get.back();
-                            Get.offNamed('${item['route']}');
+                            Get.toNamed('${item['route']}');
                             // Navigator.of(context).pop();
                             // Navigator.pushNamed(context, '${item['route']}');
                           },

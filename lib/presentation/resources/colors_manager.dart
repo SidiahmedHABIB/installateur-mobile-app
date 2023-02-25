@@ -3,6 +3,7 @@ import 'dart:ui';
 class ColorManager {
   // white mode colors
   static const Color mainColor = Color(0xFF2F3C56);
+  static const Color whiteMainColor = Color.fromARGB(255, 121, 145, 190);
   static const Color grey = Color(0xFFAEB0B6);
   static const Color darkGrey = Color(0xFF888A8C);
   static const Color whiteGrey = Color(0xFF2F3C5663);

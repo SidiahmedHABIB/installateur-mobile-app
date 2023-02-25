@@ -21,6 +21,7 @@ class LoginView extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
     return Scaffold(
+      backgroundColor: ColorManager.mainColor,
       body: Stack(children: [
         Container(
           width: double.infinity,
@@ -104,7 +105,7 @@ class LoginView extends StatelessWidget {
                   ),
                   SizedBox(height: AppSize.hs25),
                   TextFieldWidget(
-                    textController: emailController,
+                    textController: passwordController,
                     icon: CupertinoIcons.lock_fill,
                     hintText: "Mot de passe",
                   ),

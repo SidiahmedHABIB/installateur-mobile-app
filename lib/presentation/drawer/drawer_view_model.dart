@@ -16,7 +16,7 @@ class DrawerViewModel {
     {
       "title": "Réglage",
       "icon": CupertinoIcons.gear_alt_fill,
-      "route": RoutesManager.test,
+      "route": RoutesManager.setting,
     },
     {
       "title": "A propos",
