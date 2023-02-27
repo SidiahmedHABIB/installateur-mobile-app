@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
+import 'package:installateur/presentation/notification/notification_view.dart';
 import 'package:installateur/presentation/widgets_manager/text_cart.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
@@ -50,11 +52,14 @@ class HomeView extends StatelessWidget {
           size: FontSize.fs20,
         ),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: AppPadding.wp20),
-            child: IconWidget(
-              icon: Icons.notifications,
-              size: AppSize.hs25 * 1.3,
+          GestureDetector(
+            onTap: () => Get.to(const NotificationView()),
+            child: Padding(
+              padding: EdgeInsets.only(right: AppPadding.wp20),
+              child: IconWidget(
+                icon: Icons.notifications,
+                size: AppSize.hs25 * 1.3,
+              ),
             ),
           ),
         ],
