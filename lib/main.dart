@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'presentation/notices/notice_view.dart';
 import 'presentation/notification/notification_view.dart';
 import 'presentation/resources/routes_manager.dart';
 import 'presentation/settings/settings_view.dart';
@@ -19,9 +20,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      // home: NotificationView(),
-      getPages: RoutesManager.routes,
-      initialRoute: RoutesManager.getInitial(),
+      home: NoticesView(),
+      // getPages: RoutesManager.routes,
+      // initialRoute: RoutesManager.getInitial(),
     );
   }
 }

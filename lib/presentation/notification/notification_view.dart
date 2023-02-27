@@ -25,7 +25,7 @@ class NotificationView extends StatelessWidget {
         color: Colors.red.shade500,
       ),
       child: IconWidget(
-        icon: Icons.delete,
+        icon: CupertinoIcons.delete_solid,
         iconColor: ColorManager.white,
         size: AppSize.hs25 * 3,
       ),
@@ -65,7 +65,7 @@ class NotificationView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Liste des boitiers",
+          text: "Notifications",
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
