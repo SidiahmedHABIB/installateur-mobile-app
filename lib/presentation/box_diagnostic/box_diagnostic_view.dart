@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 
@@ -51,7 +53,7 @@ class BoxDiagnosticView extends StatelessWidget {
                     size: AppSize.hs25 * 1.3,
                   ),
                   MediumTextWidget(
-                    text: "Diagnostic du boidier",
+                    text: StringsManager.boxDiagnosticTitle.tr,
                     color: ColorManager.white,
                     size: FontSize.fs20,
                   ),
@@ -87,7 +89,7 @@ class BoxDiagnosticView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     MediumTextWidget(
-                      text: "Boitier :",
+                      text: "${StringsManager.boxDiagnosticbox.tr} :",
                       color: ColorManager.mainColor,
                       size: FontSize.fs18,
                     ),
@@ -99,7 +101,7 @@ class BoxDiagnosticView extends StatelessWidget {
                     ),
                     SizedBox(width: AppSize.ws10),
                     MediumTextWidget(
-                      text: "Entité :",
+                      text: "${StringsManager.boxTableColumnEnitie.tr} :",
                       color: ColorManager.mainColor,
                       size: FontSize.fs18,
                     ),
@@ -148,7 +150,7 @@ class BoxDiagnosticView extends StatelessWidget {
                       child: Row(
                         children: [
                           MediumTextWidget(
-                            text: "Diagnostic du boidier",
+                            text: StringsManager.boxDiagnosticEnvirment.tr,
                             color: ColorManager.white,
                             size: FontSize.fs20,
                           ),
@@ -351,7 +353,8 @@ class BoxDiagnosticView extends StatelessWidget {
                           SizedBox(height: AppSize.hs20),
                           TextFieldWidget(
                               textController: commentController,
-                              hintText: "Ajouter un commentaire",
+                              hintText: StringsManager
+                                  .boxDiagnosticEnvirmentAddComment.tr,
                               icon: Icons.comment)
                         ],
                       ),
@@ -396,7 +399,7 @@ class BoxDiagnosticView extends StatelessWidget {
                       child: Row(
                         children: [
                           MediumTextWidget(
-                            text: "Antennes",
+                            text: StringsManager.boxDiagnosticAntennes.tr,
                             color: ColorManager.white,
                             size: FontSize.fs20,
                           ),
@@ -532,7 +535,7 @@ class BoxDiagnosticView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "FINALISER DEPANNAGE",
+            text: StringsManager.boxDiagnosticBottomButton.tr,
             hdn: true,
             textSize: FontSize.fs20,
           ),

@@ -8,7 +8,7 @@ import 'package:installateur/presentation/widgets_manager/medium_text_widget.dar
 
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
+import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/text_field_widget.dart';

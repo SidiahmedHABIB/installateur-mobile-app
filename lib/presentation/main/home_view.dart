@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'package:installateur/presentation/notification/notification_view.dart';
 import 'package:installateur/presentation/widgets_manager/text_cart.dart';
@@ -10,9 +11,11 @@ import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 
 import '../drawer/drawer_widgets.dart';
+import '../resources/strings_manager.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+  HomeViewModel vm = HomeViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +49,9 @@ class HomeView extends StatelessWidget {
           ),
         ),
         centerTitle: true,
+        //string title
         title: MediumTextWidget(
-          text: "Liste des interventions",
+          text: StringsManager.homePageTitle.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
@@ -65,23 +69,23 @@ class HomeView extends StatelessWidget {
         ],
       ),
       backgroundColor: ColorManager.white,
-
       //nav bar
       drawer: const MyDrawer(),
+      //body
       body: Column(
         children: [
           SizedBox(
             height: AppSize.hs20,
           ),
           //liste of planification cart
-          Container(
+          SizedBox(
             height: AppSize.hs25 * 1.5,
             // padding: EdgeInsets.only(left: AppPadding.wp20),
             child: ListView.separated(
-              itemCount: 6,
+              itemCount: vm.planification.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => TextCart(
-                text: "A planifier",
+                text: vm.planification[index],
                 onClick: index % 2 == 0 ? true : false,
                 textSize: FontSize.fs18,
                 vpadding: AppSize.hs8,

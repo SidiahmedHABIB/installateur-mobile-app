@@ -1,19 +1,16 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/box_emplacement/widgets/image_card_widget.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
-
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/big_text_widget.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
-import '../widgets_manager/text_field_widget.dart';
 
 class BoxEmplacementView extends StatelessWidget {
   const BoxEmplacementView({super.key});
@@ -53,7 +50,7 @@ class BoxEmplacementView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Emlacement",
+          text: StringsManager.boxEmplacementTitle.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
@@ -64,7 +61,7 @@ class BoxEmplacementView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: AppSize.hs16 * 2),
+            SizedBox(height: AppSize.hs18),
             //box location view
             Container(
               padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
@@ -96,7 +93,7 @@ class BoxEmplacementView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               BigTextWidget(
-                                text: "Cliquer sur la zone d'installation",
+                                text: StringsManager.boxEmplacementBoxTitle.tr,
                                 color: ColorManager.mainColor,
                                 size: FontSize.fs20,
                               )
@@ -192,7 +189,7 @@ class BoxEmplacementView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     color: Colors.white,
                     child: MediumTextWidget(
-                      text: "Boitier",
+                      text: StringsManager.boxEmplacementBox.tr,
                       color: ColorManager.redColor,
                       size: FontSize.fs18,
                     ),
@@ -208,7 +205,7 @@ class BoxEmplacementView extends StatelessWidget {
               child: Column(
                 children: [
                   MediumTextWidget(
-                    text: "Ajouter des photos de l'installation",
+                    text: StringsManager.boxEmplacementAddImages.tr,
                     color: ColorManager.mainColor,
                     size: FontSize.fs20,
                   ),
@@ -264,7 +261,7 @@ class BoxEmplacementView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "VALIDER",
+            text: StringsManager.boxEmplacementBottomButton.tr,
             hdn: false,
             textSize: FontSize.fs20,
           ),

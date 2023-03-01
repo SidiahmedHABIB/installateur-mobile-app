@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-import 'package:installateur/presentation/resources/fonst_manager.dart';
+import 'package:installateur/presentation/resources/fonts_manager.dart';
 
 class ExpandableTextWidget extends StatelessWidget {
   String text;

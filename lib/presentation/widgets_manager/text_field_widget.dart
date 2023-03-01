@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-import 'package:installateur/presentation/resources/fonst_manager.dart';
+import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 
 class TextFieldWidget extends StatelessWidget {

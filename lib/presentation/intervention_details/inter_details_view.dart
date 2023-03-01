@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
-import 'package:installateur/presentation/resources/fonst_manager.dart';
+import 'package:installateur/presentation/resources/fonts_manager.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
@@ -13,6 +14,7 @@ import 'package:installateur/presentation/widgets_manager/small_text_widget.dart
 
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
+import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/expandable_text_widget.dart';
 
 class InterventionDetailsView extends StatelessWidget {
@@ -89,7 +91,7 @@ class InterventionDetailsView extends StatelessWidget {
                       size: AppSize.hs25 * 1.3,
                     ),
                     MediumTextWidget(
-                      text: "Fiche d'intervention client",
+                      text: StringsManager.interDetailTitle.tr,
                       color: ColorManager.white,
                       size: FontSize.fs20,
                     ),
@@ -227,7 +229,7 @@ class InterventionDetailsView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         color: Colors.white,
                         child: MediumTextWidget(
-                          text: "Infos personnelles",
+                          text: StringsManager.interDetailInfoPerson.tr,
                           color: ColorManager.mainColor,
                           size: FontSize.fs18,
                         ),
@@ -280,8 +282,8 @@ class InterventionDetailsView extends StatelessWidget {
                                     ),
                                     SizedBox(width: AppSize.ws16),
                                     MediumTextWidget(
-                                      text:
-                                          "Selectionner la date d'intervention",
+                                      text: StringsManager
+                                          .interDetailSelectDate.tr,
                                       size: FontSize.fs16,
                                       color: ColorManager.grey,
                                     )
@@ -296,7 +298,7 @@ class InterventionDetailsView extends StatelessWidget {
                             EdgeInsets.symmetric(horizontal: AppPadding.wp10),
                         color: Colors.white,
                         child: MediumTextWidget(
-                          text: "Rendez vous",
+                          text: StringsManager.interDetailRendezVous.tr,
                           color: ColorManager.mainColor,
                           size: FontSize.fs18,
                         ),
@@ -305,27 +307,33 @@ class InterventionDetailsView extends StatelessWidget {
                   ),
 
                   SizedBox(height: AppSize.hs14),
-
-                  //button
-                  Container(
-                    width: double.maxFinite,
-                    padding: EdgeInsets.symmetric(vertical: AppPadding.hp20),
-                    margin: EdgeInsets.only(bottom: AppMargin.hm20),
-                    decoration: BoxDecoration(
-                      color: ColorManager.darkGrey,
-                      borderRadius: BorderRadius.circular(AppSize.hs10),
-                    ),
-                    child: Center(
-                        child: MediumTextWidget(
-                      text: "TERMINER",
-                      color: ColorManager.white,
-                      size: FontSize.fs20,
-                    )),
-                  )
                 ],
               ),
             ),
           ],
+        ),
+      ),
+      //footer
+      bottomNavigationBar: Container(
+        height: AppSize.hs100,
+        padding: EdgeInsets.symmetric(
+            vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: AppSize.hs5,
+              color: ColorManager.whiteGrey,
+              offset: const Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Center(
+          child: ButtonWidget(
+            text: StringsManager.interDetailButton.tr,
+            hdn: true,
+            textSize: FontSize.fs20,
+          ),
         ),
       ),
     );

@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-import 'package:installateur/presentation/resources/fonst_manager.dart';
+import 'package:installateur/presentation/resources/fonts_manager.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
@@ -78,24 +80,28 @@ class MyDrawer extends StatelessWidget {
 
           // Spacer(),
           SizedBox(height: AppSize.hs100),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconWidget(
-                icon: CupertinoIcons.square_arrow_left,
-                iconColor: ColorManager.mainColor,
-                size: AppSize.hs25 * 1.2,
-              ),
-              SizedBox(
-                width: AppSize.ws14,
-              ),
-              BigTextWidget(
-                text: "Se déconnecter",
-                size: FontSize.fs24,
-                color: ColorManager.mainColor,
-                fontWeight: FontWeightManager.regular,
-              ),
-            ],
+          GestureDetector(
+            onTap: () => Get.toNamed(RoutesManager.getLoginScreen()),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconWidget(
+                  icon: CupertinoIcons.square_arrow_left,
+                  iconColor: ColorManager.mainColor,
+                  size: AppSize.hs25 * 1.2,
+                ),
+                SizedBox(
+                  width: AppSize.ws14,
+                ),
+                //logout
+                BigTextWidget(
+                  text: StringsManager.drawerSignOut.tr,
+                  size: FontSize.fs24,
+                  color: ColorManager.mainColor,
+                  fontWeight: FontWeightManager.regular,
+                ),
+              ],
+            ),
           )
         ],
       ),

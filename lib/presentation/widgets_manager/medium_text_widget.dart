@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
+import '../resources/fonts_manager.dart';
 
 class MediumTextWidget extends StatelessWidget {
   Color? color;

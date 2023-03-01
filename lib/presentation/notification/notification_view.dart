@@ -75,7 +75,7 @@ class NotificationView extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            //list of notification cards
+            //list of n otification cards
             Expanded(
               child: ListView.builder(
                 itemCount: 10,

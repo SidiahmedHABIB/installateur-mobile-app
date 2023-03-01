@@ -1,16 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
-import 'package:installateur/presentation/widgets_manager/small_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
-
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
+import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
-import '../widgets_manager/expandable_text_widget.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
 
@@ -54,7 +51,7 @@ class BoxDetailsView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Fiche du boitier",
+          text: StringsManager.boxDetailsTilte.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
@@ -100,7 +97,8 @@ class BoxDetailsView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   MediumTextWidget(
-                                    text: "Boitier :",
+                                    text:
+                                        "${StringsManager.boxDetailsInfoBoxBox.tr} :",
                                     color: ColorManager.mainColor,
                                     size: FontSize.fs18,
                                   ),
@@ -108,7 +106,8 @@ class BoxDetailsView extends StatelessWidget {
                                     height: AppSize.hs25,
                                   ),
                                   MediumTextWidget(
-                                    text: "Entité :",
+                                    text:
+                                        "${StringsManager.boxDetailsInfoBoxEnitie.tr} :",
                                     color: ColorManager.mainColor,
                                     size: FontSize.fs18,
                                   ),
@@ -116,7 +115,8 @@ class BoxDetailsView extends StatelessWidget {
                                     height: AppSize.hs25,
                                   ),
                                   MediumTextWidget(
-                                    text: "Numéro de série :",
+                                    text:
+                                        "${StringsManager.boxDetailsInfoBoxNserie.tr} :",
                                     color: ColorManager.mainColor,
                                     size: FontSize.fs18,
                                   ),
@@ -160,7 +160,7 @@ class BoxDetailsView extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     color: Colors.white,
                     child: MediumTextWidget(
-                      text: "Infos Boitier",
+                      text: StringsManager.boxDetailsInfoBox.tr,
                       color: ColorManager.redColor,
                       size: FontSize.fs18,
                     ),
@@ -195,7 +195,8 @@ class BoxDetailsView extends StatelessWidget {
                             //matricule
                             TextFieldWidget(
                               textController: matriculController,
-                              hintText: "Entrer L'mmatriculation",
+                              hintText: StringsManager
+                                  .boxDetailsInstallHintMatricul.tr,
                               icon: CupertinoIcons.car_detailed,
                             ),
                             SizedBox(height: AppSize.hs14),
@@ -205,7 +206,8 @@ class BoxDetailsView extends StatelessWidget {
                                 Expanded(
                                   child: TextFieldWidget(
                                     textController: valeurController,
-                                    hintText: "Entrer valeur",
+                                    hintText: StringsManager
+                                        .boxDetailsInstallHintvaleur.tr,
                                     icon: CupertinoIcons.speedometer,
                                   ),
                                 ),
@@ -279,7 +281,8 @@ class BoxDetailsView extends StatelessWidget {
                                       ),
                                       SizedBox(width: AppSize.ws10),
                                       MediumTextWidget(
-                                        text: "Afficher l'emplacement",
+                                        text: StringsManager
+                                            .boxDetailsInstallPlaceButton.tr,
                                         color: ColorManager.white,
                                         fontWeight: FontWeightManager.regular,
                                       ),
@@ -297,7 +300,7 @@ class BoxDetailsView extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: AppPadding.wp10),
                     color: Colors.white,
                     child: MediumTextWidget(
-                      text: "Installation",
+                      text: StringsManager.boxDetailsInstall.tr,
                       color: ColorManager.redColor,
                       size: FontSize.fs18,
                     ),
@@ -328,7 +331,7 @@ class BoxDetailsView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "DIAGNOSTIC DU BOITIER",
+            text: StringsManager.boxDetailsBottomButton.tr,
             hdn: false,
             textSize: FontSize.fs20,
           ),

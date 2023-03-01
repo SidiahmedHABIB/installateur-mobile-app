@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import '../drawer/drawer_widgets.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
+import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
@@ -50,7 +51,7 @@ class SettingsView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Réglages",
+          text: StringsManager.settingsTitle.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
@@ -88,7 +89,7 @@ class SettingsView extends StatelessWidget {
                 child: ListTile(
                   horizontalTitleGap: 0,
                   title: MediumTextWidget(
-                    text: "Notifications",
+                    text: StringsManager.settingsNotification.tr,
                     size: FontSize.fs18,
                     color: ColorManager.mainColor,
                   ),
@@ -142,7 +143,7 @@ class SettingsView extends StatelessWidget {
                     size: AppSize.hs14 * 2,
                   ),
                   title: MediumTextWidget(
-                    text: "Changer de langue",
+                    text: StringsManager.settingsChangeLang.tr,
                     size: FontSize.fs18,
                     color: ColorManager.mainColor,
                   ),
@@ -151,7 +152,7 @@ class SettingsView extends StatelessWidget {
                     ListTile(
                       horizontalTitleGap: 0,
                       title: MediumTextWidget(
-                        text: "Français",
+                        text: StringsManager.settingsChangeLangFr.tr,
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
@@ -173,7 +174,7 @@ class SettingsView extends StatelessWidget {
                     ListTile(
                       horizontalTitleGap: 0,
                       title: MediumTextWidget(
-                        text: "Anglais",
+                        text: StringsManager.settingsChangeLangEn.tr,
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
@@ -195,7 +196,7 @@ class SettingsView extends StatelessWidget {
                     ListTile(
                       horizontalTitleGap: 0,
                       title: MediumTextWidget(
-                        text: "Espagnol",
+                        text: StringsManager.settingsChangeLangEs.tr,
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
@@ -237,7 +238,7 @@ class SettingsView extends StatelessWidget {
                     size: AppSize.hs25,
                   ),
                   title: MediumTextWidget(
-                    text: "Fuseau horaire",
+                    text: StringsManager.settingsHoraire.tr,
                     size: FontSize.fs18,
                     color: ColorManager.mainColor,
                   ),
@@ -246,7 +247,7 @@ class SettingsView extends StatelessWidget {
                     ListTile(
                       horizontalTitleGap: 0,
                       title: MediumTextWidget(
-                        text: "Réglaer automatiquement",
+                        text: StringsManager.settingsHoraireTitle.tr,
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
@@ -269,7 +270,7 @@ class SettingsView extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: AppSize.ws20, bottom: AppPadding.hp20),
                       child: MediumTextWidget(
-                        text: "*Les données ont sauvegardé en UTC",
+                        text: StringsManager.settingsHoraireSemiTitle.tr,
                         color: Colors.blue.shade400,
                         size: FontSize.fs14,
                       ),
@@ -301,7 +302,7 @@ class SettingsView extends StatelessWidget {
                   child: ListTile(
                     horizontalTitleGap: 0,
                     title: MediumTextWidget(
-                      text: "Changer l'email d'envoie des rapports",
+                      text: StringsManager.settingsChangeMail.tr,
                       size: FontSize.fs18,
                       color: ColorManager.mainColor,
                     ),
@@ -342,7 +343,7 @@ class SettingsView extends StatelessWidget {
                   child: ListTile(
                     horizontalTitleGap: 0,
                     title: MediumTextWidget(
-                      text: "Changer adresse de l'entreprise",
+                      text: StringsManager.settingsChangeLocation.tr,
                       size: FontSize.fs18,
                       color: ColorManager.mainColor,
                     ),

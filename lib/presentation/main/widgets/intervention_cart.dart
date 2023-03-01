@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../resources/colors_manager.dart';
-import '../../resources/fonst_manager.dart';
+import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/big_text_widget.dart';
 import '../../widgets_manager/icon_widget.dart';

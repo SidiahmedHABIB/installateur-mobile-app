@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonst_manager.dart';
+import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/big_text_widget.dart';
 import '../widgets_manager/button_widget.dart';
@@ -108,9 +109,6 @@ class InterventionRapportView extends StatelessWidget {
                     height: Get.height / 2.2,
                     decoration: const BoxDecoration(
                       color: ColorManager.mainColor,
-                      //   image: DecorationImage(
-                      //       fit: BoxFit.cover,
-                      //       image: AssetImage(AssetsManager.settingBackground)),
                     ),
                     child: Image.asset(
                       AssetsManager.settingBackground,
@@ -140,7 +138,7 @@ class InterventionRapportView extends StatelessWidget {
                       size: AppSize.hs25 * 1.3,
                     ),
                     MediumTextWidget(
-                      text: "Rapport d'intervention",
+                      text: StringsManager.interRapportTitle.tr,
                       color: ColorManager.white,
                       size: FontSize.fs20,
                     ),
@@ -260,7 +258,7 @@ class InterventionRapportView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "ENVOYER",
+            text: StringsManager.interRapportButton.tr,
             hdn: true,
             textSize: FontSize.fs20,
           ),

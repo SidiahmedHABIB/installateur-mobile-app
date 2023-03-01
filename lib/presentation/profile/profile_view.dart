@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:installateur/presentation/drawer/drawer_widgets.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
@@ -79,7 +80,7 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                     MediumTextWidget(
-                      text: "Profil",
+                      text: StringsManager.profileTitle.tr,
                       color: ColorManager.white,
                       size: FontSize.fs20,
                     ),
@@ -244,7 +245,7 @@ class ProfileView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "ENREGISTRER",
+            text: StringsManager.profileButton.tr,
             hdn: true,
             textSize: FontSize.fs20,
           ),

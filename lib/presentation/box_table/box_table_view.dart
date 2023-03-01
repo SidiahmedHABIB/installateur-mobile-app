@@ -2,10 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:installateur/presentation/box_table/box_table_view_model.dart';
+import 'package:installateur/presentation/notices/notice_view.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 
-import '../../test.dart';
+import '../../test/test.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/icon_widget.dart';
@@ -15,8 +19,8 @@ import 'widgets/fixed_column_widget.dart';
 import 'widgets/scrollable_column_widget.dart';
 
 class BoxTableView extends StatelessWidget {
-  const BoxTableView({super.key});
-
+  BoxTableView({super.key});
+  BoxTableViewModel vm = BoxTableViewModel();
   @override
   Widget build(BuildContext context) {
     var searchController = TextEditingController();
@@ -53,16 +57,19 @@ class BoxTableView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Liste des boitiers",
+          text: StringsManager.boxTableTitle.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
         actions: [
-          Padding(
-            padding: EdgeInsets.only(right: AppPadding.wp20),
-            child: IconWidget(
-              icon: CupertinoIcons.wrench_fill,
-              size: AppSize.hs25 * 1.3,
+          GestureDetector(
+            onTap: () => Get.to(NoticesView()),
+            child: Padding(
+              padding: EdgeInsets.only(right: AppPadding.wp20),
+              child: IconWidget(
+                icon: CupertinoIcons.wrench_fill,
+                size: AppSize.hs25 * 1.3,
+              ),
             ),
           ),
         ],
@@ -80,7 +87,7 @@ class BoxTableView extends StatelessWidget {
             ),
             child: TextFieldWidget(
               textController: searchController,
-              hintText: "Recherch",
+              hintText: StringsManager.boxTableSearchHinttext.tr,
               icon: CupertinoIcons.search,
             ),
           ),
@@ -88,20 +95,16 @@ class BoxTableView extends StatelessWidget {
           // list filtering box cart
           Container(
             height: AppSize.hs25 * 1.5,
-            // padding: EdgeInsets.only(left: AppPadding.wp20),
-            child: ListView.separated(
-              itemCount: 6,
+            child: ListView.builder(
+              itemCount: vm.filteringStrings.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => TextCart(
-                text: "Tous",
-                onClick: index % 2 == 0 ? true : false,
+                text: vm.filteringStrings[index],
+                onClick: index == 0 ? true : false,
                 textSize: FontSize.fs18,
                 vpadding: AppSize.hs8,
                 hpadding: AppSize.ws16,
               ),
-              separatorBuilder: (BuildContext context, int index) {
-                return Container();
-              },
             ),
           ),
           SizedBox(height: AppSize.hs20),
@@ -139,7 +142,7 @@ class BoxTableView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
-            text: "RAPPORT D'INSTALLATION",
+            text: StringsManager.boxTableBottomButton.tr,
             hdn: true,
             textSize: FontSize.fs20,
           ),

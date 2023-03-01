@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/box_table/box_table_view.dart';
 import 'package:installateur/presentation/notices/widgets/notice_row.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
@@ -28,7 +30,7 @@ class NoticesView extends StatelessWidget {
                   CupertinoIcons.back,
                 ),
                 onPressed: () {
-                  Get.to(HomeView());
+                  Get.to(BoxTableView());
                 },
               ),
             );
@@ -47,7 +49,7 @@ class NoticesView extends StatelessWidget {
         ),
         centerTitle: true,
         title: MediumTextWidget(
-          text: "Notifications",
+          text: StringsManager.noticesTitle.tr,
           color: ColorManager.white,
           size: FontSize.fs20,
         ),
@@ -61,7 +63,7 @@ class NoticesView extends StatelessWidget {
           // search
           TextFieldWidget(
             textController: searchController,
-            hintText: "Recherche...",
+            hintText: StringsManager.noticesSearchHintText.tr,
             icon: CupertinoIcons.search,
           ),
           SizedBox(height: AppSize.hs20),

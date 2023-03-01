@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import '../../resources/colors_manager.dart';
-import '../../resources/fonst_manager.dart';
+import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/medium_text_widget.dart';
 import '../../widgets_manager/text_field_widget.dart';
@@ -12,7 +13,7 @@ class SettingsDialogs {
   Future emailRapportDialog() {
     return Get.defaultDialog(
       radius: AppSize.hs10,
-      title: "Rapport d'intervention",
+      title: StringsManager.settingsChangeMailDialogTitle.tr,
       titleStyle: TextStyle(
         fontFamily: FontConstants.fontFamily,
         fontSize: FontSize.fs20,
@@ -42,7 +43,7 @@ class SettingsDialogs {
                     color: ColorManager.white,
                     borderRadius: BorderRadius.circular(AppSize.hs5)),
                 child: MediumTextWidget(
-                  text: "ANNULER",
+                  text: StringsManager.settingsDialogButtonOff.tr,
                   color: ColorManager.mainColor,
                 ),
               ),
@@ -57,7 +58,7 @@ class SettingsDialogs {
                     color: ColorManager.darkGrey,
                     borderRadius: BorderRadius.circular(AppSize.hs5)),
                 child: MediumTextWidget(
-                  text: "ENREGISTRER",
+                  text: StringsManager.settingsDialogButtonOk.tr,
                   color: ColorManager.white,
                 ),
               ),
@@ -73,7 +74,7 @@ class SettingsDialogs {
   Future adresseEnterpriseDialog() {
     return Get.defaultDialog(
       radius: AppSize.hs10,
-      title: "Adresse de l'entreprise",
+      title: StringsManager.settingsChangeLocationDialogTitle.tr,
       titleStyle: TextStyle(
         fontFamily: FontConstants.fontFamily,
         fontSize: FontSize.fs20,
@@ -103,7 +104,7 @@ class SettingsDialogs {
                     color: ColorManager.white,
                     borderRadius: BorderRadius.circular(AppSize.hs5)),
                 child: MediumTextWidget(
-                  text: "ANNULER",
+                  text: StringsManager.settingsDialogButtonOff.tr,
                   color: ColorManager.mainColor,
                 ),
               ),
@@ -118,7 +119,7 @@ class SettingsDialogs {
                     color: ColorManager.grey,
                     borderRadius: BorderRadius.circular(AppSize.hs5)),
                 child: MediumTextWidget(
-                  text: "ENREGISTRER",
+                  text: StringsManager.settingsDialogButtonOk.tr,
                   color: ColorManager.white,
                 ),
               ),

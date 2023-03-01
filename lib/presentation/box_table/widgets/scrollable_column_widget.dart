@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-
-import '../../../test.dart';
-import '../../resources/fonst_manager.dart';
+import '../../../test/test.dart';
+import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/medium_text_widget.dart';
 
