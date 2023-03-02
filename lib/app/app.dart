@@ -5,6 +5,7 @@ import 'package:installateur/app/translation.dart';
 import 'package:installateur/presentation/box_emplacement/box_emplacement_view.dart';
 import 'package:installateur/presentation/intervention_details/inter_details_view.dart';
 import 'package:installateur/presentation/main/home_view.dart';
+import 'package:installateur/presentation/splash/splash_view.dart';
 import '../presentation/box_table/box_table_view.dart';
 import '../presentation/intervention_rapport/inter_rapport_view.dart';
 import '../presentation/resources/routes_manager.dart';
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      // home: HomeView(),
+      // home: SplashView(),
 
       getPages: RoutesManager.routes,
-      initialRoute: RoutesManager.getInitial(),
+      initialRoute: RoutesManager.getSplashScreen(),
     );
   }
 }

@@ -85,6 +85,11 @@ class Translation implements Translations {
           // fr Notices
           "noticesTitle": "Notices",
           "noticesSearchHintText": "Recherche...",
+          // fr login
+          "loginEmail": "Email",
+          "loginPassword": "Mot de passe",
+          "loginForgetPassword": "Oublier le mot de passe?",
+          "loginbottombotton": "CONNEXION",
         },
         "en": {
           // en homepage
@@ -168,24 +173,29 @@ class Translation implements Translations {
           // en Notices
           "noticesTitle": "Notices",
           "noticesSearchHintText": "Search...",
+          // en login
+          "loginEmail": "Email",
+          "loginPassword": "Password",
+          "loginForgetPassword": "Forgot your password ?",
+          "loginbottombotton": "LOG IN",
         },
         "es": {
-          // fr home
+          // es home
           "homePageTitle": "Lista de intervenciones",
           "homePlanificaionT1": "Por planificar",
           "homePlanificaionT2": "Planificado",
           "homePlanificaionT3": "En espera",
           "homePlanificaionT4": "A facturar",
-          // fr drawer
+          // es drawer
           "drawerTile1": "Inicio",
           "drawerTile2": "Perfil",
           "drawerTile3": "Configurar",
           "drawerTile4": "A propósito",
           "drawerSignOut": "Desconectando",
-          // fr profile
+          // es profile
           "profileTitle": "Perfil",
           "profileButton": "REGÍSTRESE",
-          // fr settings
+          // es settings
           "settingsTitle": "Ajustes",
           "settingsNotification": "Notificaciones",
           "settingsChangeLang": "Cambiar de idioma",
@@ -202,7 +212,7 @@ class Translation implements Translations {
           "settingsChangeLocationDialogTitle": "dirección de la empresa",
           "settingsDialogButtonOk": "REGÍSTRESE",
           "settingsDialogButtonOff": "CANCELAR",
-          //fr intervention details
+          //es intervention details
           "interDetailTitle": "Formulario de intervención del cliente",
           "interDetailInfoPerson": "Información personal",
           "interDetailShowMore": "ver más",
@@ -210,10 +220,10 @@ class Translation implements Translations {
           "interDetailRendezVous": "Concierte una cita",
           "interDetailSelectDate": "Seleccione la fecha de intervención",
           "interDetailButton": "FINALIZAR",
-          //fr intervention rapports
+          //es intervention rapports
           "interRapportTitle": "Informe de intervención",
           "interRapportButton": "ENVIAR",
-          //fr box table
+          //es box table
           "boxTableTitle": "Lista de cajas",
           "boxTableSearchHinttext": "Buscar...",
           "boxTableFilter1": "Todos",
@@ -224,7 +234,7 @@ class Translation implements Translations {
           "boxTableColumnMatricul": "Inscripción",
           "boxTableColumnNserie": "N°Serie",
           "boxTableBottomButton": "INFORME DE INSTALACIÓN",
-          // fr box details
+          // es box details
           "boxDetailsTilte": "Hoja de caja",
           "boxDetailsInfoBox": "Información de caja",
           "boxDetailsInfoBoxBox": "Boitier",
@@ -235,22 +245,27 @@ class Translation implements Translations {
           "boxDetailsInstallHintvaleur": "Introduzca el valor",
           "boxDetailsInstallPlaceButton": "Mostrar localización",
           "boxDetailsBottomButton": "DIAGNÓSTICO DE LA CAJA",
-          // fr box details
+          // es box details
           "BoxEmplacementTitle": "Ubicación",
           "BoxEmplacementBox": "Caja",
           "BoxEmplacementBoxTitle": "Haga clic en el área de instalación",
           "BoxEmplacementAddImages": "Añadir fotos de la instalación",
           "BoxEmplacementBottomButton": "VALIDAR",
-          // fr BoxDiagnosticView
+          // es BoxDiagnosticView
           "boxDiagnosticTitle": "Diagnóstico de la caja",
           "boxDiagnosticbox": "Caja",
           "boxDiagnosticEnvirment": "Medioambiente",
           "boxDiagnosticEnvirmentAddComment": "Añadir un comentario",
           "boxDiagnosticAntennes": "Antenas",
           "boxDiagnosticBottomButton": "FINALIZAR LA INSTALACIÓN",
-          // fr Notices
+          // es Notices
           "noticesTitle": "Avisos",
           "noticesSearchHintText": "Buscar...",
+          // es login
+          "loginEmail": "Email",
+          "loginPassword": "Contraseña",
+          "loginForgetPassword": "Ha olvidado su contraseña",
+          "loginbottombotton": "CONEXIÓN",
         },
       };
 }

@@ -58,7 +58,7 @@ class RoutesManager {
     ),
     GetPage(
       name: loginScreen,
-      page: () => LoginView(),
+      page: () => LoginView(contaierHero: "container-hero"),
     ),
     GetPage(
       name: setting,

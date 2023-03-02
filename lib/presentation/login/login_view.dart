@@ -1,11 +1,9 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
-
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
 import '../resources/fonts_manager.dart';
@@ -14,7 +12,8 @@ import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/text_field_widget.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  String contaierHero;
+  LoginView({super.key, required this.contaierHero});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorManager.mainColor,
       body: Stack(children: [
+        //background
         Container(
           width: double.infinity,
           height: double.infinity,
@@ -38,49 +38,43 @@ class LoginView extends StatelessWidget {
             color: const Color.fromARGB(241, 47, 60, 86),
           ),
         ),
-        Container(
-          // color: Colors.yellow,
-          margin: EdgeInsets.only(top: Get.height / 4.5),
-          child: Column(
-            children: [
-              Center(
-                child: SizedBox(
-                  width: AppSize.hs100 * 2.6,
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Center(
-                        child: Container(
-                          width: AppSize.hs100 * 2.5,
-                          // margin: EdgeInsets.symmetric(horizontal: AppMargin.hm100),
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppPadding.hp20 * 1.2,
-                          ),
-                          child: Image.asset(AssetsManager.logoStrada),
-                        ),
-                      ),
-                      DefaultTextStyle(
-                        style: const TextStyle(
-                            color: ColorManager.redColor,
-                            fontSize: 18,
-                            fontFamily: FontConstants.fontFamily,
-                            fontWeight: FontWeightManager.semiBold),
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            TyperAnimatedText(
-                              "INSTALLATEUR",
-                              speed: const Duration(milliseconds: 120),
+        //logo and red text
+        Hero(
+          tag: contaierHero,
+          child: Container(
+            margin: EdgeInsets.only(top: Get.height / 4.5),
+            child: Column(
+              children: [
+                Center(
+                  child: SizedBox(
+                    width: AppSize.hs100 * 2.6,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Center(
+                          child: Container(
+                            width: AppSize.hs100 * 2.6,
+                            padding: EdgeInsets.symmetric(
+                              vertical: AppPadding.hp20 * 1.2,
                             ),
-                          ],
+                            child: Image.asset(AssetsManager.logoStrada),
+                          ),
                         ),
-                      ),
-                    ],
+                        SizedBox(height: AppSize.hs5),
+                        MediumTextWidget(
+                            text: "INSTALLATEUR",
+                            color: ColorManager.redColor,
+                            size: FontSize.fs18,
+                            fontWeight: FontWeightManager.semiBold),
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
+        //white container
         SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.only(top: Get.height / 2),
@@ -98,32 +92,39 @@ class LoginView extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
+                  //email
                   TextFieldWidget(
                     textController: emailController,
                     icon: Icons.email,
-                    hintText: "Email",
+                    hintText: StringsManager.loginEmail.tr,
                   ),
                   SizedBox(height: AppSize.hs25),
+                  //password
                   TextFieldWidget(
                     textController: passwordController,
                     icon: CupertinoIcons.lock_fill,
-                    hintText: "Mot de passe",
+                    hintText: StringsManager.loginPassword.tr,
                   ),
                   SizedBox(height: AppSize.hs16),
+                  //forget password
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       MediumTextWidget(
-                        text: "Oublier le mot de passe ?",
+                        text: StringsManager.loginForgetPassword.tr,
                         color: ColorManager.redColor,
                         size: FontSize.fs16,
                       )
                     ],
                   ),
+                  //button
                   SizedBox(height: AppSize.hs16 * 2),
-                  ButtonWidget(
-                    text: "CONNEXION",
-                    hdn: false,
+                  GestureDetector(
+                    onTap: () => Get.toNamed(RoutesManager.getInitial()),
+                    child: ButtonWidget(
+                      text: StringsManager.loginbottombotton.tr,
+                      hdn: false,
+                    ),
                   )
                 ],
               ),

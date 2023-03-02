@@ -93,4 +93,10 @@ class StringsManager {
   //Notices
   static const noticesTitle = "noticesTitle";
   static const noticesSearchHintText = "noticesSearchHintText";
+
+  //login
+  static const loginEmail = "loginEmail";
+  static const loginPassword = "loginPassword";
+  static const loginForgetPassword = "loginForgetPassword";
+  static const loginbottombotton = "loginbottombotton";
 }
