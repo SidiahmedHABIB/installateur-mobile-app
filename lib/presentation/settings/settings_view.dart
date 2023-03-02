@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
+import 'package:installateur/presentation/settings/settings_view_model.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
+import '../../main.dart';
 import '../drawer/drawer_widgets.dart';
 import '../resources/colors_manager.dart';
 import '../resources/fonts_manager.dart';
@@ -17,6 +19,7 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SettingsViewModel viewModel = Get.find();
     var emailEnterpriseController = TextEditingController();
 
     return Scaffold(
@@ -156,12 +159,16 @@ class SettingsView extends StatelessWidget {
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
+                      // frensh
                       trailing: Checkbox(
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         activeColor: ColorManager.mainColor,
                         checkColor: ColorManager.white,
-                        value: true,
-                        onChanged: (value) => {},
+                        value: sharedPreferences.getBool("frChecked") ?? false,
+                        onChanged: (value) => {
+                          viewModel.changLang("fr"),
+                          viewModel.checkingController("fr"),
+                        },
                       ),
                     ),
                     Container(
@@ -178,12 +185,16 @@ class SettingsView extends StatelessWidget {
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
+                      //english
                       trailing: Checkbox(
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         activeColor: ColorManager.mainColor,
                         checkColor: ColorManager.white,
-                        value: false,
-                        onChanged: (value) => {},
+                        value: sharedPreferences.getBool("enChecked") ?? true,
+                        onChanged: (value) => {
+                          viewModel.changLang("en"),
+                          viewModel.checkingController("en"),
+                        },
                       ),
                     ),
                     Container(
@@ -200,12 +211,16 @@ class SettingsView extends StatelessWidget {
                         size: FontSize.fs18,
                         color: ColorManager.mainColor,
                       ),
+                      // spanish
                       trailing: Checkbox(
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         activeColor: ColorManager.mainColor,
                         checkColor: ColorManager.white,
-                        value: false,
-                        onChanged: (value) => {},
+                        value: sharedPreferences.getBool("esChecked") ?? false,
+                        onChanged: (value) => {
+                          viewModel.changLang("es"),
+                          viewModel.checkingController("es"),
+                        },
                       ),
                     ),
                   ],
