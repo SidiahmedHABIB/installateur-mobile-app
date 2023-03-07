@@ -12,15 +12,17 @@ class InterventionCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // big container
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      margin: EdgeInsets.symmetric(
+          horizontal: AppMargin.wm20, vertical: AppMargin.hm10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSize.hs10),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               color: ColorManager.whiteGrey,
-              blurRadius: 8,
-              offset: Offset(0, 0),
+              blurRadius: AppSize.hs10,
+              offset: const Offset(0, 0),
             ),
           ]),
       child: Row(
@@ -159,7 +161,7 @@ class InterventionCart extends StatelessWidget {
             ),
           ),
           Container(
-            height: 99,
+            height: AppSize.hs100 * 1.05,
             decoration: BoxDecoration(
               color: ColorManager.mainColor,
               borderRadius: BorderRadius.only(

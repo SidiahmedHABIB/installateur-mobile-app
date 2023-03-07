@@ -22,7 +22,7 @@ class ButtonWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: AppPadding.hp16),
       decoration: BoxDecoration(
         color: hdn == true ? ColorManager.darkGrey : ColorManager.mainColor,
-        borderRadius: BorderRadius.circular(AppSize.hs10),
+        borderRadius: BorderRadius.circular(AppSize.hs8),
       ),
       child: Center(
           child: MediumTextWidget(

@@ -12,8 +12,9 @@ import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/text_field_widget.dart';
 
 class LoginView extends StatelessWidget {
-  String contaierHero;
-  LoginView({super.key, required this.contaierHero});
+  // String contaierHero;
+  // LoginView({super.key, required this.contaierHero});
+  LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,8 @@ class LoginView extends StatelessWidget {
         ),
         //logo and red text
         Hero(
-          tag: contaierHero,
+          tag: "container-hero",
+          // tag: contaierHero,
           child: Container(
             margin: EdgeInsets.only(top: Get.height / 4.5),
             child: Column(

@@ -106,7 +106,7 @@ class Translation implements Translations {
           "drawerSignOut": "Sign out",
           // en profile
           "profileTitle": "Profile",
-          "profileButton": "SAVE",
+          "profileButton": "REGISTER",
           // en settings
           "settingsTitle": "Settings",
           "settingsNotification": "Notifications",
@@ -122,7 +122,7 @@ class Translation implements Translations {
           "settingsChangeMailDialogTitle": "Intervention report",
           "settingsChangeLocation": "change the company's address",
           "settingsChangeLocationDialogTitle": "company address",
-          "settingsDialogButtonOk": "SAVE",
+          "settingsDialogButtonOk": "REGISTER",
           "settingsDialogButtonOff": "CANCEL",
           // en intervention details
           "interDetailTitle": "Customer's intervention form",

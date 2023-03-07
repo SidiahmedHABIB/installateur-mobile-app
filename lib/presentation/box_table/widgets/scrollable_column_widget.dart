@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
+import 'package:installateur/presentation/resources/strings_manager.dart';
 import '../../../test/test.dart';
 import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
@@ -26,54 +28,33 @@ class ScrollableColumnWidget extends StatelessWidget {
             columns: [
               DataColumn(
                 label: MediumTextWidget(
-                  text: "Points",
+                  text: StringsManager.boxTableColumnEnitie.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: "Won",
+                  text: StringsManager.boxTableColumnMatricul.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: "Lost",
-                  color: ColorManager.white,
-                  size: FontSize.fs18,
-                ),
-              ),
-              DataColumn(
-                label: MediumTextWidget(
-                  text: "Drawn",
-                  color: ColorManager.white,
-                  size: FontSize.fs18,
-                ),
-              ),
-              DataColumn(
-                label: MediumTextWidget(
-                  text: "Against",
-                  color: ColorManager.white,
-                  size: FontSize.fs18,
-                ),
-              ),
-              DataColumn(
-                label: MediumTextWidget(
-                  text: "GD",
+                  text: StringsManager.boxTableColumnNserie.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
             ],
             rows: [
-              ...teamsData.map((team) => DataRow(
+              ...boxes.map((box) => DataRow(
                     cells: [
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: team.points.toString(),
+                          text: box.entity.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,
@@ -82,7 +63,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: team.won.toString(),
+                          text: box.matricule.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,
@@ -91,34 +72,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: team.lost.toString(),
-                          color: Colors.black54,
-                          size: FontSize.fs16,
-                          fontWeight: FontWeightManager.medium,
-                        ),
-                      )),
-                      DataCell(Container(
-                        alignment: AlignmentDirectional.center,
-                        child: MediumTextWidget(
-                          text: team.drawn.toString(),
-                          color: Colors.black54,
-                          size: FontSize.fs16,
-                          fontWeight: FontWeightManager.medium,
-                        ),
-                      )),
-                      DataCell(Container(
-                        alignment: AlignmentDirectional.center,
-                        child: MediumTextWidget(
-                          text: team.against.toString(),
-                          color: Colors.black54,
-                          size: FontSize.fs16,
-                          fontWeight: FontWeightManager.medium,
-                        ),
-                      )),
-                      DataCell(Container(
-                        alignment: AlignmentDirectional.center,
-                        child: MediumTextWidget(
-                          text: team.gd.toString(),
+                          text: box.nserie.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,

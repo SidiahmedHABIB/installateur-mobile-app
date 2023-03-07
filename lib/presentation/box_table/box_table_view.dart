@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/box_table/box_table_view_model.dart';
+import 'package:installateur/presentation/box_table/widgets/dialog_inter_type.dart';
 import 'package:installateur/presentation/notices/notice_view.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
-
-import '../../test/test.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/icon_widget.dart';
@@ -125,7 +122,7 @@ class BoxTableView extends StatelessWidget {
           ),
         ],
       ),
-
+      // footer
       bottomNavigationBar: Container(
         height: AppSize.hs100 * 1,
         padding: EdgeInsets.symmetric(
@@ -141,10 +138,13 @@ class BoxTableView extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: ButtonWidget(
-            text: StringsManager.boxTableBottomButton.tr,
-            hdn: true,
-            textSize: FontSize.fs20,
+          child: GestureDetector(
+            onTap: () => Get.to(DialogInterventionType()),
+            child: ButtonWidget(
+              text: StringsManager.boxTableBottomButton.tr,
+              hdn: true,
+              textSize: FontSize.fs20,
+            ),
           ),
         ),
       ),

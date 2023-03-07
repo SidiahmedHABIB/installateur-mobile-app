@@ -7,6 +7,8 @@ import 'package:installateur/presentation/intervention_details/inter_details_vie
 import 'package:installateur/presentation/main/home_view.dart';
 import 'package:installateur/presentation/splash/splash_view.dart';
 import '../presentation/box_table/box_table_view.dart';
+import '../presentation/box_table/box_table_view_model.dart';
+import '../presentation/box_table/widgets/dialog_inter_type.dart';
 import '../presentation/intervention_rapport/inter_rapport_view.dart';
 import '../presentation/resources/routes_manager.dart';
 import '../presentation/settings/settings_view_model.dart';
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SettingsViewModel langController = Get.put(SettingsViewModel());
+
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      // home: SplashView(),
+      // home: HomeView(),
 
       getPages: RoutesManager.routes,
       initialRoute: RoutesManager.getSplashScreen(),
