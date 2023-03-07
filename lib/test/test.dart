@@ -7,63 +7,41 @@ import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
+import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 import 'package:installateur/test/testvm.dart';
 
 class Test extends StatefulWidget {
-  const Test({super.key});
+  Test({
+    super.key,
+  });
 
   @override
   State<Test> createState() => _TestState();
 }
 
-class _TestState extends State<Test> with TickerProviderStateMixin {
-  testvm vm = testvm();
-  double opacityLevel = 0.0;
-
-  void _changeOpacity() {
-    setState(() => opacityLevel = opacityLevel == 0 ? 1.0 : 0.0);
-  }
-
-  bool selected = false;
-  @override
-  void initState() {
-    super.initState();
-    Timer(Duration(seconds: 2), () => selected = true);
-  }
+class _TestState extends State<Test> {
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
+    Color color = isPressed == false ? ColorManager.grey : Colors.white;
     return Scaffold(
-      backgroundColor: ColorManager.white,
-      body: Container(
-        color: Colors.red,
-        width: double.maxFinite,
-        height: double.maxFinite,
-        child: Stack(
-          children: <Widget>[
-            AnimatedPositioned(
-              width: selected ? 450.0 : 450.0,
-              height: selected ? 100.0 : 100.0,
-              bottom: selected ? 0.0 : -90.0,
-              duration: const Duration(seconds: 2),
-              curve: Curves.fastOutSlowIn,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selected = !selected;
-                  });
-                },
-                child: Container(
-                  color: Colors.blue,
-                  child: const Center(child: Text('Tap me')),
-                ),
+        backgroundColor: ColorManager.white,
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonWidget(
+                text: "INSTALLATEUR",
+                hdn: true,
+                onClicked: () => print("object"),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
+              SizedBox(height: 30),
+            ],
+          ),
+        ));
   }
 }
 

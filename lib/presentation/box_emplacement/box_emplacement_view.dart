@@ -261,6 +261,7 @@ class BoxEmplacementView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.boxEmplacementBottomButton.tr,
             hdn: false,
             textSize: FontSize.fs20,

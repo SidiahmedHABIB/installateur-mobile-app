@@ -258,6 +258,7 @@ class InterventionRapportView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.interRapportButton.tr,
             hdn: true,
             textSize: FontSize.fs20,

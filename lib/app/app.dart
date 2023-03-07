@@ -12,6 +12,7 @@ import '../presentation/box_table/widgets/dialog_inter_type.dart';
 import '../presentation/intervention_rapport/inter_rapport_view.dart';
 import '../presentation/resources/routes_manager.dart';
 import '../presentation/settings/settings_view_model.dart';
+import '../test/test.dart';
 import '../test/testbings.dart';
 
 class MyApp extends StatelessWidget {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      // home: HomeView(),
+      // home: Test(),
 
       getPages: RoutesManager.routes,
       initialRoute: RoutesManager.getSplashScreen(),

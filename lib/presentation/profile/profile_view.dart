@@ -245,6 +245,7 @@ class ProfileView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.profileButton.tr,
             hdn: true,
             textSize: FontSize.fs20,

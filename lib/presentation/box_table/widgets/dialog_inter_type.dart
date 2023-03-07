@@ -85,18 +85,21 @@ class DialogInterventionType extends StatelessWidget {
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
+                              onClicked: () => {},
                               text: "INSTALLER",
                               hdn: false,
                               textSize: FontSize.fs18,
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
+                              onClicked: () => {},
                               text: "DESINSTALLER",
                               hdn: false,
                               textSize: FontSize.fs18,
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
+                              onClicked: () => {},
                               text: "DEPPANER",
                               hdn: false,
                               textSize: FontSize.fs18,

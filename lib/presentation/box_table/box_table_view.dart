@@ -138,13 +138,11 @@ class BoxTableView extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: GestureDetector(
-            onTap: () => Get.to(DialogInterventionType()),
-            child: ButtonWidget(
-              text: StringsManager.boxTableBottomButton.tr,
-              hdn: true,
-              textSize: FontSize.fs20,
-            ),
+          child: ButtonWidget(
+            onClicked: () => Get.to(DialogInterventionType()),
+            text: StringsManager.boxTableBottomButton.tr,
+            hdn: true,
+            textSize: FontSize.fs20,
           ),
         ),
       ),

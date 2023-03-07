@@ -121,12 +121,10 @@ class LoginView extends StatelessWidget {
                   ),
                   //button
                   SizedBox(height: AppSize.hs16 * 2),
-                  GestureDetector(
-                    onTap: () => Get.toNamed(RoutesManager.getInitial()),
-                    child: ButtonWidget(
-                      text: StringsManager.loginbottombotton.tr,
-                      hdn: false,
-                    ),
+                  ButtonWidget(
+                    onClicked: () => Get.toNamed(RoutesManager.getInitial()),
+                    text: StringsManager.loginbottombotton.tr,
+                    hdn: false,
                   )
                 ],
               ),

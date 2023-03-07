@@ -331,6 +331,7 @@ class BoxDetailsView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.boxDetailsBottomButton.tr,
             hdn: false,
             textSize: FontSize.fs20,

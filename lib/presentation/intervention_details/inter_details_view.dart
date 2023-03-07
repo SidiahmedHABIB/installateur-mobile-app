@@ -330,6 +330,7 @@ class InterventionDetailsView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.interDetailButton.tr,
             hdn: true,
             textSize: FontSize.fs20,

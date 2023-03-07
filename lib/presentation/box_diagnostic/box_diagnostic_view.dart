@@ -535,6 +535,7 @@ class BoxDiagnosticView extends StatelessWidget {
         ),
         child: Center(
           child: ButtonWidget(
+            onClicked: () => {},
             text: StringsManager.boxDiagnosticBottomButton.tr,
             hdn: true,
             textSize: FontSize.fs20,
