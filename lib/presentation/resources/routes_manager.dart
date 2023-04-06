@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:installateur/presentation/login/login_binding.dart';
+import 'package:installateur/presentation/main/home_bindings.dart';
 import '../../test/test.dart';
 import '../box_details/box_details_view.dart';
 import '../box_diagnostic/box_diagnostic_view.dart';
@@ -52,6 +53,7 @@ class RoutesManager {
     GetPage(
       name: initial,
       page: () => HomeView(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: profile,

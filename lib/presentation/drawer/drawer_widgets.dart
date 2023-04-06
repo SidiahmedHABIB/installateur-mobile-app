@@ -19,6 +19,8 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DrawerViewModel drawerViewModel = Get.find<DrawerViewModel>();
+
     return Drawer(
       child: ListView(
         children: [
@@ -81,7 +83,7 @@ class MyDrawer extends StatelessWidget {
           // Spacer(),
           SizedBox(height: AppSize.hs100),
           GestureDetector(
-            onTap: () => Get.toNamed(RoutesManager.getLoginScreen()),
+            onTap: () => drawerViewModel.logout(),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
