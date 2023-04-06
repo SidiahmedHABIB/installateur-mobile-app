@@ -1,9 +1,15 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:installateur/app/app_constants.dart';
+import 'package:installateur/data/data_source/local_data_source.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 
 class SplashViewModel extends GetxController {
+  final LocalDataSource _localDataSource;
+
   bool viewText = false;
+
+  SplashViewModel(this._localDataSource);
   @override
   void onInit() {
     super.onInit();
@@ -13,7 +19,9 @@ class SplashViewModel extends GetxController {
 
   void goToNextView() {
     Timer(const Duration(seconds: 4), () {
-      Get.offNamed(RoutesManager.getLoginScreen());
+      _localDataSource.getString(AppConstants.USER_KEY) == null
+          ? Get.offNamed(RoutesManager.getLoginScreen())
+          : Get.offNamed(RoutesManager.getInitial());
     });
   }
 

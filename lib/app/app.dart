@@ -6,6 +6,9 @@ import 'package:installateur/presentation/box_emplacement/box_emplacement_view.d
 import 'package:installateur/presentation/intervention_details/inter_details_view.dart';
 import 'package:installateur/presentation/main/home_view.dart';
 import 'package:installateur/presentation/splash/splash_view.dart';
+import '../data/data_source/local_data_source.dart';
+import '../data/repository_imp/auth_repository_imp.dart';
+import '../domain/repository/auth_repository.dart';
 import '../presentation/box_table/box_table_view.dart';
 import '../presentation/box_table/box_table_view_model.dart';
 import '../presentation/box_table/widgets/dialog_inter_type.dart';
@@ -20,8 +23,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(LocalDataSource());
     SettingsViewModel langController = Get.put(SettingsViewModel());
-
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      // home: Test(),
+      //home: Test(),
 
       getPages: RoutesManager.routes,
       initialRoute: RoutesManager.getSplashScreen(),

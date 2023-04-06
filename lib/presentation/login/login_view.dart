@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/presentation/login/login_view_model.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
@@ -14,12 +15,11 @@ import '../widgets_manager/text_field_widget.dart';
 class LoginView extends StatelessWidget {
   // String contaierHero;
   // LoginView({super.key, required this.contaierHero});
+  LoginViewModel loginViewModel = Get.find();
   LoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var emailController = TextEditingController();
-    var passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: ColorManager.mainColor,
       body: Stack(children: [
@@ -96,14 +96,14 @@ class LoginView extends StatelessWidget {
                 children: [
                   //email
                   TextFieldWidget(
-                    textController: emailController,
+                    textController: loginViewModel.emailController,
                     icon: Icons.email,
                     hintText: StringsManager.loginEmail.tr,
                   ),
                   SizedBox(height: AppSize.hs25),
                   //password
                   TextFieldWidget(
-                    textController: passwordController,
+                    textController: loginViewModel.passwordController,
                     icon: CupertinoIcons.lock_fill,
                     hintText: StringsManager.loginPassword.tr,
                   ),
@@ -121,10 +121,18 @@ class LoginView extends StatelessWidget {
                   ),
                   //button
                   SizedBox(height: AppSize.hs16 * 2),
-                  ButtonWidget(
-                    onClicked: () => Get.toNamed(RoutesManager.getInitial()),
-                    text: StringsManager.loginbottombotton.tr,
-                    hdn: false,
+                  GetBuilder<LoginViewModel>(
+                    builder: (controller) {
+                      return controller.loading == false
+                          ? ButtonWidget(
+                              onClicked: () => loginViewModel.login(),
+                              text: StringsManager.loginbottombotton.tr,
+                              hdn: false,
+                            )
+                          : CircularProgressIndicator(
+                              color: ColorManager.mainColor,
+                            );
+                    },
                   )
                 ],
               ),

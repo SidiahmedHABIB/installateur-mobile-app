@@ -5,6 +5,7 @@ import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/settings/settings_view_model.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
+import '../../data/data_source/local_data_source.dart';
 import '../../main.dart';
 import '../drawer/drawer_widgets.dart';
 import '../resources/colors_manager.dart';
@@ -20,6 +21,8 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SettingsViewModel viewModel = Get.find();
+    LocalDataSource localDataSource = Get.find();
+
     var emailEnterpriseController = TextEditingController();
 
     return Scaffold(
@@ -164,7 +167,7 @@ class SettingsView extends StatelessWidget {
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         activeColor: ColorManager.mainColor,
                         checkColor: ColorManager.white,
-                        value: sharedPreferences.getBool("frChecked") ?? false,
+                        value: localDataSource.getBool("frChecked"),
                         onChanged: (value) => {
                           viewModel.changLang("fr"),
                           viewModel.checkingController("fr"),

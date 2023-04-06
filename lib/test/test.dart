@@ -6,7 +6,6 @@ import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
-import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 import 'package:installateur/test/testvm.dart';
@@ -33,6 +32,10 @@ class _TestState extends State<Test> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Container(
+                width: 200,
+                child: Image.network("http://10.0.2.2:8088/image/2.png"),
+              ),
               ButtonWidget(
                 text: "INSTALLATEUR",
                 hdn: true,

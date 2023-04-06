@@ -36,7 +36,11 @@ dependencies:
   expandable_text: ^2.3.0  #epandable text
   dotted_border: ^2.0.0+3  #border dashed  
   shared_preferences: ^2.0.17  #local data
+  dartz: ^0.10.1   #Either
+  internet_connection_checker: ^1.0.0+1
+  http: ^0.13.5
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

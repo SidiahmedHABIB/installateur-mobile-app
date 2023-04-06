@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:installateur/presentation/login/login_binding.dart';
 import '../../test/test.dart';
 import '../box_details/box_details_view.dart';
 import '../box_diagnostic/box_diagnostic_view.dart';
@@ -60,6 +61,7 @@ class RoutesManager {
       name: loginScreen,
       // page: () => LoginView(contaierHero: "container-hero"),
       page: () => LoginView(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: setting,

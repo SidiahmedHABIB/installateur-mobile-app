@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../main.dart';
+import 'package:installateur/data/data_source/local_data_source.dart';
 
 class SettingsViewModel extends GetxController {
+  LocalDataSource localDataSource = Get.find();
   Locale getIntialLang() {
     Locale intialLang;
-    if (sharedPreferences.getString("localLang") == "en") {
+    if (localDataSource.getString("localLang") == "en") {
       intialLang = const Locale("en");
-    } else if (sharedPreferences.getString("localLang") == "fr") {
+    } else if (localDataSource.getString("localLang") == "fr") {
       intialLang = const Locale("fr");
-    } else if (sharedPreferences.getString("localLang") == "es") {
+    } else if (localDataSource.getString("localLang") == "es") {
       intialLang = const Locale("es");
     } else {
       intialLang = const Locale("en");
@@ -20,25 +20,25 @@ class SettingsViewModel extends GetxController {
 
   void changLang(String codeLang) {
     Locale locale = Locale(codeLang);
-    sharedPreferences.setString("localLang", codeLang);
+    localDataSource.setString("localLang", codeLang);
     Get.updateLocale(locale);
   }
 
   void checkingController(String index) {
     if (index == "fr") {
-      sharedPreferences.setBool("frChecked", true);
-      sharedPreferences.setBool("enChecked", false);
-      sharedPreferences.setBool("esChecked", false);
+      localDataSource.setBool("frChecked", true);
+      localDataSource.setBool("enChecked", false);
+      localDataSource.setBool("esChecked", false);
       update();
     } else if (index == "en") {
-      sharedPreferences.setBool("frChecked", false);
-      sharedPreferences.setBool("enChecked", true);
-      sharedPreferences.setBool("esChecked", false);
+      localDataSource.setBool("frChecked", false);
+      localDataSource.setBool("enChecked", true);
+      localDataSource.setBool("esChecked", false);
       update();
     } else if (index == "es") {
-      sharedPreferences.setBool("frChecked", false);
-      sharedPreferences.setBool("enChecked", false);
-      sharedPreferences.setBool("esChecked", true);
+      localDataSource.setBool("frChecked", false);
+      localDataSource.setBool("enChecked", false);
+      localDataSource.setBool("esChecked", true);
       update();
     }
   }

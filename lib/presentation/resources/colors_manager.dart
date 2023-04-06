@@ -11,4 +11,5 @@ class ColorManager {
   static const Color white = Color(0xFFFFFFFF);
   static const Color secondBackground = Color(0xFFDDDDDD);
   static const Color redColor = Color(0xFFC4525F);
+  static const Color error = Color(0xFFf85c5c);
 }
