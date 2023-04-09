@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:installateur/app/app_constants.dart';
 import 'package:installateur/data/data_source/local_data_source.dart';
+import 'package:installateur/main.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 
@@ -32,8 +33,8 @@ class DrawerViewModel {
     },
   ];
   Future<void> logout() async {
-    _localDataSource
-        .remove(AppConstants.USER_KEY)
+    sharedPreferences
+        .clear()
         .then((value) => Get.offNamed(RoutesManager.getLoginScreen()));
   }
 }

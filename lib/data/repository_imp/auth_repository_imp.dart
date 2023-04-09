@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import 'package:get/get.dart';
 import 'package:installateur/app/app_constants.dart';
@@ -24,7 +25,7 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
     if (await _networkChercher.isConnected) {
       try {
         AuthRequest auth = AuthRequest(email: email, password: password);
-        var response = await _remoteDataSource.postData(
+        http.Response response = await _remoteDataSource.postData(
             AppConstants.LOGIN_URI, auth.toJson());
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
@@ -46,11 +47,11 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
   }
 
   Future<void> saveUserLocal(UserModel userModel) async {
-    _localDataSource.setString(AppConstants.USER_KEY, jsonEncode(userModel));
+    _localDataSource.setString(AppConstants.USER_TOKEN, jsonEncode(userModel));
   }
 
   Future<UserModel> getUserFromLocal() async {
-    String? userS = _localDataSource.getString(AppConstants.USER_KEY);
+    String? userS = _localDataSource.getString(AppConstants.USER_TOKEN);
     UserModel userlocal = UserModel.fromJson(jsonDecode(userS!));
     return userlocal;
   }

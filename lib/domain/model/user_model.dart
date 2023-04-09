@@ -8,7 +8,7 @@ class UserModel {
   String? password;
   String? creatAt;
   String? updateAt;
-  ImageModel? imageData;
+  ImageModel? imageUser;
 
   UserModel(
       {this.id,
@@ -18,7 +18,7 @@ class UserModel {
       this.password,
       this.creatAt,
       this.updateAt,
-      this.imageData});
+      this.imageUser});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -28,8 +28,8 @@ class UserModel {
     password = json['password'];
     creatAt = json['creatAt'];
     updateAt = json['updateAt'];
-    imageData = json['ImageData'] != null
-        ? new ImageModel.fromJson(json['ImageData'])
+    imageUser = json['imageUser'] != null
+        ? new ImageModel.fromJson(json['imageUser'])
         : null;
   }
 
@@ -42,8 +42,8 @@ class UserModel {
     data['password'] = this.password;
     data['creatAt'] = this.creatAt;
     data['updateAt'] = this.updateAt;
-    if (this.imageData != null) {
-      data['ImageData'] = this.imageData!.toJson();
+    if (this.imageUser != null) {
+      data['imageUser'] = this.imageUser!.toJson();
     }
     return data;
   }

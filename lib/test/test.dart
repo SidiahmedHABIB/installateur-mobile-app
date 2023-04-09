@@ -25,26 +25,66 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     Color color = isPressed == false ? ColorManager.grey : Colors.white;
-    return Scaffold(
-        backgroundColor: ColorManager.white,
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 200,
-                child: Image.network("http://10.0.2.2:8088/image/2.png"),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('GeeksForGeeks'),
+          backgroundColor: Colors.green,
+        ), // AppBar
+        body: Column(
+          children: [
+            TabBar(
+              indicator: ShapeDecoration(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                color: ColorManager.mainColor,
               ),
-              ButtonWidget(
-                text: "INSTALLATEUR",
-                hdn: true,
-                onClicked: () => print("object"),
+              tabs: [
+                Tab(
+                  child: MediumTextWidget(text: "My Requests"),
+                ),
+                Tab(
+                  child: MediumTextWidget(text: "Newsletter"),
+                ),
+                Tab(
+                  child: MediumTextWidget(text: "Newsletter"),
+                ),
+                Tab(
+                  child: MediumTextWidget(text: "Newsletter"),
+                ),
+              ],
+            ),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  Column(
+                    children: [
+                      Icon(Icons.music_note),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(Icons.music_video),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(Icons.music_video),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Icon(Icons.music_video),
+                    ],
+                  ),
+                ],
               ),
-              SizedBox(height: 30),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ), // TabBarView
+      ), // Scaffold
+    );
   }
 }
 

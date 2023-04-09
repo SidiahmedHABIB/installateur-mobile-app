@@ -6,7 +6,6 @@ class StringsManager {
   static const homePlanificaionT1 = "homePlanificaionT1";
   static const homePlanificaionT2 = "homePlanificaionT2";
   static const homePlanificaionT3 = "homePlanificaionT3";
-  static const homePlanificaionT4 = "homePlanificaionT4";
 
   // drawer
   static const drawerTile1 = "drawerTile1";

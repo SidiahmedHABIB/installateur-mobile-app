@@ -19,9 +19,9 @@ class SplashViewModel extends GetxController {
 
   void goToNextView() {
     Timer(const Duration(seconds: 4), () {
-      _localDataSource.getString(AppConstants.USER_KEY) == null
-          ? Get.offNamed(RoutesManager.getLoginScreen())
-          : Get.offNamed(RoutesManager.getInitial());
+      _localDataSource.getString(AppConstants.USER_TOKEN) != ""
+          ? Get.offNamed(RoutesManager.getInitial())
+          : Get.offNamed(RoutesManager.getLoginScreen());
     });
   }
 
