@@ -14,6 +14,9 @@ class PlannedInterventionCart extends StatelessWidget {
   String location;
   String phone;
   String image;
+  String month;
+  String day;
+  String hour;
 
   PlannedInterventionCart({
     super.key,
@@ -21,6 +24,9 @@ class PlannedInterventionCart extends StatelessWidget {
     required this.location,
     required this.phone,
     required this.image,
+    required this.month,
+    required this.day,
+    required this.hour,
   });
 
   @override
@@ -141,7 +147,7 @@ class PlannedInterventionCart extends StatelessWidget {
                         ),
                         child: Center(
                             child: MediumTextWidget(
-                          text: "ARV",
+                          text: month.toUpperCase(),
                           color: ColorManager.white,
                           size: FontSize.fs12,
                         )),
@@ -162,14 +168,14 @@ class PlannedInterventionCart extends StatelessWidget {
                         ),
                         child: Center(
                             child: BigTextWidget(
-                          text: "18",
+                          text: day,
                           color: ColorManager.mainColor,
                           size: FontSize.fs12,
                         )),
                       ),
                       SizedBox(height: AppSize.hs5),
                       BigTextWidget(
-                        text: "10:00",
+                        text: hour,
                         color: ColorManager.redColor,
                         size: FontSize.fs14,
                       )

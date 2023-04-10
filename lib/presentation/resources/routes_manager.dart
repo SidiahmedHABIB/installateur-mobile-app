@@ -7,6 +7,7 @@ import '../box_details/box_details_view.dart';
 import '../box_diagnostic/box_diagnostic_view.dart';
 import '../box_emplacement/box_emplacement_view.dart';
 import '../box_table/box_table_view.dart';
+import '../intervention_details/inter_details_binding.dart';
 import '../intervention_details/inter_details_view.dart';
 import '../intervention_rapport/inter_rapport_view.dart';
 import '../login/login_view.dart';
@@ -39,7 +40,8 @@ class RoutesManager {
   static String getBoxDetails() => boxDetails;
   static String getBoxEmplacement() => boxEmplacement;
   static String getBoxDiagnostic() => boxDiagnostic;
-  static String getInterDetails() => interDetails;
+  static String getInterDetails(int? interId) =>
+      '$interDetails?interId=$interId';
   static String getInterRapport() => interRapport;
 
   static List<GetPage> routes = [
@@ -89,7 +91,11 @@ class RoutesManager {
     ),
     GetPage(
       name: interDetails,
-      page: () => InterventionDetailsView(),
+      page: () {
+        var interId = Get.parameters['interId'];
+        return InterventionDetailsView(pageId: int.parse(interId!));
+      },
+      binding: InterDetailsBinding(),
     ),
     GetPage(
       name: interRapport,

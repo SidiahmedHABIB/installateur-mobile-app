@@ -37,8 +37,8 @@ class ProfileRepositoryImp extends GetxService implements ProfileRepository {
       try {
         print("try");
 
-        http.Response response =
-            await _remoteDataSource.postData(AppConstants.LOGIN_URI, {});
+        http.Response response = await _remoteDataSource
+            .postData(AppConstants.POST_EDIT_PROFILE_URI, {});
         print("after remote");
         print(response.statusCode);
         print(response.body);

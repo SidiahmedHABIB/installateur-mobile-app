@@ -26,7 +26,7 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
       try {
         AuthRequest auth = AuthRequest(email: email, password: password);
         http.Response response = await _remoteDataSource.postData(
-            AppConstants.LOGIN_URI, auth.toJson());
+            AppConstants.POST_LOGIN_URI, auth.toJson());
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
           Map responsebody = jsonDecode(response.body);
@@ -47,6 +47,8 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
   }
 
   Future<void> saveUserLocal(UserModel userModel) async {
+    _localDataSource.setString(
+        AppConstants.USER_ID_TOKEN, jsonEncode(userModel.id));
     _localDataSource.setString(AppConstants.USER_TOKEN, jsonEncode(userModel));
   }
 

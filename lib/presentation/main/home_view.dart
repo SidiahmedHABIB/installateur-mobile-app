@@ -6,12 +6,14 @@ import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'package:installateur/presentation/main/widgets/noIntervention_data_widget.dart';
 import 'package:installateur/presentation/main/widgets/planned_inter_cart.dart';
 import 'package:installateur/presentation/notification/notification_view.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_cart.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
+import 'package:intl/intl.dart';
 
 import '../drawer/drawer_widgets.dart';
 import '../resources/strings_manager.dart';
@@ -21,15 +23,12 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
   HomeViewModel homeViewModel = Get.find<HomeViewModel>();
 
-  get i => null;
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         //header
-
         appBar: AppBar(
           leading: Builder(
             builder: (BuildContext context) {
@@ -87,7 +86,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: AppSize.hs20,
             ),
-            //liste of planification cart
+            //Tab Bar
             Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSize.ws20),
               child: TabBar(
@@ -97,59 +96,35 @@ class HomeView extends StatelessWidget {
                   color: ColorManager.mainColor,
                 ),
                 tabs: [
-                  GestureDetector(
-                      child: Container(
+                  Container(
                     padding: EdgeInsets.symmetric(vertical: AppSize.hs10),
                     child: MediumTextWidget(
                       text: StringsManager.homePlanificaionT1.tr,
                       size: FontSize.fs18,
                       color: ColorManager.darkGrey,
                     ),
-                  )),
-                  GestureDetector(
-                      child: Container(
+                  ),
+                  Container(
                     padding: EdgeInsets.symmetric(vertical: AppSize.hs10),
                     child: MediumTextWidget(
                       text: StringsManager.homePlanificaionT2.tr,
                       size: FontSize.fs18,
                       color: ColorManager.darkGrey,
                     ),
-                  )),
-                  GestureDetector(
-                      child: Container(
+                  ),
+                  Container(
                     padding: EdgeInsets.symmetric(vertical: AppSize.hs10),
                     child: MediumTextWidget(
                       text: StringsManager.homePlanificaionT3.tr,
                       size: FontSize.fs18,
                       color: ColorManager.darkGrey,
                     ),
-                  )),
+                  ),
                 ],
               ),
             ),
-            // SizedBox(
-            //   height: AppSize.hs25 * 1.5,
-            //   child: ListView.separated(
-            //     itemCount: vm.planification.length,
-            //     scrollDirection: Axis.horizontal,
-            //     itemBuilder: (context, index) => GestureDetector(
-            //       child: TextCart(
-            //         text: vm.planification[index],
-            //         onClick: index % 2 == 0 ? true : false,
-            //         textSize: FontSize.fs18,
-            //         vpadding: AppSize.hs8,
-            //       ),
-            //     ),
-            //     separatorBuilder: (BuildContext context, int index) {
-            //       return Container();
-            //     },
-            //   ),
-            // ),
-
-            SizedBox(
-              height: AppSize.hs10,
-            ),
-            //liste of intervention cart
+            SizedBox(height: AppSize.hs10),
+            //Tab Bar View
             Expanded(
               child: GetBuilder<HomeViewModel>(builder: (controller) {
                 return TabBarView(
@@ -158,37 +133,56 @@ class HomeView extends StatelessWidget {
                     controller.loadingToPlan == false
                         ? controller.interventionToPlanList.isNotEmpty
                             ? SizedBox(
-                                child: ListView.separated(
-                                  itemCount:
-                                      controller.interventionToPlanList.length,
-                                  itemBuilder: (context, index) =>
-                                      InterventionCart(
-                                    image: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .imageCompany!
-                                        .name
-                                        .toString(),
-                                    companyName: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .name
-                                        .toString(),
-                                    location: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .location
-                                        .toString(),
-                                    phone: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .phone
-                                        .toString(),
-                                  ),
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return Container();
+                                child: RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
                                   },
+                                  child: ListView.separated(
+                                    itemCount: controller
+                                        .interventionToPlanList.length,
+                                    itemBuilder: (context, index) =>
+                                        GestureDetector(
+                                      onTap: () => Get.toNamed(
+                                          RoutesManager.getInterDetails(
+                                              controller
+                                                  .interventionToPlanList[index]
+                                                  .id)),
+                                      child: InterventionCart(
+                                        image: controller
+                                                    .interventionToPlanList[
+                                                        index]
+                                                    .company!
+                                                    .imageCompany ==
+                                                null
+                                            ? ""
+                                            : controller
+                                                .interventionToPlanList[index]
+                                                .company!
+                                                .imageCompany!
+                                                .name
+                                                .toString(),
+                                        companyName: controller
+                                            .interventionToPlanList[index]
+                                            .company!
+                                            .name
+                                            .toString(),
+                                        location: controller
+                                            .interventionToPlanList[index]
+                                            .company!
+                                            .location
+                                            .toString(),
+                                        phone: controller
+                                            .interventionToPlanList[index]
+                                            .company!
+                                            .phone
+                                            .toString(),
+                                      ),
+                                    ),
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container();
+                                    },
+                                  ),
                                 ),
                               )
                             : const NoInterventionDataWidget()
@@ -197,37 +191,56 @@ class HomeView extends StatelessWidget {
                     controller.loadingPlanned == false
                         ? controller.interventionPlannedList.isNotEmpty
                             ? SizedBox(
-                                child: ListView.separated(
-                                  itemCount:
-                                      controller.interventionPlannedList.length,
-                                  itemBuilder: (context, index) =>
-                                      PlannedInterventionCart(
-                                    image: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .imageCompany!
-                                        .name
-                                        .toString(),
-                                    companyName: controller
-                                        .interventionPlannedList[index]
-                                        .company!
-                                        .name
-                                        .toString(),
-                                    location: controller
-                                        .interventionPlannedList[index]
-                                        .company!
-                                        .location
-                                        .toString(),
-                                    phone: controller
-                                        .interventionPlannedList[index]
-                                        .company!
-                                        .phone
-                                        .toString(),
-                                  ),
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return Container();
+                                child: RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
                                   },
+                                  child: ListView.separated(
+                                    itemCount: controller
+                                        .interventionPlannedList.length,
+                                    itemBuilder: (context, index) =>
+                                        GestureDetector(
+                                      onTap: () => Get.toNamed(RoutesManager
+                                          .getInterDetails(controller
+                                              .interventionPlannedList[index]
+                                              .id)),
+                                      child: PlannedInterventionCart(
+                                          image:
+                                              controller.interventionPlannedList[index].company!.imageCompany ==
+                                                      null
+                                                  ? ""
+                                                  : controller
+                                                      .interventionPlannedList[
+                                                          index]
+                                                      .company!
+                                                      .imageCompany!
+                                                      .name
+                                                      .toString(),
+                                          companyName: controller
+                                              .interventionPlannedList[index]
+                                              .company!
+                                              .name
+                                              .toString(),
+                                          location: controller
+                                              .interventionPlannedList[index]
+                                              .company!
+                                              .location
+                                              .toString(),
+                                          phone: controller
+                                              .interventionPlannedList[index]
+                                              .company!
+                                              .phone
+                                              .toString(),
+                                          month: DateFormat.MMM().format(
+                                              DateTime.parse(controller.interventionPlannedList[index].appointmentAt.toString())),
+                                          day: DateFormat.M().format(DateTime.parse(controller.interventionPlannedList[index].appointmentAt.toString())),
+                                          hour: DateFormat.Hm().format(DateTime.parse(controller.interventionPlannedList[index].appointmentAt.toString()))),
+                                    ),
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container();
+                                    },
+                                  ),
                                 ),
                               )
                             : const NoInterventionDataWidget()
@@ -237,37 +250,56 @@ class HomeView extends StatelessWidget {
                     controller.loadingOnhold == false
                         ? controller.interventionOnholdList.isNotEmpty
                             ? SizedBox(
-                                child: ListView.separated(
-                                  itemCount:
-                                      controller.interventionOnholdList.length,
-                                  itemBuilder: (context, index) =>
-                                      InterventionCart(
-                                    image: controller
-                                        .interventionToPlanList[index]
-                                        .company!
-                                        .imageCompany!
-                                        .name
-                                        .toString(),
-                                    companyName: controller
-                                        .interventionOnholdList[index]
-                                        .company!
-                                        .name
-                                        .toString(),
-                                    location: controller
-                                        .interventionOnholdList[index]
-                                        .company!
-                                        .location
-                                        .toString(),
-                                    phone: controller
-                                        .interventionOnholdList[index]
-                                        .company!
-                                        .phone
-                                        .toString(),
-                                  ),
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return Container();
+                                child: RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
                                   },
+                                  child: ListView.separated(
+                                    itemCount: controller
+                                        .interventionOnholdList.length,
+                                    itemBuilder: (context, index) =>
+                                        GestureDetector(
+                                      onTap: () => Get.toNamed(
+                                          RoutesManager.getInterDetails(
+                                              controller
+                                                  .interventionOnholdList[index]
+                                                  .id)),
+                                      child: InterventionCart(
+                                        image: controller
+                                                    .interventionOnholdList[
+                                                        index]
+                                                    .company!
+                                                    .imageCompany ==
+                                                null
+                                            ? ""
+                                            : controller
+                                                .interventionOnholdList[index]
+                                                .company!
+                                                .imageCompany!
+                                                .name
+                                                .toString(),
+                                        companyName: controller
+                                            .interventionOnholdList[index]
+                                            .company!
+                                            .name
+                                            .toString(),
+                                        location: controller
+                                            .interventionOnholdList[index]
+                                            .company!
+                                            .location
+                                            .toString(),
+                                        phone: controller
+                                            .interventionOnholdList[index]
+                                            .company!
+                                            .phone
+                                            .toString(),
+                                      ),
+                                    ),
+                                    separatorBuilder:
+                                        (BuildContext context, int index) {
+                                      return Container();
+                                    },
+                                  ),
                                 ),
                               )
                             : const NoInterventionDataWidget()

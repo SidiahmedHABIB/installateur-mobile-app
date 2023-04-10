@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
+import 'package:installateur/app/app_constants.dart';
 import 'package:installateur/domain/model/intervention.dart';
 import 'package:installateur/domain/repository/inter_repository.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
@@ -34,21 +35,25 @@ class HomeViewModel extends GetxController {
     handleOnholdIntervention();
   }
 
+  Future<void> handleRefreshData() async {
+    handleToPlanIntervention();
+    handlePlannedIntervention();
+    handleOnholdIntervention();
+  }
+
   Future<void> handleToPlanIntervention() async {
     loadingToPlan = true;
     update();
-    Either<Failure, PageIntervention> interGet =
-        await _interventionRepository.getPageIntervention("TOPLAN", 0, 2);
+    Either<Failure, PageIntervention> interGet = await _interventionRepository
+        .getPageIntervention(AppConstants.TOPLAN, 0, 10);
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,
           (r) => {
-                Timer(Duration(seconds: 10), () {
-                  interventionToPlanList = r.interventions!;
-                  update();
-                  loadingToPlan = false;
-                  update();
-                }),
+                interventionToPlanList = r.interventions!,
+                update(),
+                loadingToPlan = false,
+                update(),
               });
     } else {
       interGet.fold(
@@ -65,8 +70,8 @@ class HomeViewModel extends GetxController {
   Future<void> handlePlannedIntervention() async {
     loadingPlanned = true;
     update();
-    Either<Failure, PageIntervention> interGet =
-        await _interventionRepository.getPageIntervention("PLANNED", 0, 2);
+    Either<Failure, PageIntervention> interGet = await _interventionRepository
+        .getPageIntervention(AppConstants.PLANNED, 0, 10);
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,
@@ -91,8 +96,8 @@ class HomeViewModel extends GetxController {
   Future<void> handleOnholdIntervention() async {
     loadingOnhold = true;
     update();
-    Either<Failure, PageIntervention> interGet =
-        await _interventionRepository.getPageIntervention("ONHOLD", 0, 2);
+    Either<Failure, PageIntervention> interGet = await _interventionRepository
+        .getPageIntervention(AppConstants.ONHOLD, 0, 10);
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,
