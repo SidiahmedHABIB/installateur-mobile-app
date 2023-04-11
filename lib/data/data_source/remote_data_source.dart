@@ -15,7 +15,6 @@ class RemoteDataSource extends GetConnect implements GetxService {
   Future<Response> getData(String url) async {
     try {
       Response response = await get(url);
-      print(response.body);
       return response;
     } catch (e) {
       print("Error from the api client is " + e.toString());

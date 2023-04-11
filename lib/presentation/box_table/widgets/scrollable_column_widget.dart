@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
+import '../../../domain/model/box.dart';
 import '../../../test/test.dart';
 import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/medium_text_widget.dart';
+import '../box_table_view_model.dart';
 
 class ScrollableColumnWidget extends StatelessWidget {
+  final List<BoxModel> listBoxes;
+
+  const ScrollableColumnWidget({super.key, required this.listBoxes});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -35,21 +41,21 @@ class ScrollableColumnWidget extends StatelessWidget {
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: StringsManager.boxTableColumnMatricul.tr,
+                  text: StringsManager.boxTableColumnNserie.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: StringsManager.boxTableColumnNserie.tr,
+                  text: StringsManager.boxTableColumnMatricul.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
             ],
             rows: [
-              ...boxes.map((box) => DataRow(
+              ...listBoxes.map((box) => DataRow(
                     cells: [
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
@@ -63,7 +69,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: box.matricule.toString(),
+                          text: box.nserie.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,
@@ -72,7 +78,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: box.nserie.toString(),
+                          text: box.matricul.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:installateur/presentation/box_table/box_table_binding.dart';
 import 'package:installateur/presentation/login/login_binding.dart';
 import 'package:installateur/presentation/main/home_bindings.dart';
+import 'package:installateur/presentation/notices/notice_view.dart';
 import 'package:installateur/presentation/profile/profile_binding.dart';
 import '../../test/test.dart';
 import '../box_details/box_details_view.dart';
@@ -29,6 +31,7 @@ class RoutesManager {
   static const String boxDiagnostic = "/box-diagnostic";
   static const String interDetails = "/intervention-details";
   static const String interRapport = "/intervention-rapport";
+  static const String notice = "/notice-screen";
 
   static String getSplashScreen() => splashScreen;
   static String getLoginScreen() => loginScreen;
@@ -36,13 +39,14 @@ class RoutesManager {
   static String getProfile() => profile;
   static String gettest() => test;
   static String getSetting() => setting;
-  static String getBoxTable() => boxTable;
+  static String getBoxTable(int? companyId) => '$boxTable?companyId=$companyId';
   static String getBoxDetails() => boxDetails;
   static String getBoxEmplacement() => boxEmplacement;
   static String getBoxDiagnostic() => boxDiagnostic;
   static String getInterDetails(int? interId) =>
       '$interDetails?interId=$interId';
   static String getInterRapport() => interRapport;
+  static String getNotice() => notice;
 
   static List<GetPage> routes = [
     GetPage(
@@ -79,7 +83,11 @@ class RoutesManager {
     ),
     GetPage(
       name: boxTable,
-      page: () => BoxTableView(),
+      page: () {
+        var companyId = Get.parameters['companyId'];
+        return BoxTableView(companyId: int.parse(companyId!));
+      },
+      binding: BoxTableBinding(),
     ),
     GetPage(
       name: boxEmplacement,
@@ -100,6 +108,10 @@ class RoutesManager {
     GetPage(
       name: interRapport,
       page: () => InterventionRapportView(),
+    ),
+    GetPage(
+      name: notice,
+      page: () => NoticesView(),
     ),
   ];
 }

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/box_table/box_table_view_model.dart';
 import 'package:installateur/presentation/box_table/widgets/dialog_inter_type.dart';
-import 'package:installateur/presentation/notices/notice_view.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
+import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
@@ -16,11 +17,12 @@ import 'widgets/fixed_column_widget.dart';
 import 'widgets/scrollable_column_widget.dart';
 
 class BoxTableView extends StatelessWidget {
-  BoxTableView({super.key});
-  BoxTableViewModel vm = BoxTableViewModel();
+  int companyId;
+  BoxTableView({super.key, required this.companyId});
   @override
   Widget build(BuildContext context) {
-    var searchController = TextEditingController();
+    Get.find<BoxTableViewModel>().handleGetPageBoxByCompany(companyId);
+    BoxTableViewModel viewModel = Get.find<BoxTableViewModel>();
 
     return Scaffold(
       //header
@@ -34,9 +36,8 @@ class BoxTableView extends StatelessWidget {
                   CupertinoIcons.back,
                 ),
                 onPressed: () {
-                  // Scaffold.of(context).openDrawer();
+                  //Get.offNamed(RoutesManager.getInterDetails());
                 },
-                // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
               ),
             );
           },
@@ -60,7 +61,7 @@ class BoxTableView extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-            onTap: () => Get.to(NoticesView()),
+            onTap: () => Get.offNamed(RoutesManager.getNotice()),
             child: Padding(
               padding: EdgeInsets.only(right: AppPadding.wp20),
               child: IconWidget(
@@ -83,7 +84,7 @@ class BoxTableView extends StatelessWidget {
               horizontal: AppPadding.wp20,
             ),
             child: TextFieldWidget(
-              textController: searchController,
+              textController: viewModel.searchController,
               hintText: StringsManager.boxTableSearchHinttext.tr,
               icon: CupertinoIcons.search,
             ),
@@ -92,33 +93,54 @@ class BoxTableView extends StatelessWidget {
           // list filtering box cart
           Container(
             height: AppSize.hs25 * 1.5,
-            child: ListView.builder(
-              itemCount: vm.filteringStrings.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => TextCart(
-                text: vm.filteringStrings[index],
-                onClick: index == 0 ? true : false,
-                textSize: FontSize.fs18,
-                vpadding: AppSize.hs8,
-                hpadding: AppSize.ws16,
-              ),
+            child: GetBuilder<BoxTableViewModel>(
+              builder: (controller) {
+                return ListView.builder(
+                  itemCount: controller.filteringStrings.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => controller.handleGetPageBoxByStatusAndCompany(
+                        companyId, index),
+                    child: TextCart(
+                      text: controller.filteringStrings[index],
+                      onClick: controller.buttonActive[index],
+                      textSize: FontSize.fs18,
+                      vpadding: AppSize.hs8,
+                      hpadding: AppSize.ws16,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
           SizedBox(height: AppSize.hs20),
 
           // table of boxes
-          Expanded(
-            child: SafeArea(
-              child: SingleChildScrollView(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FixedColumnWidget(),
-                    ScrollableColumnWidget(),
-                  ],
-                ),
-              ),
-            ),
+          GetBuilder<BoxTableViewModel>(
+            builder: (controller) {
+              return controller.loadingPage != true
+                  ? Expanded(
+                      child: SafeArea(
+                        child: SingleChildScrollView(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              FixedColumnWidget(
+                                  listBoxes: controller.listOfBoxes),
+                              ScrollableColumnWidget(
+                                  listBoxes: controller.listOfBoxes),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : Column(
+                      children: [
+                        SizedBox(height: AppSize.hs25 * 2),
+                        LoadingWidget(size: AppSize.hs25 * 2),
+                      ],
+                    );
+            },
           ),
         ],
       ),

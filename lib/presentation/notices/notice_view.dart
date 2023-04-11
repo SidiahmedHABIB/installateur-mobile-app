@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/box_table/box_table_view.dart';
 import 'package:installateur/presentation/notices/widgets/notice_row.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
@@ -30,7 +31,7 @@ class NoticesView extends StatelessWidget {
                   CupertinoIcons.back,
                 ),
                 onPressed: () {
-                  Get.to(BoxTableView());
+                  Get.to(RoutesManager.getInitial());
                 },
               ),
             );

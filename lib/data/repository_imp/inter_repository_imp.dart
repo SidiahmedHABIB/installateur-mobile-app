@@ -52,10 +52,8 @@ class InterventionRepositoryImp extends GetxService
             .getData("${AppConstants.GET_INTER_BY_ID_URI}$id");
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
-          print("intervention by id ${response.body}");
           InterventionModel interventionModel =
               InterventionModel.fromJson(response.body);
-          print(interventionModel.creatAt);
           return Right(interventionModel);
         } else {
           return left(

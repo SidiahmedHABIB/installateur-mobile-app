@@ -363,7 +363,9 @@ class InterventionDetailsView extends StatelessWidget {
                     child: ButtonWidget(
                       onClicked: () => controller.interDetails!.status ==
                               AppConstants.PLANNED
-                          ? Get.toNamed(RoutesManager.getBoxTable())
+                          ? Get.offNamed(RoutesManager.getBoxTable(
+                              controller.interDetails!.company!.id,
+                            ))
                           : controller.interDetails!.appointmentAt != null
                               ? {}
                               : controller.hiddenButtom != true

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/domain/model/box.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
@@ -11,7 +12,9 @@ import '../../resources/colors_manager.dart';
 import '../box_table_view_model.dart';
 
 class FixedColumnWidget extends StatelessWidget {
-  // BoxTableViewModel vm = Get.find();
+  final List<BoxModel> listBoxes;
+
+  const FixedColumnWidget({super.key, required this.listBoxes});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,7 @@ class FixedColumnWidget extends StatelessWidget {
         ),
       ],
       rows: [
-        ...boxes.map((box) => DataRow(
+        ...listBoxes.map((box) => DataRow(
               // color: MaterialStateColor.resolveWith((states) => Colors.amber),
               cells: [
                 DataCell(

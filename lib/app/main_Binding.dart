@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:installateur/data/data_source/local_data_source.dart';
 import 'package:installateur/data/data_source/remote_data_source.dart';
 import 'package:installateur/data/repository_imp/auth_repository_imp.dart';
 import 'package:installateur/domain/repository/auth_repository.dart';
-import 'package:installateur/presentation/box_table/box_table_view_model.dart';
 import 'package:installateur/presentation/splash/splash_view_model.dart';
 
 import '../data/network/network_checker.dart';
@@ -23,7 +21,6 @@ class MainBinding extends Bindings {
     );
     //splash
     Get.put(SplashViewModel(Get.find()));
-    Get.put(BoxTableViewModel());
 
     // Get.put(BoxTableViewModel());
     // Get.lazyPut(() => BoxTableViewModel());
