@@ -28,6 +28,9 @@ class AppConstants {
   // box rep
   static const String GET_PAGE_BOX_ALL_URI = "/box/pageAll/";
   static const String GET_PAGE_BOX_STATUS_URI = "/box/pageStatus/";
+  // notice rep
+  static const String GET_PAGE_NOTICE_ALL_URI = "/notice/page/";
+  static const String GET_DOWNLOAD_NOTICE_URI = "/notice/download/";
 
   // profile rep
   static const String POST_EDIT_PROFILE_URI =

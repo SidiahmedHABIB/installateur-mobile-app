@@ -5,7 +5,7 @@ import '../resources/fonts_manager.dart';
 
 class MediumTextWidget extends StatelessWidget {
   Color? color;
-  final String text;
+  final String? text;
   double size;
   TextOverflow overFlow;
   FontWeight fontWeight;
@@ -21,7 +21,7 @@ class MediumTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       overflow: overFlow,
       style: TextStyle(
           fontSize: size,

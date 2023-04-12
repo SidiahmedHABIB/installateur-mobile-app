@@ -14,6 +14,7 @@ import '../intervention_details/inter_details_view.dart';
 import '../intervention_rapport/inter_rapport_view.dart';
 import '../login/login_view.dart';
 import '../main/home_view.dart';
+import '../notices/notice_binding.dart';
 import '../profile/profile_view.dart';
 import '../settings/settings_view.dart';
 import '../splash/splash_view.dart';
@@ -46,7 +47,7 @@ class RoutesManager {
   static String getInterDetails(int? interId) =>
       '$interDetails?interId=$interId';
   static String getInterRapport() => interRapport;
-  static String getNotice() => notice;
+  static String getNotice(int? companyId) => '$notice?companyId=$companyId';
 
   static List<GetPage> routes = [
     GetPage(
@@ -111,7 +112,11 @@ class RoutesManager {
     ),
     GetPage(
       name: notice,
-      page: () => NoticesView(),
+      page: () {
+        var companyId = Get.parameters['companyId'];
+        return NoticesView(companyId: int.parse(companyId!));
+      },
+      binding: NoticeBinding(),
     ),
   ];
 }

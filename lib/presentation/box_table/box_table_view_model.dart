@@ -15,13 +15,11 @@ class BoxTableViewModel extends GetxController {
   final BoxRepository _boxRepository;
   BoxTableViewModel(this._boxRepository);
   TextEditingController searchController = TextEditingController();
-
   List<String> filteringStrings = [
     StringsManager.boxTableFilter1.tr,
     StringsManager.boxTableFilter2.tr,
     StringsManager.boxTableFilter3.tr,
   ];
-
   List<String> statusStrings = [
     "",
     AppConstants.INSTALLED,
@@ -30,6 +28,16 @@ class BoxTableViewModel extends GetxController {
   List<bool> buttonActive = [true, false, false];
   List<BoxModel> listOfBoxes = [];
   bool loadingPage = false;
+  BoxModel? boxTaked;
+  bool clickLine = true;
+
+  // Future<void> handleTakeBoxLine(int index) async {
+  //   print(index);
+  //   clickLine = false;
+  //   update();
+  //   boxTaked = listOfBoxes[index];
+  //   print(boxTaked?.name);
+  // }
 
   Future<void> handleGetPageBoxByCompany(int companyId) async {
     loadingPage = true;

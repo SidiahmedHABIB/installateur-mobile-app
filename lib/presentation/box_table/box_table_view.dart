@@ -61,7 +61,7 @@ class BoxTableView extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-            onTap: () => Get.offNamed(RoutesManager.getNotice()),
+            onTap: () => Get.offNamed(RoutesManager.getNotice(companyId)),
             child: Padding(
               padding: EdgeInsets.only(right: AppPadding.wp20),
               child: IconWidget(
@@ -136,8 +136,8 @@ class BoxTableView extends StatelessWidget {
                     )
                   : Column(
                       children: [
-                        SizedBox(height: AppSize.hs25 * 2),
-                        LoadingWidget(size: AppSize.hs25 * 2),
+                        SizedBox(height: AppSize.hs100),
+                        LoadingWidget(size: AppSize.hs25 * 3),
                       ],
                     );
             },
@@ -145,28 +145,33 @@ class BoxTableView extends StatelessWidget {
         ],
       ),
       // footer
-      bottomNavigationBar: Container(
-        height: AppSize.hs100 * 1,
-        padding: EdgeInsets.symmetric(
-            vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
-        decoration: BoxDecoration(
-          color: ColorManager.white,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: AppSize.hs10,
-              color: ColorManager.darkGrey,
-              offset: const Offset(0, 0),
+      bottomNavigationBar: GetBuilder<BoxTableViewModel>(
+        builder: (controller) {
+          return Container(
+            height: AppSize.hs100 * 1,
+            padding: EdgeInsets.symmetric(
+                vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
+            decoration: BoxDecoration(
+              color: ColorManager.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: AppSize.hs10,
+                  color: ColorManager.darkGrey,
+                  offset: const Offset(0, 0),
+                ),
+              ],
             ),
-          ],
-        ),
-        child: Center(
-          child: ButtonWidget(
-            onClicked: () => Get.to(DialogInterventionType()),
-            text: StringsManager.boxTableBottomButton.tr,
-            hdn: true,
-            textSize: FontSize.fs20,
-          ),
-        ),
+            child: Center(
+              child: ButtonWidget(
+                onClicked: () =>
+                    controller.clickLine != true ? print("get reprot") : {},
+                text: StringsManager.boxTableBottomButton.tr,
+                hdn: controller.clickLine,
+                textSize: FontSize.fs20,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
