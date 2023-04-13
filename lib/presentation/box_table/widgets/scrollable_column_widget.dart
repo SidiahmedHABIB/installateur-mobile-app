@@ -41,14 +41,14 @@ class ScrollableColumnWidget extends StatelessWidget {
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: StringsManager.boxTableColumnNserie.tr,
+                  text: StringsManager.boxTableColumnMatricul.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
               ),
               DataColumn(
                 label: MediumTextWidget(
-                  text: StringsManager.boxTableColumnMatricul.tr,
+                  text: StringsManager.boxTableColumnNserie.tr,
                   color: ColorManager.white,
                   size: FontSize.fs18,
                 ),
@@ -69,7 +69,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: box.nserie.toString(),
+                          text: box.matricul.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,
@@ -78,7 +78,7 @@ class ScrollableColumnWidget extends StatelessWidget {
                       DataCell(Container(
                         alignment: AlignmentDirectional.center,
                         child: MediumTextWidget(
-                          text: box.matricul.toString(),
+                          text: box.nserie.toString(),
                           color: Colors.black54,
                           size: FontSize.fs16,
                           fontWeight: FontWeightManager.medium,

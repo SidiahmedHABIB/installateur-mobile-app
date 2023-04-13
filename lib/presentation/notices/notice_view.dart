@@ -34,7 +34,7 @@ class NoticesView extends StatelessWidget {
                   CupertinoIcons.back,
                 ),
                 onPressed: () {
-                  Get.offNamed(RoutesManager.getBoxTable(companyId));
+                  Navigator.of(context).pop();
                 },
               ),
             );

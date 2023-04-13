@@ -33,6 +33,7 @@ class BoxModel {
   String? name;
   String? entity;
   String? matricul;
+  String? boxValue;
   String? nserie;
   String? creatAt;
   String? updateAt;
@@ -45,6 +46,7 @@ class BoxModel {
       this.name,
       this.entity,
       this.matricul,
+      this.boxValue,
       this.nserie,
       this.creatAt,
       this.updateAt,
@@ -57,6 +59,7 @@ class BoxModel {
     name = json['name'];
     entity = json['entity'];
     matricul = json['matricul'];
+    boxValue = json['boxValue'];
     nserie = json['nserie'];
     creatAt = json['creatAt'];
     updateAt = json['updateAt'];
@@ -69,12 +72,13 @@ class BoxModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['status'] = status;
     data['name'] = this.name;
     data['entity'] = this.entity;
     data['matricul'] = this.matricul;
+    data['boxValue'] = this.boxValue;
     data['nserie'] = this.nserie;
     data['creatAt'] = this.creatAt;
     data['updateAt'] = this.updateAt;

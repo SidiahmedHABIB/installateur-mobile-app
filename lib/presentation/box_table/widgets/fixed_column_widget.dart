@@ -4,6 +4,7 @@ import 'package:installateur/app/app_constants.dart';
 import 'package:installateur/domain/model/box.dart';
 import 'package:installateur/presentation/box_table/widgets/dialog_inter_type.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
@@ -51,9 +52,13 @@ class FixedColumnWidget extends StatelessWidget {
                         context: context,
                         boxName: box.value.name,
                         boxEntity: box.value.entity,
-                        insall: () {},
-                        deInsall: () {},
-                        depanner: () {},
+                        boxStatus: box.value.status,
+                        insall: () => Get.toNamed(
+                            RoutesManager.getBoxDetails(box.value.id)),
+                        deInsall: () => Get.toNamed(
+                            RoutesManager.getBoxDetails(box.value.id)),
+                        depanner: () => Get.toNamed(
+                            RoutesManager.getBoxDetails(box.value.id)),
                       ),
                       Row(
                         children: [

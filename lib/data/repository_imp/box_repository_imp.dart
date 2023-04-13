@@ -63,4 +63,27 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
       return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));
     }
   }
+
+  @override
+  Future<Either<Failure, BoxModel>> getBoxById(int id) async {
+    if (await _networkChercher.isConnected) {
+      try {
+        Response response = await _remoteDataSource
+            .getData("${AppConstants.GET_BOX_BY_ID_URI}$id");
+        if (response.statusCode == ResponseCode.SUCCESS ||
+            response.statusCode == ResponseCode.NO_CONTENT) {
+          BoxModel boxModel = BoxModel.fromJson(response.body);
+          return Right(boxModel);
+        } else {
+          return left(
+              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+        }
+      } on Exception {
+        return (left(
+            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+      }
+    } else {
+      return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));
+    }
+  }
 }

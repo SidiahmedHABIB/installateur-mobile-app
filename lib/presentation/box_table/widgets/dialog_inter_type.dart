@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/app/app_constants.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/colors_manager.dart';
@@ -13,6 +14,7 @@ Future dialogBoxIntervention({
   required BuildContext context,
   required String? boxName,
   required String? boxEntity,
+  required String? boxStatus,
   required VoidCallback insall,
   required VoidCallback deInsall,
   required VoidCallback depanner,
@@ -91,23 +93,35 @@ Future dialogBoxIntervention({
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
-                              onClicked: insall,
+                              onClicked: boxStatus != AppConstants.INSTALLED
+                                  ? insall
+                                  : () {},
                               text: "INSTALLER",
-                              hdn: false,
+                              hdn: boxStatus != AppConstants.INSTALLED
+                                  ? false
+                                  : true,
                               textSize: FontSize.fs18,
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
-                              onClicked: deInsall,
+                              onClicked: boxStatus != AppConstants.NOTINSTALLED
+                                  ? deInsall
+                                  : () {},
                               text: "DESINSTALLER",
-                              hdn: false,
+                              hdn: boxStatus != AppConstants.NOTINSTALLED
+                                  ? false
+                                  : true,
                               textSize: FontSize.fs18,
                             ),
                             SizedBox(height: AppSize.hs20),
                             ButtonWidget(
-                              onClicked: depanner,
+                              onClicked: boxStatus != AppConstants.NOTINSTALLED
+                                  ? depanner
+                                  : () {},
                               text: "DEPPANER",
-                              hdn: false,
+                              hdn: boxStatus != AppConstants.NOTINSTALLED
+                                  ? false
+                                  : true,
                               textSize: FontSize.fs18,
                             ),
                             SizedBox(height: AppSize.hs20),

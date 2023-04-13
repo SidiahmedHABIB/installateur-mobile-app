@@ -68,8 +68,9 @@ class Translation implements Translations {
           "boxDetailsInstallHintMatricul": "Entrer L'immatriculation",
           "boxDetailsInstallHintvaleur": "Entrer la valeur",
           "boxDetailsInstallPlaceButton": "Afficher l'emplacement",
-          "boxDetailsBottomButton": "DIAGNOSTIC DU BOITIER",
-          // fr box details
+          "boxDetailsBottomButtonIns": "DIAGNOSTIC DU BOITIER",
+          "boxDetailsBottomButtonDes": "DÉSINSTALLER",
+          // fr Emplacement details
           "BoxEmplacementTitle": "Emplacement",
           "BoxEmplacementBox": "Boitier",
           "BoxEmplacementBoxTitle": "Cliquer sur la zone d'installation",
@@ -147,7 +148,7 @@ class Translation implements Translations {
           "boxTableColumnNserie": "N°Serial",
           "boxTableBottomButton": "INSTALLATION REPORT",
           // en box details
-          "boxDetailsTilte": "box form",
+          "boxDetailsTilte": "Box form",
           "boxDetailsInfoBox": "Box Info",
           "boxDetailsInfoBoxBox": "Box",
           "boxDetailsInfoBoxEnitie": "Entity",
@@ -156,8 +157,9 @@ class Translation implements Translations {
           "boxDetailsInstallHintMatricul": "Enter Registration",
           "boxDetailsInstallHintvaleur": "Enter the value",
           "boxDetailsInstallPlaceButton": "Show location",
-          "boxDetailsBottomButton": "DIAGNOSIS OF THE BOX",
-          // en box details
+          "boxDetailsBottomButtonIns": "DIAGNOSIS OF THE BOX",
+          "boxDetailsBottomButtonDes": "UNINSTALL",
+          // en emplacement details
           "BoxEmplacementTitle": "Location",
           "BoxEmplacementBox": "Box",
           "BoxEmplacementBoxTitle": "Click on the installation area",
@@ -244,8 +246,9 @@ class Translation implements Translations {
           "boxDetailsInstallHintMatricul": "Entrar en el registro",
           "boxDetailsInstallHintvaleur": "Introduzca el valor",
           "boxDetailsInstallPlaceButton": "Mostrar localización",
-          "boxDetailsBottomButton": "DIAGNÓSTICO DE LA CAJA",
-          // es box details
+          "boxDetailsBottomButtonIns": "DIAGNÓSTICO DE LA CAJA",
+          "boxDetailsBottomButtonDes": "DESINSTALE",
+          // es emplacement details
           "BoxEmplacementTitle": "Ubicación",
           "BoxEmplacementBox": "Caja",
           "BoxEmplacementBoxTitle": "Haga clic en el área de instalación",

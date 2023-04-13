@@ -7,4 +7,5 @@ abstract class BoxRepository {
       int companyId, int page, int size);
   Future<Either<Failure, PageBox>> getPageBoxByStatusAndCompany(
       int companyId, String status, int page, int size);
+  Future<Either<Failure, BoxModel>> getBoxById(int id);
 }

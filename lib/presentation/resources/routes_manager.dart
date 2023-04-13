@@ -5,6 +5,7 @@ import 'package:installateur/presentation/main/home_bindings.dart';
 import 'package:installateur/presentation/notices/notice_view.dart';
 import 'package:installateur/presentation/profile/profile_binding.dart';
 import '../../test/test.dart';
+import '../box_details/box_details_binding.dart';
 import '../box_details/box_details_view.dart';
 import '../box_diagnostic/box_diagnostic_view.dart';
 import '../box_emplacement/box_emplacement_view.dart';
@@ -41,7 +42,7 @@ class RoutesManager {
   static String gettest() => test;
   static String getSetting() => setting;
   static String getBoxTable(int? companyId) => '$boxTable?companyId=$companyId';
-  static String getBoxDetails() => boxDetails;
+  static String getBoxDetails(int? boxId) => '$boxDetails?boxId=$boxId';
   static String getBoxEmplacement() => boxEmplacement;
   static String getBoxDiagnostic() => boxDiagnostic;
   static String getInterDetails(int? interId) =>
@@ -80,7 +81,11 @@ class RoutesManager {
     ),
     GetPage(
       name: boxDetails,
-      page: () => BoxDetailsView(),
+      page: () {
+        var boxId = Get.parameters['boxId'];
+        return BoxDetailsView(boxId: int.parse(boxId!));
+      },
+      binding: BoxDetailsBinding(),
     ),
     GetPage(
       name: boxTable,

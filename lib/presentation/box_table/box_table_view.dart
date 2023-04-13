@@ -36,7 +36,7 @@ class BoxTableView extends StatelessWidget {
                   CupertinoIcons.back,
                 ),
                 onPressed: () {
-                  //Get.offNamed(RoutesManager.getInterDetails());
+                  Navigator.of(context).pop();
                 },
               ),
             );
@@ -61,7 +61,7 @@ class BoxTableView extends StatelessWidget {
         ),
         actions: [
           GestureDetector(
-            onTap: () => Get.offNamed(RoutesManager.getNotice(companyId)),
+            onTap: () => Get.toNamed(RoutesManager.getNotice(companyId)),
             child: Padding(
               padding: EdgeInsets.only(right: AppPadding.wp20),
               child: IconWidget(

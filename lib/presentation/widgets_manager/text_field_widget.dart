@@ -9,6 +9,9 @@ class TextFieldWidget extends StatelessWidget {
   final IconData icon;
   Color colorIcon;
   Color colorhint;
+  bool enabled;
+  void Function(String)? onchange;
+
   TextFieldWidget({
     Key? key,
     required this.textController,
@@ -16,6 +19,8 @@ class TextFieldWidget extends StatelessWidget {
     required this.icon,
     this.colorIcon = ColorManager.grey,
     this.colorhint = ColorManager.darkGrey,
+    this.enabled = true,
+    this.onchange,
   }) : super(key: key);
 
   @override
@@ -37,7 +42,9 @@ class TextFieldWidget extends StatelessWidget {
             color: ColorManager.white,
           ),
           child: TextField(
+            enabled: enabled,
             controller: textController,
+            onChanged: onchange,
             decoration: InputDecoration(
               // hinttext
               hintText: hintText,
