@@ -16,7 +16,7 @@ import '../../domain/repository/auth_repository.dart';
 class AuthRepositoryImp extends GetxService implements AuthRepository {
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
-  final NetworkChercher _networkChercher;
+  final NetworkChecker _networkChercher;
 
   AuthRepositoryImp(
       this._remoteDataSource, this._localDataSource, this._networkChercher);

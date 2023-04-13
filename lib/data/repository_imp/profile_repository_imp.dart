@@ -17,7 +17,7 @@ import '../request/profile_request.dart';
 class ProfileRepositoryImp extends GetxService implements ProfileRepository {
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
-  final NetworkChercher _networkChercher;
+  final NetworkChecker _networkChercher;
   ProfileRepositoryImp(
       this._remoteDataSource, this._localDataSource, this._networkChercher);
 

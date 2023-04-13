@@ -15,7 +15,7 @@ class InterventionRepositoryImp extends GetxService
     implements InterventionRepository {
   final RemoteDataSource _remoteDataSource;
   final LocalDataSource _localDataSource;
-  final NetworkChercher _networkChercher;
+  final NetworkChecker _networkChercher;
 
   InterventionRepositoryImp(
       this._remoteDataSource, this._localDataSource, this._networkChercher);

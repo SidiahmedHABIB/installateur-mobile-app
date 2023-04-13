@@ -22,6 +22,7 @@ class BoxDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<BoxDetailsViewModel>().handleGetBoxById(boxId);
+    Get.find<BoxDetailsViewModel>().handleGetBoxImages(boxId);
     BoxDetailsViewModel viewModel = Get.find<BoxDetailsViewModel>();
 
     return Scaffold(
@@ -282,7 +283,8 @@ class BoxDetailsView extends StatelessWidget {
                                       //placement of box
                                       GestureDetector(
                                         onTap: () => Get.toNamed(
-                                            RoutesManager.getBoxEmplacement()),
+                                            RoutesManager.getBoxEmplacement(
+                                                controller.boxDetails!.id)),
                                         child: Container(
                                           padding: EdgeInsets.symmetric(
                                               vertical: AppPadding.hp16,
@@ -367,13 +369,18 @@ class BoxDetailsView extends StatelessWidget {
                   ),
                   child: Center(
                     child: ButtonWidget(
-                      onClicked: () => {},
+                      onClicked: controller.boxMatriculController != "" &&
+                              controller.boxValeurController != "" &&
+                              controller.boxImages != []
+                          ? () => print("done done")
+                          : () => {},
                       text: controller.boxDetails!.status ==
                               AppConstants.NOTINSTALLED
                           ? StringsManager.boxDetailsBottomButtonIns.tr
                           : StringsManager.boxDetailsBottomButtonDes.tr,
                       hdn: controller.boxMatriculController != "" &&
-                              controller.boxValeurController != ""
+                              controller.boxValeurController != "" &&
+                              controller.boxImages != []
                           ? false
                           : true,
                       textSize: FontSize.fs20,

@@ -1,5 +1,3 @@
-import 'package:installateur/presentation/box_emplacement/box_emplacement_view.dart';
-
 class StringsManager {
   //home page
   static const homePageTitle = "homePageTitle";

@@ -13,7 +13,7 @@ import '../network/network_checker.dart';
 
 class NoticeRepositoryImp extends GetxService implements NoticeRepository {
   final RemoteDataSource _remoteDataSource;
-  final NetworkChercher _networkChercher;
+  final NetworkChecker _networkChercher;
 
   NoticeRepositoryImp(this._remoteDataSource, this._networkChercher);
   @override

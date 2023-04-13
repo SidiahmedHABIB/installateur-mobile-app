@@ -16,6 +16,7 @@ import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/expandable_text_widget.dart';
+import '../widgets_manager/show_alert_dialog.dart';
 
 class InterventionDetailsView extends StatelessWidget {
   int pageId;
@@ -370,7 +371,9 @@ class InterventionDetailsView extends StatelessWidget {
                               ? {}
                               : controller.hiddenButtom != true
                                   ? controller.handleAddAppointement()
-                                  : controller.fixAppointementDialog(),
+                                  : ShowAlertDialog(
+                                      context: context,
+                                      text: "Fixez votre rendez-vous d'abord"),
                       text: controller.interDetails!.status ==
                               AppConstants.PLANNED
                           ? "INTERVENIR"

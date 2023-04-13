@@ -1,3 +1,29 @@
+class PageImage {
+  List<ImageModel>? images;
+  int? totalPages;
+
+  PageImage({this.images, this.totalPages});
+
+  PageImage.fromJson(Map<String, dynamic> json) {
+    if (json['images'] != null) {
+      images = <ImageModel>[];
+      json['images'].forEach((v) {
+        images!.add(new ImageModel.fromJson(v));
+      });
+    }
+    totalPages = json['totalPages'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.images != null) {
+      data['images'] = this.images!.map((v) => v.toJson()).toList();
+    }
+    data['totalPages'] = this.totalPages;
+    return data;
+  }
+}
+
 class ImageModel {
   int? id;
   String? name;

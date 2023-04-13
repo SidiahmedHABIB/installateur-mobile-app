@@ -134,37 +134,4 @@ class InterventionDetailsViewModel extends GetxController {
       }
     }
   }
-
-  Future fixAppointementDialog() {
-    return Get.defaultDialog(
-      radius: AppSize.hs10,
-      title: "Alert",
-      titleStyle: TextStyle(
-        fontFamily: FontConstants.fontFamily,
-        fontSize: FontSize.fs24,
-        fontWeight: FontWeightManager.bold,
-        color: ColorManager.mainColor,
-      ),
-      middleText: "Fixez votre rendez-vous d'abord",
-      middleTextStyle: TextStyle(
-        fontFamily: FontConstants.fontFamily,
-        fontSize: FontSize.fs18,
-        fontWeight: FontWeightManager.regular,
-        color: ColorManager.mainColor,
-      ),
-      backgroundColor: ColorManager.white,
-      confirm: Container(
-        margin: EdgeInsets.only(top: AppPadding.hp18),
-        padding: EdgeInsets.symmetric(
-            vertical: AppPadding.hp10, horizontal: AppPadding.wp18 * 2),
-        decoration: BoxDecoration(
-            color: ColorManager.mainColor,
-            borderRadius: BorderRadius.circular(AppSize.hs5)),
-        child: MediumTextWidget(
-          text: "OK",
-          color: ColorManager.white,
-        ),
-      ),
-    );
-  }
 }

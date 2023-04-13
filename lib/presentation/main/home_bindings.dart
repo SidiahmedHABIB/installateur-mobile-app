@@ -15,6 +15,6 @@ class HomeBinding extends Bindings {
       () => InterventionRepositoryImp(Get.find(), Get.find(), Get.find()),
     );
     Get.lazyPut(() => HomeViewModel(Get.find()));
-    Get.lazyPut(() => NetworkChercher());
+    Get.lazyPut(() => NetworkChecker());
   }
 }

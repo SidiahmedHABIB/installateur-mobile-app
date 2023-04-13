@@ -15,7 +15,7 @@ class MainBinding extends Bindings {
     //remote data source
     Get.lazyPut(() => RemoteDataSource(appBaseUrl: AppConstants.BASE_URL));
     //repository
-    Get.lazyPut(() => NetworkChercher());
+    Get.lazyPut(() => NetworkChecker());
     Get.lazyPut<AuthRepository>(
       () => AuthRepositoryImp(Get.find(), Get.find(), Get.find()),
     );

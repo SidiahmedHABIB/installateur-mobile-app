@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/domain/model/box.dart';
 import '../../data/network/failure.dart';
+import '../../domain/model/image_model.dart';
 import '../../domain/repository/box_repository.dart';
 import '../resources/colors_manager.dart';
 import '../widgets_manager/show_snack_bar_widget.dart';
@@ -26,6 +27,33 @@ class BoxDetailsViewModel extends GetxController {
 
   BoxModel? boxDetails;
   bool loadingPage = false;
+  List<ImageModel>? boxImages = [];
+
+  Future<void> handleGetBoxImages(int boxId) async {
+    loadingPage = true;
+    update();
+    Either<Failure, PageImage> boxImagesGet =
+        await _boxRepository.getBoxImages(boxId);
+    if (boxImagesGet.isRight()) {
+      boxImagesGet.fold(
+          (l) => null,
+          (r) => {
+                boxImages = r.images,
+                update(),
+                loadingPage = false,
+                update(),
+              });
+    } else {
+      boxImagesGet.fold(
+        (l) => {
+          showSnackBarWidget(l.message, ColorManager.error),
+          loadingPage = false,
+          update(),
+        },
+        (r) => r,
+      );
+    }
+  }
 
   Future<void> handleGetBoxById(int boxId) async {
     loadingPage = true;
