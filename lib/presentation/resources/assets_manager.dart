@@ -13,4 +13,5 @@ class AssetsManager {
   static const String imgInstallation = "$imagePath/img_installation.png";
   static const String buildingMainColor = "$imagePath/building_main_color.png";
   static const String buildingWhite = "$imagePath/building_white.png";
+  static const String profile = "$imagePath/profile.png";
 }

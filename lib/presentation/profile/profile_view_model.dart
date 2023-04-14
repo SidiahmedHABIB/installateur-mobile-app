@@ -15,6 +15,7 @@ class ProfileViewModel extends GetxController {
   ProfileViewModel(this._profileRepository);
   UserModel? profileModel;
   List<File> imageFile = [];
+  bool PageLoading = false;
 
   @override
   void onInit() {
@@ -23,10 +24,16 @@ class ProfileViewModel extends GetxController {
   }
 
   Future<void> handleGetUser() async {
+    PageLoading = true;
+    update();
+
     UserModel user = await _profileRepository.getUserFromLocal();
     if (user != null) {
       profileModel = user;
       update();
+      PageLoading = false;
+      update();
+
       print(profileModel!.firstName.toString());
       print(profileModel!.email.toString());
     } else {

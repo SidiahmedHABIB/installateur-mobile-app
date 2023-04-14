@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/login/login_view_model.dart';
-import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 import '../resources/assets_manager.dart';
@@ -103,6 +102,7 @@ class LoginView extends StatelessWidget {
                   SizedBox(height: AppSize.hs25),
                   //password
                   TextFieldWidget(
+                    isPassword: true,
                     textController: loginViewModel.passwordController,
                     icon: CupertinoIcons.lock_fill,
                     hintText: StringsManager.loginPassword.tr,

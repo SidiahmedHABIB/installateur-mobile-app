@@ -9,6 +9,7 @@ import 'package:installateur/presentation/drawer/drawer_widgets.dart';
 import 'package:installateur/presentation/profile/profile_view_model.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/image_dialog_source_widget.dart';
+import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
@@ -23,7 +24,6 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     ProfileViewModel profileViewModel = Get.find<ProfileViewModel>();
     var scaffoldKey = GlobalKey<ScaffoldState>();
-
     return Scaffold(
         key: scaffoldKey,
         backgroundColor: ColorManager.white,
@@ -106,159 +106,169 @@ class ProfileView extends StatelessWidget {
                         topRight: Radius.circular(AppSize.hs20 * 3),
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: AppSize.hs25),
-                        //name
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppPadding.hp16,
-                            horizontal: AppPadding.wp10,
-                          ),
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            border: Border.all(
-                              color: ColorManager.whiteGrey,
-                              width: 1,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: ColorManager.grey,
-                                blurRadius: AppSize.hs5,
-                                offset: const Offset(1, 2),
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(AppSize.hs10),
-                          ),
-                          child: Row(
+                    child: controller.PageLoading == false
+                        ? Column(
                             children: [
-                              IconWidget(
-                                icon: CupertinoIcons.person_fill,
-                                iconColor: ColorManager.grey,
-                                size: AppSize.hs25,
+                              SizedBox(height: AppSize.hs25),
+                              //name
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: AppPadding.hp16,
+                                  horizontal: AppPadding.wp10,
+                                ),
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  border: Border.all(
+                                    color: ColorManager.whiteGrey,
+                                    width: 1,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ColorManager.grey,
+                                      blurRadius: AppSize.hs5,
+                                      offset: const Offset(1, 2),
+                                    ),
+                                  ],
+                                  borderRadius:
+                                      BorderRadius.circular(AppSize.hs10),
+                                ),
+                                child: Row(
+                                  children: [
+                                    IconWidget(
+                                      icon: CupertinoIcons.person_fill,
+                                      iconColor: ColorManager.grey,
+                                      size: AppSize.hs25,
+                                    ),
+                                    SizedBox(width: AppSize.ws16),
+                                    MediumTextWidget(
+                                      text: controller.profileModel != null
+                                          ? "${controller.profileModel!.firstName} ${controller.profileModel!.lastName}"
+                                          : "",
+                                      size: FontSize.fs18,
+                                      color: ColorManager.mainColor,
+                                    )
+                                  ],
+                                ),
                               ),
-                              SizedBox(width: AppSize.ws16),
-                              MediumTextWidget(
-                                text: controller.profileModel != null
-                                    ? "${controller.profileModel!.firstName} ${controller.profileModel!.lastName}"
-                                    : "",
-                                size: FontSize.fs18,
-                                color: ColorManager.mainColor,
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: AppSize.hs20),
-                        //resault
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: AppPadding.hp16,
-                              horizontal: AppPadding.wp10),
-                          width: double.maxFinite,
-                          decoration: BoxDecoration(
-                            color: ColorManager.white,
-                            border: Border.all(
-                              color: ColorManager.whiteGrey,
-                              width: 1,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: ColorManager.grey,
-                                blurRadius: AppSize.hs5,
-                                offset: const Offset(1, 2),
+                              SizedBox(height: AppSize.hs20),
+                              //resault
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: AppPadding.hp16,
+                                    horizontal: AppPadding.wp10),
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  border: Border.all(
+                                    color: ColorManager.whiteGrey,
+                                    width: 1,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ColorManager.grey,
+                                      blurRadius: AppSize.hs5,
+                                      offset: const Offset(1, 2),
+                                    ),
+                                  ],
+                                  borderRadius:
+                                      BorderRadius.circular(AppSize.hs10),
+                                ),
+                                child: Row(
+                                  children: [
+                                    IconWidget(
+                                      icon: Icons.email,
+                                      iconColor: ColorManager.grey,
+                                      size: AppSize.hs25,
+                                    ),
+                                    SizedBox(width: AppSize.ws16),
+                                    MediumTextWidget(
+                                      text: controller.profileModel != null
+                                          ? "${controller.profileModel!.email}"
+                                          : "",
+                                      size: FontSize.fs18,
+                                      color: ColorManager.mainColor,
+                                    )
+                                  ],
+                                ),
                               ),
+                              SizedBox(height: AppSize.hs20),
                             ],
-                            borderRadius: BorderRadius.circular(AppSize.hs10),
-                          ),
-                          child: Row(
-                            children: [
-                              IconWidget(
-                                icon: Icons.email,
-                                iconColor: ColorManager.grey,
-                                size: AppSize.hs25,
-                              ),
-                              SizedBox(width: AppSize.ws16),
-                              MediumTextWidget(
-                                text: controller.profileModel != null
-                                    ? "${controller.profileModel!.email}"
-                                    : "",
-                                size: FontSize.fs18,
-                                color: ColorManager.mainColor,
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: AppSize.hs20),
-                      ],
-                    ),
+                          )
+                        : Container(),
                   );
                 },
               ),
               // circle image profile
               GetBuilder<ProfileViewModel>(
                 builder: (controller) {
-                  return Center(
-                    child: Container(
-                      margin: EdgeInsets.only(top: AppMargin.hm100 * 2),
-                      child: Stack(
-                        alignment: Alignment.bottomRight,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(AppSize.hs100),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorManager.grey,
-                                  blurRadius: AppSize.hs5,
-                                  offset: const Offset(1, 2),
+                  return controller.PageLoading == false
+                      ? Center(
+                          child: Container(
+                            margin: EdgeInsets.only(top: AppMargin.hm100 * 2),
+                            child: Stack(
+                              alignment: Alignment.bottomRight,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(AppSize.hs100),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorManager.grey,
+                                        blurRadius: AppSize.hs5,
+                                        offset: const Offset(1, 2),
+                                      ),
+                                    ],
+                                  ),
+                                  child: controller.imageFile.isNotEmpty
+                                      ? CircleAvatar(
+                                          backgroundColor: ColorManager.white,
+                                          radius: AppSize.hs25 * 2.9,
+                                          backgroundImage: FileImage(
+                                              controller.imageFile[0]))
+                                      : CircleAvatar(
+                                          backgroundColor: ColorManager.white,
+                                          radius: AppSize.hs25 * 2.9,
+                                          backgroundImage: controller
+                                                      .profileModel!
+                                                      .imageUser !=
+                                                  null
+                                              ? Image.network(
+                                                  "${AppConstants.BASE_URL}/image/download/${controller.profileModel!.imageUser!.name}",
+                                                  fit: BoxFit.cover,
+                                                ).image
+                                              : Image.asset(
+                                                  AssetsManager.profile,
+                                                  fit: BoxFit.cover,
+                                                ).image),
                                 ),
+                                GestureDetector(
+                                  onTap: () => imageDialogSourceWidget(
+                                    context: context,
+                                    gallery: () =>
+                                        profileViewModel.handlePickImageProfile(
+                                            context, ImageSource.gallery),
+                                    camera: () =>
+                                        profileViewModel.handlePickImageProfile(
+                                            context, ImageSource.camera),
+                                  ),
+                                  child: IconWidget(
+                                    icon: CupertinoIcons.camera_fill,
+                                    bColor: ColorManager.mainColor,
+                                    br: AppSize.hs20,
+                                    hp: AppPadding.hp8,
+                                    wp: AppPadding.hp8,
+                                    size: AppSize.hs18,
+                                  ),
+                                )
                               ],
                             ),
-                            child: controller.imageFile.isNotEmpty
-                                ? CircleAvatar(
-                                    backgroundColor: ColorManager.white,
-                                    radius: AppSize.hs25 * 2.9,
-                                    backgroundImage:
-                                        FileImage(controller.imageFile[0]))
-                                : CircleAvatar(
-                                    backgroundColor: ColorManager.white,
-                                    radius: AppSize.hs25 * 2.9,
-                                    backgroundImage:
-                                        controller.profileModel != null
-                                            ? Image.network(
-                                                "${AppConstants.BASE_URL}/image/download/${controller.profileModel!.imageUser!.name}",
-                                                fit: BoxFit.cover,
-                                              ).image
-                                            : Image.asset(
-                                                AssetsManager.imgInstallation,
-                                                fit: BoxFit.cover,
-                                              ).image),
                           ),
-                          GestureDetector(
-                            onTap: () => imageDialogSourceWidget(
-                              context: context,
-                              gallery: () =>
-                                  profileViewModel.handlePickImageProfile(
-                                      context, ImageSource.gallery),
-                              camera: () =>
-                                  profileViewModel.handlePickImageProfile(
-                                      context, ImageSource.camera),
-                            ),
-                            child: IconWidget(
-                              icon: CupertinoIcons.camera_fill,
-                              bColor: ColorManager.mainColor,
-                              br: AppSize.hs20,
-                              hp: AppPadding.hp8,
-                              wp: AppPadding.hp8,
-                              size: AppSize.hs18,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(top: AppMargin.hm100 * 4),
+                          child: LoadingWidget(size: AppSize.hs25 * 3));
                 },
               ),
             ],

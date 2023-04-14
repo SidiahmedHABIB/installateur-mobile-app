@@ -10,6 +10,7 @@ class TextFieldWidget extends StatelessWidget {
   Color colorIcon;
   Color colorhint;
   bool enabled;
+  bool isPassword;
   void Function(String)? onchange;
 
   TextFieldWidget({
@@ -20,6 +21,7 @@ class TextFieldWidget extends StatelessWidget {
     this.colorIcon = ColorManager.grey,
     this.colorhint = ColorManager.darkGrey,
     this.enabled = true,
+    this.isPassword = false,
     this.onchange,
   }) : super(key: key);
 
@@ -42,6 +44,7 @@ class TextFieldWidget extends StatelessWidget {
             color: ColorManager.white,
           ),
           child: TextField(
+            obscureText: isPassword,
             enabled: enabled,
             controller: textController,
             onChanged: onchange,
