@@ -6,5 +6,5 @@ import '../../data/network/failure.dart';
 
 abstract class ProfileRepository {
   Future<UserModel> getUserFromLocal();
-  Future<Either<Failure, UserModel>> updateProfile(File? file);
+  Future<Either<Failure, UserModel>> updateProfile(File file, int? userId);
 }

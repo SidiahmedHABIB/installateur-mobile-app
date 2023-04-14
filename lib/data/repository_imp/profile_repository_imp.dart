@@ -30,38 +30,34 @@ class ProfileRepositoryImp extends GetxService implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel>> updateProfile(File? file) async {
-    UserModel user = await getUserFromLocal();
-    ProfileRequest profileRequest = ProfileRequest(user: user, file: file);
+  Future<Either<Failure, UserModel>> updateProfile(
+      File? file, int? userId) async {
     if (await _networkChercher.isConnected) {
       try {
-        print("try");
-
-        http.Response response = await _remoteDataSource
-            .postData(AppConstants.POST_EDIT_PROFILE_URI, {});
-        print("after remote");
-        print(response.statusCode);
-        print(response.body);
-
-        if (response.statusCode == ResponseCode.SUCCESS ||
-            response.statusCode == ResponseCode.NO_CONTENT) {
-          print("in 200");
-
-          Map responsebody = jsonDecode(response.body);
-          UserModel userModel = UserModel.fromJson(responsebody["profile"]);
-          saveUserLocal(userModel);
-          return Right(userModel);
+        var request = http.MultipartRequest(
+            'POST', Uri.parse(AppConstants.POST_EDIT_PROFILE_URI));
+        request.fields['id'] = userId.toString();
+        request.files
+            .add(await http.MultipartFile.fromPath('image', file!.path));
+        request.headers.addAll({"Content-type": "multipart/form-data"});
+        var responsePost = await request.send();
+        if (responsePost.statusCode == ResponseCode.SUCCESS ||
+            responsePost.statusCode == ResponseCode.NO_CONTENT) {
+          Response response = await _remoteDataSource
+              .getData(AppConstants.GET_USER_BY_ID_URI + userId.toString());
+          if (response.statusCode == ResponseCode.SUCCESS ||
+              response.statusCode == ResponseCode.NO_CONTENT) {
+            UserModel userModel = UserModel.fromJson(response.body);
+            saveUserLocal(userModel);
+            return Right(userModel);
+          } else {
+            return left(Failure(ResponseCode.BAD_REQUEST, "400 user"));
+          }
         } else {
-          print("in 400");
-          print(response.body);
-          return left(
-              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+          return left(Failure(ResponseCode.BAD_REQUEST, "400 upload"));
         }
       } on Exception {
-        print("in 405");
-
-        return (left(
-            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+        return (left(Failure(ResponseCode.BAD_REQUEST, "in catch")));
       }
     } else {
       return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));

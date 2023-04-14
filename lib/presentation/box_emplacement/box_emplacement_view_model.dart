@@ -20,7 +20,6 @@ class BoxEmplacementViewModel extends GetxController {
   List<File> imagePiked = [];
 
   Future<void> handleDeletePickImage(int index) async {
-    print(index);
     imagePiked.removeAt(index);
     update();
   }
@@ -30,11 +29,9 @@ class BoxEmplacementViewModel extends GetxController {
     if (pickedFile != null) {
       imagePiked.add(File(pickedFile.path));
       update();
-      print("susses: image picker");
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     } else {
-      print("error: image picker");
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     }
@@ -79,7 +76,6 @@ class BoxEmplacementViewModel extends GetxController {
           (r) => {
                 boxImages = r.images,
                 update(),
-                print(boxImages!.length),
                 //print(boxImages![1].name),
                 loadingPage = false,
                 update(),

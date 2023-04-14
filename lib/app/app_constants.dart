@@ -37,6 +37,6 @@ class AppConstants {
   static const String GET_DOWNLOAD_NOTICE_URI = "/notice/download/";
 
   // profile rep
-  static const String POST_EDIT_PROFILE_URI =
-      BASE_URL + "/users/updateProfile/";
+  static const String POST_EDIT_PROFILE_URI = BASE_URL + "/users/updateProfile";
+  static const String GET_USER_BY_ID_URI = "/users/id/";
 }

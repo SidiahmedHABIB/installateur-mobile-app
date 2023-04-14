@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:installateur/domain/model/user_model.dart';
@@ -13,6 +14,7 @@ class ProfileViewModel extends GetxController {
   final ProfileRepository _profileRepository;
   ProfileViewModel(this._profileRepository);
   UserModel? profileModel;
+  List<File> imageFile = [];
 
   @override
   void onInit() {
@@ -33,32 +35,38 @@ class ProfileViewModel extends GetxController {
     }
   }
 
-  // Future<void> pickImage(ImageSource source) async {
-  //   final pickedFile = await ImagePicker().pickImage(source: source);
-  //   if (pickedFile != null) {
-  //     imageFile = File(pickedFile.path);
-  //     update();
-  //     print("susses: image picker");
-  //   } else {
-  //     print("error: image picker");
-  //     update();
-  //   }
-  // }
-
-  Future<void> editProfile(ImageSource source) async {
+  Future<void> handlePickImageProfile(
+      BuildContext context, ImageSource source) async {
     final pickedFile = await ImagePicker().pickImage(source: source);
     if (pickedFile != null) {
-      File? imageFile = File(pickedFile.path);
+      imageFile = [];
+      imageFile.add(File(pickedFile.path));
       update();
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+
       print("susses: image picker");
-      Either<Failure, UserModel> profile =
-          await _profileRepository.updateProfile(imageFile);
+    } else {
+      print("error: image picker");
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<void> handleUpdateProfile() async {
+    if (imageFile != null) {
+      Either<Failure, UserModel> profile = await _profileRepository
+          .updateProfile(imageFile[0], profileModel!.id);
       if (profile.isRight()) {
         profile.fold(
             (l) => null,
             (r) => {
+                  imageFile = [],
+                  update(),
                   profileModel = r,
                   update(),
+                  showSnackBarWidget("Profile Updated", ColorManager.mainColor,
+                      title: "Success")
                 });
       } else {
         profile.fold(
@@ -66,8 +74,6 @@ class ProfileViewModel extends GetxController {
           (r) => r,
         );
       }
-    } else {
-      print("error: image picker");
     }
   }
 }
