@@ -108,7 +108,7 @@ class SplashView extends StatelessWidget {
             child: //bottom image
                 TweenAnimationBuilder(
               tween: Tween<double>(begin: 0, end: 1),
-              duration: const Duration(seconds: 2),
+              duration: const Duration(seconds: 1),
               builder: (context, double val, child) {
                 return Opacity(
                   opacity: val,

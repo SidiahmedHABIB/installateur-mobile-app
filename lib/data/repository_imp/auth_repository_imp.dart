@@ -34,12 +34,11 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
           saveUserLocal(userModel);
           return Right(true);
         } else {
-          return left(
-              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+          print(response.body);
+          return left(Failure(ResponseCode.BAD_REQUEST, "400"));
         }
       } on Exception {
-        return (left(
-            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+        return (left(Failure(ResponseCode.BAD_REQUEST, "catch")));
       }
     } else {
       return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));

@@ -1,17 +1,24 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:installateur/app/app_constants.dart';
+import 'package:installateur/domain/model/installation_report.dart';
+import 'package:installateur/presentation/report_helper/report_helper.dart';
+import 'package:installateur/presentation/report_helper/report_widget.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
-import 'package:installateur/test/testvm.dart';
-
+import 'package:open_file/open_file.dart';
 import '../presentation/widgets_manager/icon_widget.dart';
+// generate pdf
+import 'dart:io';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:path_provider/path_provider.dart';
 
 class Test extends StatefulWidget {
   Test({
@@ -64,11 +71,43 @@ class _TestState extends State<Test> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      ElevatedButton(
+                        child: Text("Generate PDF"),
+                        onPressed: () async {
+                          final report = InstallationReport(
+                              info: InstallationInfo(
+                                  date: DateTime.now(),
+                                  description: 'First Order Invoice'),
+                              technical: Technical(
+                                  name: 'Sidi Ahmed Habib',
+                                  address: 'Dhaka, Bangladesh',
+                                  phone: "46411644"),
+                              companyReport: CompanyReport(
+                                name: 'Google',
+                                address:
+                                    'Mountain View, California, United States',
+                              ),
+                              box: [
+                                BoxInstalled(
+                                  name: "strada_222",
+                                  date: DateTime.now(),
+                                  entity: "1235142",
+                                  matricul: "1478475925874",
+                                  sNumber: "748574595",
+                                  value: "7485",
+                                ),
+                              ]);
+                          final pdfFile =
+                              await ReportGenerator.generate(report);
+                          ReportHelper.openFile(pdfFile);
+                        },
+                      ),
+                      SizedBox(height: AppSize.hs24),
                       ButtonWidget(
                         text: "Show Dialog",
                         hdn: false,
                         onClicked: () {
-                          appShowDialog(context);
+                          generateInvoice();
                         },
                       )
                     ],
@@ -98,6 +137,96 @@ class _TestState extends State<Test> {
   }
 }
 
+// generate pdf
+Future<void> generateInvoice() async {
+  // Create a new PDF document
+  final pdf = pw.Document();
+
+  // Add a page to the document
+  pdf.addPage(
+    pw.Page(
+      build: (context) {
+        // Create a widget tree to build the invoice layout
+        return pw.Container(
+          padding: const pw.EdgeInsets.all(16),
+          child: pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              // Add the client's name and address
+              pw.Text('Client Name'),
+              pw.Text('Client Address'),
+              pw.SizedBox(height: 16),
+
+              // Add your company's name and address
+              pw.Text('Your Company Name'),
+              pw.Text('Your Company Address'),
+              pw.SizedBox(height: 16),
+
+              // Add the invoice number and date
+              pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text('Invoice #'),
+                  pw.Text('Date'),
+                ],
+              ),
+              pw.SizedBox(height: 16),
+
+              // Add the item details
+              pw.Table.fromTextArray(
+                headers: ['Item', 'Quantity', 'Rate', 'Amount'],
+                data: [
+                  ['Item 1', '2', '\$10', '\$20'],
+                  ['Item 2', '3', '\$15', '\$45'],
+                ],
+              ),
+              pw.SizedBox(height: 16),
+
+              // Add the subtotal, tax, and total
+              pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text('Subtotal'),
+                  pw.Text('\$65'),
+                ],
+              ),
+              pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text('Tax'),
+                  pw.Text('\$6.50'),
+                ],
+              ),
+              pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text('Total'),
+                  pw.Text('\$71.50'),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    ),
+  );
+
+  // Save the PDF to the device's temporary directory
+  final directory = await getTemporaryDirectory();
+  final path = '${directory.path}/invoice.pdf';
+  final file = File(path);
+  await file.writeAsBytes(await pdf.save());
+  final url = file.path;
+  await OpenFile.open(url);
+  // Launch the PDF file in a PDF viewer app
+  // if (await canLaunch(path)) {
+  //   await launch(path);
+  // } else {
+  //   throw 'Could not launch $path';
+  // }
+}
+
+// dialog
 Future appShowDialog(BuildContext context) {
   return showDialog(
     context: context,

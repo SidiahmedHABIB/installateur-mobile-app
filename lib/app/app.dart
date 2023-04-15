@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      //home: Test(),
+      // home: Test(),
 
       getPages: RoutesManager.routes,
       initialRoute: RoutesManager.getSplashScreen(),
