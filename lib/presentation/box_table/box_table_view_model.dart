@@ -29,15 +29,23 @@ class BoxTableViewModel extends GetxController {
   List<BoxModel> listOfBoxes = [];
   bool loadingPage = false;
   BoxModel? boxTaked;
-  bool clickLine = true;
+  bool reportReady = false;
+  int? boxReportReadyId;
 
-  // Future<void> handleTakeBoxLine(int index) async {
-  //   print(index);
-  //   clickLine = false;
-  //   update();
-  //   boxTaked = listOfBoxes[index];
-  //   print(boxTaked?.name);
-  // }
+  Future<void> handleActiveReportButton(int index) async {
+    BoxModel box = listOfBoxes[index];
+    if (box.reportBox != null) {
+      reportReady = true;
+      update();
+      boxReportReadyId = box.id;
+      update();
+      print("ready");
+    } else {
+      reportReady = false;
+      update();
+      print("Not ready");
+    }
+  }
 
   Future<void> handleGetPageBoxByCompany(int companyId) async {
     loadingPage = true;

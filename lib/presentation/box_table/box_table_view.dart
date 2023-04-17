@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/box_table/box_table_view_model.dart';
-import 'package:installateur/presentation/box_table/widgets/dialog_inter_type.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
@@ -91,7 +90,7 @@ class BoxTableView extends StatelessWidget {
           ),
           SizedBox(height: AppSize.hs20),
           // list filtering box cart
-          Container(
+          SizedBox(
             height: AppSize.hs25 * 1.5,
             child: GetBuilder<BoxTableViewModel>(
               builder: (controller) {
@@ -163,10 +162,12 @@ class BoxTableView extends StatelessWidget {
             ),
             child: Center(
               child: ButtonWidget(
-                onClicked: () =>
-                    controller.clickLine != true ? print("get reprot") : {},
+                onClicked: () => controller.reportReady == true
+                    ? Get.toNamed(RoutesManager.getInterRapport(
+                        controller.boxReportReadyId))
+                    : {},
                 text: StringsManager.boxTableBottomButton.tr,
-                hdn: controller.clickLine,
+                hdn: controller.reportReady == true ? false : true,
                 textSize: FontSize.fs20,
               ),
             ),

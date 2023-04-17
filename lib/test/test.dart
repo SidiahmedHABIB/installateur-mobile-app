@@ -71,37 +71,6 @@ class _TestState extends State<Test> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        child: Text("Generate PDF"),
-                        onPressed: () async {
-                          final report = InstallationReport(
-                              info: InstallationInfo(
-                                  date: DateTime.now(),
-                                  description: 'First Order Invoice'),
-                              technical: Technical(
-                                  name: 'Sidi Ahmed Habib',
-                                  address: 'Dhaka, Bangladesh',
-                                  phone: "46411644"),
-                              companyReport: CompanyReport(
-                                name: 'Google',
-                                address:
-                                    'Mountain View, California, United States',
-                              ),
-                              box: [
-                                BoxInstalled(
-                                  name: "strada_222",
-                                  date: DateTime.now(),
-                                  entity: "1235142",
-                                  matricul: "1478475925874",
-                                  sNumber: "748574595",
-                                  value: "7485",
-                                ),
-                              ]);
-                          final pdfFile =
-                              await ReportGenerator.generate(report);
-                          ReportHelper.openFile(pdfFile);
-                        },
-                      ),
                       SizedBox(height: AppSize.hs24),
                       ButtonWidget(
                         text: "Show Dialog",

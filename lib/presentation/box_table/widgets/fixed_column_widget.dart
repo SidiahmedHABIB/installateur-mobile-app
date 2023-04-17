@@ -9,8 +9,6 @@ import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
-
-import '../../../test/test.dart';
 import '../../resources/colors_manager.dart';
 import '../box_table_view_model.dart';
 
@@ -45,7 +43,6 @@ class FixedColumnWidget extends StatelessWidget {
           ],
           rows: [
             ...listBoxes.asMap().entries.map((box) => DataRow(
-                  // color: MaterialStateColor.resolveWith((states) => Colors.amber),
                   cells: [
                     DataCell(
                       onTap: () => dialogBoxIntervention(
@@ -60,6 +57,8 @@ class FixedColumnWidget extends StatelessWidget {
                         depanner: () => Get.toNamed(
                             RoutesManager.getBoxDetails(box.value.id)),
                       ),
+                      onLongPress: () =>
+                          controller.handleActiveReportButton(box.key),
                       Row(
                         children: [
                           box.value.reportBox != null

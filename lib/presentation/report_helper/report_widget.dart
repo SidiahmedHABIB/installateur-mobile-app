@@ -9,7 +9,8 @@ import '../../domain/model/installation_report.dart';
 import 'report_helper.dart';
 
 class ReportGenerator {
-  static Future<File> generate(InstallationReport report) async {
+  static Future<File> generate(
+      String reportName, InstallationReport report) async {
     final pdf = Document();
     Uint8List logo = await getLogo();
     pdf.addPage(MultiPage(
@@ -22,7 +23,7 @@ class ReportGenerator {
       footer: (context) => buildFooter(report),
     ));
 
-    return ReportHelper.saveDocument(name: 'my_invoice.pdf', pdf: pdf);
+    return ReportHelper.saveDocument(name: '$reportName.pdf', pdf: pdf);
   }
 
   static Future<Uint8List> getLogo() async {

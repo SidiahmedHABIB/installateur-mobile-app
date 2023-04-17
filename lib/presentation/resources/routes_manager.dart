@@ -11,9 +11,10 @@ import '../box_diagnostic/box_diagnostic_view.dart';
 import '../box_emplacement/box_emplacement_binding.dart';
 import '../box_emplacement/box_emplacement_view.dart';
 import '../box_table/box_table_view.dart';
+import '../installation_report/installation_report_binding.dart';
 import '../intervention_details/inter_details_binding.dart';
 import '../intervention_details/inter_details_view.dart';
-import '../intervention_rapport/inter_rapport_view.dart';
+import '../installation_report/install_report_view.dart';
 import '../login/login_view.dart';
 import '../main/home_view.dart';
 import '../notices/notice_binding.dart';
@@ -48,7 +49,7 @@ class RoutesManager {
   static String getBoxDiagnostic() => boxDiagnostic;
   static String getInterDetails(int? interId) =>
       '$interDetails?interId=$interId';
-  static String getInterRapport() => interRapport;
+  static String getInterRapport(int? boxId) => '$interRapport?boxId=$boxId';
   static String getNotice(int? companyId) => '$notice?companyId=$companyId';
 
   static List<GetPage> routes = [
@@ -117,7 +118,11 @@ class RoutesManager {
     ),
     GetPage(
       name: interRapport,
-      page: () => InterventionRapportView(),
+      page: () {
+        var boxId = Get.parameters['boxId'];
+        return InstallationReportView(boxId: int.parse(boxId!));
+      },
+      binding: InstallationReportBinding(),
     ),
     GetPage(
       name: notice,
