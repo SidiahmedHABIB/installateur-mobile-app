@@ -32,7 +32,7 @@ class ReportGenerator {
         .asUint8List();
   }
 
-  static Widget buildHeader(InstallationReport report, Uint8List logo) =>
+  static Widget buildHeader(InstallationReport? report, Uint8List logo) =>
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,7 +40,7 @@ class ReportGenerator {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              buildTechnicalAddress(report.technical),
+              buildTechnicalAddress(report!.technical!),
               Container(width: 100, child: pw.Image(pw.MemoryImage(logo))),
             ],
           ),
@@ -49,19 +49,19 @@ class ReportGenerator {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              buildCompanyAddress(report.companyReport),
-              buildInvoiceInfo(report.info),
+              buildCompanyAddress(report.companyReport!),
+              buildInvoiceInfo(report.info!),
             ],
           ),
         ],
       );
 
-  static Widget buildCompanyAddress(CompanyReport companyReport) => Column(
+  static Widget buildCompanyAddress(CompanyReport? companyReport) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(companyReport.name,
+          Text(companyReport!.name!,
               style: TextStyle(fontWeight: FontWeight.bold)),
-          Text(companyReport.address),
+          Text(companyReport.address!),
         ],
       );
 
@@ -70,7 +70,7 @@ class ReportGenerator {
       'Report Date:',
     ];
     final data = <String>[
-      Utils.formatDate(info.date),
+      Utils.formatDate(info.date!),
     ];
 
     return Column(
@@ -84,16 +84,16 @@ class ReportGenerator {
     );
   }
 
-  static Widget buildTechnicalAddress(Technical technical) => Column(
+  static Widget buildTechnicalAddress(Technical? technical) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(technical.name, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(technical!.name!, style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 1 * PdfPageFormat.mm),
-          Text(technical.address),
+          Text(technical.address!),
         ],
       );
 
-  static Widget buildTitle(InstallationReport report) => Column(
+  static Widget buildTitle(InstallationReport? report) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -101,7 +101,7 @@ class ReportGenerator {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 0.8 * PdfPageFormat.cm),
-          Text(report.info.description),
+          Text(report!.info!.description!),
           SizedBox(height: 0.8 * PdfPageFormat.cm),
         ],
       );
@@ -115,7 +115,7 @@ class ReportGenerator {
       'Value',
       'Nserial'
     ];
-    final data = report.box.map((box) {
+    final data = report.box!.map((box) {
       return [
         box.name.toString(),
         Utils.formatDate(DateTime.now()).toString(),

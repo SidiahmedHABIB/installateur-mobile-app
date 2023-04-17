@@ -61,7 +61,7 @@ class FixedColumnWidget extends StatelessWidget {
                           controller.handleActiveReportButton(box.key),
                       Row(
                         children: [
-                          box.value.reportBox != null
+                          box.value.isSend == true
                               ? IconWidget(
                                   icon: Icons.check_circle,
                                   iconColor: ColorManager.mainColor,

@@ -1,8 +1,8 @@
 class InstallationReport {
-  final InstallationInfo info;
-  final Technical technical;
-  final CompanyReport companyReport;
-  final List<BoxInstalled> box;
+  final InstallationInfo? info;
+  final Technical? technical;
+  final CompanyReport? companyReport;
+  final List<BoxInstalled>? box;
 
   const InstallationReport({
     required this.info,
@@ -13,8 +13,8 @@ class InstallationReport {
 }
 
 class InstallationInfo {
-  final String description;
-  final DateTime date;
+  final String? description;
+  final DateTime? date;
 
   const InstallationInfo({
     required this.description,
@@ -23,12 +23,12 @@ class InstallationInfo {
 }
 
 class BoxInstalled {
-  final String name;
-  final DateTime date;
-  final String entity;
-  final String matricul;
-  final String value;
-  final String sNumber;
+  final String? name;
+  final DateTime? date;
+  final String? entity;
+  final String? matricul;
+  final String? value;
+  final String? sNumber;
 
   const BoxInstalled({
     required this.name,
@@ -41,9 +41,9 @@ class BoxInstalled {
 }
 
 class Technical {
-  final String name;
-  final String address;
-  final String phone;
+  final String? name;
+  final String? address;
+  final String? phone;
 
   const Technical({
     required this.name,
@@ -53,8 +53,8 @@ class Technical {
 }
 
 class CompanyReport {
-  final String name;
-  final String address;
+  final String? name;
+  final String? address;
 
   const CompanyReport({
     required this.name,

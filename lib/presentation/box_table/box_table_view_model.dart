@@ -34,7 +34,7 @@ class BoxTableViewModel extends GetxController {
 
   Future<void> handleActiveReportButton(int index) async {
     BoxModel box = listOfBoxes[index];
-    if (box.reportBox != null) {
+    if (box.status == AppConstants.INSTALLED) {
       reportReady = true;
       update();
       boxReportReadyId = box.id;

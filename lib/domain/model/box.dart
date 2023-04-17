@@ -35,6 +35,7 @@ class BoxModel {
   String? matricul;
   String? boxValue;
   String? nserie;
+  bool? isSend;
   String? creatAt;
   String? updateAt;
   CompanyModel? companyBox;
@@ -48,6 +49,7 @@ class BoxModel {
       this.matricul,
       this.boxValue,
       this.nserie,
+      this.isSend,
       this.creatAt,
       this.updateAt,
       this.companyBox,
@@ -61,6 +63,7 @@ class BoxModel {
     matricul = json['matricul'];
     boxValue = json['boxValue'];
     nserie = json['nserie'];
+    isSend = json['isSend'];
     creatAt = json['creatAt'];
     updateAt = json['updateAt'];
     companyBox = json['companyBox'] != null
@@ -80,6 +83,7 @@ class BoxModel {
     data['matricul'] = this.matricul;
     data['boxValue'] = this.boxValue;
     data['nserie'] = this.nserie;
+    data['isSend'] = this.isSend;
     data['creatAt'] = this.creatAt;
     data['updateAt'] = this.updateAt;
     if (this.companyBox != null) {

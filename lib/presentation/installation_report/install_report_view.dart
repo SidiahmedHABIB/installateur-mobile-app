@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -100,7 +102,7 @@ class InstallationReportView extends StatelessWidget {
                     ),
                     SizedBox(height: AppSize.hs14),
                     BigTextWidget(
-                      text: "Rapport X",
+                      text: "Report",
                       color: ColorManager.white,
                     )
                   ],
@@ -126,6 +128,18 @@ class InstallationReportView extends StatelessWidget {
                     return controller.loadingPage == false
                         ? Column(
                             children: [
+                              // box name
+                              TextFieldWidget(
+                                enabled: false,
+                                textController: emailController,
+                                hintText: controller.boxDetails != null
+                                    ? controller.boxDetails!.companyBox!.name
+                                        .toString()
+                                    : "",
+                                icon: CupertinoIcons.building_2_fill,
+                                colorhint: ColorManager.mainColor,
+                              ),
+                              SizedBox(height: AppSize.hs25),
                               // email
                               TextFieldWidget(
                                 enabled: false,
@@ -153,56 +167,21 @@ class InstallationReportView extends StatelessWidget {
                               SizedBox(height: AppSize.hs25),
 
                               GestureDetector(
-                                onTap: () async {
-                                  final report = InstallationReport(
-                                      info: InstallationInfo(
-                                          date: DateTime.now(),
-                                          description:
-                                              'Overall, the installation of the box was successful and without incident. The box is now ready to be used for its intended purpose'),
-                                      technical: Technical(
-                                          name:
-                                              "${controller.technical!.firstName} ${controller.technical!.lastName}",
-                                          address: controller.technical!.email
-                                              .toString(),
-                                          phone: "46411644"),
-                                      companyReport: CompanyReport(
-                                        name: controller
-                                            .boxDetails!.companyBox!.name
-                                            .toString(),
-                                        address: controller
-                                            .boxDetails!.companyBox!.location
-                                            .toString(),
-                                      ),
-                                      box: [
-                                        BoxInstalled(
-                                          name: controller.boxDetails!.name
-                                              .toString(),
-                                          date: DateTime.now(),
-                                          entity: controller.boxDetails!.entity
-                                              .toString(),
-                                          matricul: controller
-                                              .boxDetails!.matricul
-                                              .toString(),
-                                          sNumber: controller.boxDetails!.nserie
-                                              .toString(),
-                                          value: controller.boxDetails!.boxValue
-                                              .toString(),
-                                        ),
-                                      ]);
-                                  final pdfFile =
-                                      await ReportGenerator.generate(
-                                          controller.boxDetails!.name
-                                              .toString(),
-                                          report);
-                                  ReportHelper.openFile(pdfFile);
-                                },
+                                onTap: () => controller.boxDetails != null &&
+                                        controller.boxDetails!.isSend == false
+                                    ? controller.handleBuildReport()
+                                    : () {},
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                       vertical: AppPadding.hp16,
                                       horizontal: AppPadding.wp10),
                                   width: AppSize.ws100 * 2.5,
                                   decoration: BoxDecoration(
-                                    color: ColorManager.mainColor,
+                                    color: controller.boxDetails != null &&
+                                            controller.boxDetails!.isSend ==
+                                                false
+                                        ? ColorManager.mainColor
+                                        : ColorManager.grey,
                                     border: Border.all(
                                       color: ColorManager.whiteGrey,
                                       width: 1,
@@ -249,29 +228,37 @@ class InstallationReportView extends StatelessWidget {
         bottomNavigationBar: GetBuilder<InstallationReportViewModel>(
           builder: (controller) {
             return controller.loadingPage == false
-                ? Container(
-                    height: AppSize.hs100,
-                    padding: EdgeInsets.symmetric(
-                        vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: AppSize.hs5,
-                          color: ColorManager.whiteGrey,
-                          offset: const Offset(0, 0),
+                ? controller.boxDetails != null &&
+                        controller.boxDetails!.isSend == false
+                    ? Container(
+                        height: AppSize.hs100,
+                        padding: EdgeInsets.symmetric(
+                            vertical: AppPadding.hp16,
+                            horizontal: AppPadding.wp20),
+                        decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: AppSize.hs5,
+                              color: ColorManager.whiteGrey,
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Center(
-                      child: ButtonWidget(
-                        onClicked: () => {},
-                        text: StringsManager.interRapportButton.tr,
-                        hdn: true,
-                        textSize: FontSize.fs20,
-                      ),
-                    ),
-                  )
+                        child: Center(
+                          child: ButtonWidget(
+                            onClicked: () => controller.reportPdf != null
+                                ? controller.handleSendReportEmail()
+                                : {},
+                            text: StringsManager.interRapportButton.tr,
+                            hdn: controller.reportPdf != null ? false : true,
+                            textSize: FontSize.fs20,
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: AppSize.hs10,
+                      )
                 : Container(
                     height: AppSize.hs10,
                   );

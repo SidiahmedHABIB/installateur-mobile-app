@@ -66,7 +66,7 @@ class BoxDetailsView extends StatelessWidget {
       //boby
       body: GetBuilder<BoxDetailsViewModel>(
         builder: (controller) {
-          return controller.loadingPage != true
+          return controller.loadingPage != true && controller.boxDetails != null
               ? SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
@@ -374,8 +374,9 @@ class BoxDetailsView extends StatelessWidget {
                               controller.boxImages != []
                           ? () => print("done done")
                           : () => {},
-                      text: controller.boxDetails!.status ==
-                              AppConstants.NOTINSTALLED
+                      text: controller.boxDetails != null &&
+                              controller.boxDetails!.status ==
+                                  AppConstants.NOTINSTALLED
                           ? StringsManager.boxDetailsBottomButtonIns.tr
                           : StringsManager.boxDetailsBottomButtonDes.tr,
                       hdn: controller.boxMatriculController != "" &&
