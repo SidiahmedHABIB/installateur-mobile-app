@@ -23,156 +23,158 @@ class BoxTableView extends StatelessWidget {
     Get.find<BoxTableViewModel>().handleGetPageBoxByCompany(companyId);
     BoxTableViewModel viewModel = Get.find<BoxTableViewModel>();
 
-    return Scaffold(
-      //header
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return Padding(
-              padding: EdgeInsets.only(left: AppPadding.wp20),
-              child: IconButton(
-                icon: const Icon(
-                  CupertinoIcons.back,
+    return SafeArea(
+      child: Scaffold(
+        //header
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return Padding(
+                padding: EdgeInsets.only(left: AppPadding.wp20),
+                child: IconButton(
+                  icon: const Icon(
+                    CupertinoIcons.back,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
+              );
+            },
+          ),
+          iconTheme: IconThemeData(
+            color: ColorManager.white,
+            size: AppSize.hs25 * 1.3,
+          ),
+          //header style
+          backgroundColor: ColorManager.mainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(AppSize.hs10),
+            ),
+          ),
+          centerTitle: true,
+          title: MediumTextWidget(
+            text: StringsManager.boxTableTitle.tr,
+            color: ColorManager.white,
+            size: FontSize.fs20,
+          ),
+          actions: [
+            GestureDetector(
+              onTap: () => Get.toNamed(RoutesManager.getNotice(companyId)),
+              child: Padding(
+                padding: EdgeInsets.only(right: AppPadding.wp20),
+                child: IconWidget(
+                  icon: CupertinoIcons.wrench_fill,
+                  size: AppSize.hs25 * 1.3,
+                ),
+              ),
+            ),
+          ],
+        ),
+        //backgroundColor
+        backgroundColor: ColorManager.white,
+        body: Column(
+          children: [
+            SizedBox(height: AppSize.hs16),
+            // search container
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: AppPadding.hp10,
+                horizontal: AppPadding.wp20,
+              ),
+              child: TextFieldWidget(
+                textController: viewModel.searchController,
+                hintText: StringsManager.boxTableSearchHinttext.tr,
+                icon: CupertinoIcons.search,
+              ),
+            ),
+            SizedBox(height: AppSize.hs20),
+            // list filtering box cart
+            SizedBox(
+              height: AppSize.hs25 * 1.5,
+              child: GetBuilder<BoxTableViewModel>(
+                builder: (controller) {
+                  return ListView.builder(
+                    itemCount: controller.filteringStrings.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => GestureDetector(
+                      onTap: () => controller
+                          .handleGetPageBoxByStatusAndCompany(companyId, index),
+                      child: TextCart(
+                        text: controller.filteringStrings[index],
+                        onClick: controller.buttonActive[index],
+                        textSize: FontSize.fs18,
+                        vpadding: AppSize.hs8,
+                        hpadding: AppSize.ws16,
+                      ),
+                    ),
+                  );
                 },
+              ),
+            ),
+            SizedBox(height: AppSize.hs20),
+
+            // table of boxes
+            GetBuilder<BoxTableViewModel>(
+              builder: (controller) {
+                return controller.loadingPage != true
+                    ? Expanded(
+                        child: SafeArea(
+                          child: SingleChildScrollView(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FixedColumnWidget(
+                                    listBoxes: controller.listOfBoxes),
+                                ScrollableColumnWidget(
+                                    listBoxes: controller.listOfBoxes),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(height: AppSize.hs100),
+                          LoadingWidget(size: AppSize.hs25 * 3),
+                        ],
+                      );
+              },
+            ),
+          ],
+        ),
+        // footer
+        bottomNavigationBar: GetBuilder<BoxTableViewModel>(
+          builder: (controller) {
+            return Container(
+              height: AppSize.hs100 * 1,
+              padding: EdgeInsets.symmetric(
+                  vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
+              decoration: BoxDecoration(
+                color: ColorManager.white,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: AppSize.hs10,
+                    color: ColorManager.darkGrey,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: ButtonWidget(
+                  onClicked: () => controller.reportReady == true
+                      ? Get.toNamed(RoutesManager.getInterRapport(
+                          controller.boxReportReadyId))
+                      : {},
+                  text: StringsManager.boxTableBottomButton.tr,
+                  hdn: controller.reportReady == true ? false : true,
+                  textSize: FontSize.fs20,
+                ),
               ),
             );
           },
         ),
-        iconTheme: IconThemeData(
-          color: ColorManager.white,
-          size: AppSize.hs25 * 1.3,
-        ),
-        //header style
-        backgroundColor: ColorManager.mainColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(AppSize.hs10),
-          ),
-        ),
-        centerTitle: true,
-        title: MediumTextWidget(
-          text: StringsManager.boxTableTitle.tr,
-          color: ColorManager.white,
-          size: FontSize.fs20,
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () => Get.toNamed(RoutesManager.getNotice(companyId)),
-            child: Padding(
-              padding: EdgeInsets.only(right: AppPadding.wp20),
-              child: IconWidget(
-                icon: CupertinoIcons.wrench_fill,
-                size: AppSize.hs25 * 1.3,
-              ),
-            ),
-          ),
-        ],
-      ),
-      //backgroundColor
-      backgroundColor: ColorManager.white,
-      body: Column(
-        children: [
-          SizedBox(height: AppSize.hs16),
-          // search container
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: AppPadding.hp10,
-              horizontal: AppPadding.wp20,
-            ),
-            child: TextFieldWidget(
-              textController: viewModel.searchController,
-              hintText: StringsManager.boxTableSearchHinttext.tr,
-              icon: CupertinoIcons.search,
-            ),
-          ),
-          SizedBox(height: AppSize.hs20),
-          // list filtering box cart
-          SizedBox(
-            height: AppSize.hs25 * 1.5,
-            child: GetBuilder<BoxTableViewModel>(
-              builder: (controller) {
-                return ListView.builder(
-                  itemCount: controller.filteringStrings.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () => controller.handleGetPageBoxByStatusAndCompany(
-                        companyId, index),
-                    child: TextCart(
-                      text: controller.filteringStrings[index],
-                      onClick: controller.buttonActive[index],
-                      textSize: FontSize.fs18,
-                      vpadding: AppSize.hs8,
-                      hpadding: AppSize.ws16,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: AppSize.hs20),
-
-          // table of boxes
-          GetBuilder<BoxTableViewModel>(
-            builder: (controller) {
-              return controller.loadingPage != true
-                  ? Expanded(
-                      child: SafeArea(
-                        child: SingleChildScrollView(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FixedColumnWidget(
-                                  listBoxes: controller.listOfBoxes),
-                              ScrollableColumnWidget(
-                                  listBoxes: controller.listOfBoxes),
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
-                  : Column(
-                      children: [
-                        SizedBox(height: AppSize.hs100),
-                        LoadingWidget(size: AppSize.hs25 * 3),
-                      ],
-                    );
-            },
-          ),
-        ],
-      ),
-      // footer
-      bottomNavigationBar: GetBuilder<BoxTableViewModel>(
-        builder: (controller) {
-          return Container(
-            height: AppSize.hs100 * 1,
-            padding: EdgeInsets.symmetric(
-                vertical: AppPadding.hp16, horizontal: AppPadding.wp20),
-            decoration: BoxDecoration(
-              color: ColorManager.white,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: AppSize.hs10,
-                  color: ColorManager.darkGrey,
-                  offset: const Offset(0, 0),
-                ),
-              ],
-            ),
-            child: Center(
-              child: ButtonWidget(
-                onClicked: () => controller.reportReady == true
-                    ? Get.toNamed(RoutesManager.getInterRapport(
-                        controller.boxReportReadyId))
-                    : {},
-                text: StringsManager.boxTableBottomButton.tr,
-                hdn: controller.reportReady == true ? false : true,
-                textSize: FontSize.fs20,
-              ),
-            ),
-          );
-        },
       ),
     );
   }

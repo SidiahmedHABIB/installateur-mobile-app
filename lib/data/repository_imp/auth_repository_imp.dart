@@ -46,8 +46,8 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
   }
 
   Future<void> saveUserLocal(UserModel userModel) async {
-    _localDataSource.setString(
-        AppConstants.USER_ID_TOKEN, jsonEncode(userModel.id));
+    print(userModel.id);
+    _localDataSource.setInt(AppConstants.USER_ID_TOKEN, userModel.id);
     _localDataSource.setString(AppConstants.USER_TOKEN, jsonEncode(userModel));
   }
 

@@ -13,8 +13,8 @@ class LocalDataSource {
     return sharedPreferences.getInt(key) ?? defaultValue;
   }
 
-  Future<bool> setInt(String key, int value) {
-    return sharedPreferences.setInt(key, value);
+  Future<bool> setInt(String key, int? value) {
+    return sharedPreferences.setInt(key, value!);
   }
 
   double getDouble(String key, {double defaultValue = 0.0}) {

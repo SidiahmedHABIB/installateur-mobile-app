@@ -7,7 +7,7 @@ class AppConstants {
   // vd
   //static const String BASE_URL = "http://10.0.2.2:8081";
   //rd
-  static const String BASE_URL = "http://192.168.1.15:8081";
+  static const String BASE_URL = "http://192.168.1.17:8081";
 
   //images
   static const String DOWNLOAD_IMG_URL = "/image/download/";
@@ -29,6 +29,8 @@ class AppConstants {
 
   // inter rep
   static const String GET_PAGE_INTER_URI = "/inter/page/";
+  static const String GET_PAGE_INTER_STATUS_BY_USER_URI =
+      "/inter/pageStatusByUser/";
   static const String GET_INTER_BY_ID_URI = "/inter/id/";
   static const String GET_INTER_ADD_APPMT_URI = "/inter/addAppointment/";
   // box rep

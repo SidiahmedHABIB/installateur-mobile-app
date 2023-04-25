@@ -19,127 +19,129 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.mainColor,
-      body: Stack(children: [
-        //background
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(AssetsManager.background),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ColorManager.mainColor,
+        body: Stack(children: [
+          //background
+          Container(
             width: double.infinity,
             height: double.infinity,
-            color: const Color.fromARGB(241, 47, 60, 86),
-          ),
-        ),
-        //logo and red text
-        Hero(
-          tag: "container-hero",
-          // tag: contaierHero,
-          child: Container(
-            margin: EdgeInsets.only(top: Get.height / 4.5),
-            child: Column(
-              children: [
-                Center(
-                  child: SizedBox(
-                    width: AppSize.hs100 * 2.6,
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        Center(
-                          child: Container(
-                            width: AppSize.hs100 * 2.6,
-                            padding: EdgeInsets.symmetric(
-                              vertical: AppPadding.hp20 * 1.2,
-                            ),
-                            child: Image.asset(AssetsManager.logoStrada),
-                          ),
-                        ),
-                        SizedBox(height: AppSize.hs5),
-                        MediumTextWidget(
-                            text: "INSTALLATEUR",
-                            color: ColorManager.redColor,
-                            size: FontSize.fs18,
-                            fontWeight: FontWeightManager.semiBold),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        //white container
-        SingleChildScrollView(
-          child: Container(
-            margin: EdgeInsets.only(top: Get.height / 2),
-            padding: EdgeInsets.only(
-                left: AppPadding.wp20,
-                top: AppPadding.hp20 * 3,
-                right: AppPadding.wp20),
-            height: Get.height / 2,
-            decoration: BoxDecoration(
-              color: ColorManager.white,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(AppSize.hs20 * 3),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(AssetsManager.background),
+                fit: BoxFit.cover,
               ),
             ),
-            child: Center(
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: const Color.fromARGB(241, 47, 60, 86),
+            ),
+          ),
+          //logo and red text
+          Hero(
+            tag: "container-hero",
+            // tag: contaierHero,
+            child: Container(
+              margin: EdgeInsets.only(top: Get.height / 4.5),
               child: Column(
                 children: [
-                  //email
-                  TextFieldWidget(
-                    textController: loginViewModel.emailController,
-                    icon: Icons.email,
-                    hintText: StringsManager.loginEmail.tr,
-                  ),
-                  SizedBox(height: AppSize.hs25),
-                  //password
-                  TextFieldWidget(
-                    isPassword: true,
-                    textController: loginViewModel.passwordController,
-                    icon: CupertinoIcons.lock_fill,
-                    hintText: StringsManager.loginPassword.tr,
-                  ),
-                  SizedBox(height: AppSize.hs16),
-                  //forget password
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      MediumTextWidget(
-                        text: StringsManager.loginForgetPassword.tr,
-                        color: ColorManager.redColor,
-                        size: FontSize.fs16,
-                      )
-                    ],
-                  ),
-                  //button
-                  SizedBox(height: AppSize.hs16 * 2),
-                  GetBuilder<LoginViewModel>(
-                    builder: (controller) {
-                      return controller.loading == false
-                          ? ButtonWidget(
-                              onClicked: () => loginViewModel.login(),
-                              text: StringsManager.loginbottombotton.tr,
-                              hdn: false,
-                            )
-                          : CircularProgressIndicator(
-                              color: ColorManager.mainColor,
-                            );
-                    },
+                  Center(
+                    child: SizedBox(
+                      width: AppSize.hs100 * 2.6,
+                      child: Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          Center(
+                            child: Container(
+                              width: AppSize.hs100 * 2.6,
+                              padding: EdgeInsets.symmetric(
+                                vertical: AppPadding.hp20 * 1.2,
+                              ),
+                              child: Image.asset(AssetsManager.logoStrada),
+                            ),
+                          ),
+                          SizedBox(height: AppSize.hs5),
+                          MediumTextWidget(
+                              text: "INSTALLATEUR",
+                              color: ColorManager.redColor,
+                              size: FontSize.fs18,
+                              fontWeight: FontWeightManager.semiBold),
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
           ),
-        ),
-      ]),
+          //white container
+          SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.only(top: Get.height / 2),
+              padding: EdgeInsets.only(
+                  left: AppPadding.wp20,
+                  top: AppPadding.hp20 * 3,
+                  right: AppPadding.wp20),
+              height: Get.height / 2,
+              decoration: BoxDecoration(
+                color: ColorManager.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(AppSize.hs20 * 3),
+                ),
+              ),
+              child: Center(
+                child: Column(
+                  children: [
+                    //email
+                    TextFieldWidget(
+                      textController: loginViewModel.emailController,
+                      icon: Icons.email,
+                      hintText: StringsManager.loginEmail.tr,
+                    ),
+                    SizedBox(height: AppSize.hs25),
+                    //password
+                    TextFieldWidget(
+                      isPassword: true,
+                      textController: loginViewModel.passwordController,
+                      icon: CupertinoIcons.lock_fill,
+                      hintText: StringsManager.loginPassword.tr,
+                    ),
+                    SizedBox(height: AppSize.hs16),
+                    //forget password
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        MediumTextWidget(
+                          text: StringsManager.loginForgetPassword.tr,
+                          color: ColorManager.redColor,
+                          size: FontSize.fs16,
+                        )
+                      ],
+                    ),
+                    //button
+                    SizedBox(height: AppSize.hs16 * 2),
+                    GetBuilder<LoginViewModel>(
+                      builder: (controller) {
+                        return controller.loading == false
+                            ? ButtonWidget(
+                                onClicked: () => loginViewModel.login(),
+                                text: StringsManager.loginbottombotton.tr,
+                                hdn: false,
+                              )
+                            : CircularProgressIndicator(
+                                color: ColorManager.mainColor,
+                              );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }

@@ -208,7 +208,7 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
           'user_id': userId,
           'template_params': {
             'subject': 'Installation',
-            'compony_email': 'sidiahmedhabib@gmail.com',
+            'compony_email': boxDetails.companyBox!.email.toString(),
             'compony_name': boxDetails.companyBox!.name.toString(),
             'technical_name': "${technical!.firstName} ${technical.lastName}",
             'message':

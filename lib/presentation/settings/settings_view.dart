@@ -25,282 +25,221 @@ class SettingsView extends StatelessWidget {
 
     var emailEnterpriseController = TextEditingController();
 
-    return Scaffold(
-      //adresse de l'entreprise
-      //header
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return Padding(
-              padding: EdgeInsets.only(left: AppPadding.wp20),
-              child: IconButton(
-                icon: const Icon(
-                  CupertinoIcons.bars,
+    return SafeArea(
+      child: Scaffold(
+        //adresse de l'entreprise
+        //header
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return Padding(
+                padding: EdgeInsets.only(left: AppPadding.wp20),
+                child: IconButton(
+                  icon: const Icon(
+                    CupertinoIcons.bars,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
                 ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              ),
-            );
-          },
-        ),
-        iconTheme: IconThemeData(
-          color: ColorManager.white,
-          size: AppSize.hs25 * 1.3,
-        ),
-        backgroundColor: ColorManager.mainColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(AppSize.hs25),
+              );
+            },
+          ),
+          iconTheme: IconThemeData(
+            color: ColorManager.white,
+            size: AppSize.hs25 * 1.3,
+          ),
+          backgroundColor: ColorManager.mainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(AppSize.hs25),
+            ),
+          ),
+          centerTitle: true,
+          title: MediumTextWidget(
+            text: StringsManager.settingsTitle.tr,
+            color: ColorManager.white,
+            size: FontSize.fs20,
           ),
         ),
-        centerTitle: true,
-        title: MediumTextWidget(
-          text: StringsManager.settingsTitle.tr,
-          color: ColorManager.white,
-          size: FontSize.fs20,
-        ),
-      ),
-      backgroundColor: ColorManager.white,
+        backgroundColor: ColorManager.white,
 
-      //drawer
-      drawer: const MyDrawer(),
+        //drawer
+        drawer: const MyDrawer(),
 
-      //body
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
-          child: Column(
-            children: [
-              SizedBox(height: AppSize.hs20 * 2),
-              // Notification
-              Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  border: Border.all(
-                    color: ColorManager.whiteGrey,
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorManager.grey,
-                      blurRadius: AppSize.hs5,
-                      offset: const Offset(1, 2),
+        //body
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: AppPadding.wp20),
+            child: Column(
+              children: [
+                SizedBox(height: AppSize.hs20 * 2),
+                // Notification
+                Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    border: Border.all(
+                      color: ColorManager.whiteGrey,
+                      width: 1,
                     ),
-                  ],
-                  borderRadius: BorderRadius.circular(AppSize.hs10),
-                ),
-                child: ListTile(
-                  horizontalTitleGap: 0,
-                  title: MediumTextWidget(
-                    text: StringsManager.settingsNotification.tr,
-                    size: FontSize.fs18,
-                    color: ColorManager.mainColor,
-                  ),
-                  leading: IconWidget(
-                    icon: Icons.notifications,
-                    iconColor: ColorManager.mainColor,
-                    size: AppSize.hs14 * 2,
-                  ),
-                  trailing: Switch(
-                      // thumb color (round icon)
-                      activeColor: ColorManager.mainColor,
-                      activeTrackColor: ColorManager.whiteMainColor,
-                      inactiveThumbColor: ColorManager.grey,
-                      inactiveTrackColor: ColorManager.whiteGrey,
-                      splashRadius: 70,
-                      // boolean variable value
-                      value: true,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      // changes the state of the switch
-                      onChanged: (value) => {}),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushNamed(context, "/meteo");
-                  },
-                ),
-              ),
-              SizedBox(height: AppSize.hs20),
-              //languages
-              Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  border: Border.all(
-                    color: ColorManager.whiteGrey,
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorManager.grey,
-                      blurRadius: AppSize.hs5,
-                      offset: const Offset(1, 2),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(AppSize.hs10),
-                ),
-                child: ExpansionTile(
-                  iconColor: ColorManager.mainColor,
-                  leading: IconWidget(
-                    icon: CupertinoIcons.globe,
-                    iconColor: ColorManager.mainColor,
-                    size: AppSize.hs14 * 2,
-                  ),
-                  title: MediumTextWidget(
-                    text: StringsManager.settingsChangeLang.tr,
-                    size: FontSize.fs18,
-                    color: ColorManager.mainColor,
-                  ),
-                  expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ListTile(
-                      horizontalTitleGap: 0,
-                      title: MediumTextWidget(
-                        text: StringsManager.settingsChangeLangFr.tr,
-                        size: FontSize.fs18,
-                        color: ColorManager.mainColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorManager.grey,
+                        blurRadius: AppSize.hs5,
+                        offset: const Offset(1, 2),
                       ),
-                      // frensh
-                      trailing: Checkbox(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        activeColor: ColorManager.mainColor,
-                        checkColor: ColorManager.white,
-                        value: localDataSource.getBool("frChecked"),
-                        onChanged: (value) => {
-                          viewModel.changLang("fr"),
-                          viewModel.checkingController("fr"),
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                          vertical: AppMargin.hm5, horizontal: AppPadding.wp25),
-                      width: double.maxFinite,
-                      height: AppSize.hs5 / 3,
+                    ],
+                    borderRadius: BorderRadius.circular(AppSize.hs10),
+                  ),
+                  child: ListTile(
+                    horizontalTitleGap: 0,
+                    title: MediumTextWidget(
+                      text: StringsManager.settingsNotification.tr,
+                      size: FontSize.fs18,
                       color: ColorManager.mainColor,
                     ),
-                    ListTile(
-                      horizontalTitleGap: 0,
-                      title: MediumTextWidget(
-                        text: StringsManager.settingsChangeLangEn.tr,
-                        size: FontSize.fs18,
-                        color: ColorManager.mainColor,
-                      ),
-                      //english
-                      trailing: Checkbox(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        activeColor: ColorManager.mainColor,
-                        checkColor: ColorManager.white,
-                        value: sharedPreferences.getBool("enChecked") ?? true,
-                        onChanged: (value) => {
-                          viewModel.changLang("en"),
-                          viewModel.checkingController("en"),
-                        },
-                      ),
+                    leading: IconWidget(
+                      icon: Icons.notifications,
+                      iconColor: ColorManager.mainColor,
+                      size: AppSize.hs14 * 2,
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                          vertical: AppMargin.hm5, horizontal: AppPadding.wp25),
-                      width: double.maxFinite,
-                      height: AppSize.hs5 / 3,
+                    trailing: Switch(
+                        // thumb color (round icon)
+                        activeColor: ColorManager.mainColor,
+                        activeTrackColor: ColorManager.whiteMainColor,
+                        inactiveThumbColor: ColorManager.grey,
+                        inactiveTrackColor: ColorManager.whiteGrey,
+                        splashRadius: 70,
+                        // boolean variable value
+                        value: true,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        // changes the state of the switch
+                        onChanged: (value) => {}),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushNamed(context, "/meteo");
+                    },
+                  ),
+                ),
+                SizedBox(height: AppSize.hs20),
+                //languages
+                Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    color: ColorManager.white,
+                    border: Border.all(
+                      color: ColorManager.whiteGrey,
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: ColorManager.grey,
+                        blurRadius: AppSize.hs5,
+                        offset: const Offset(1, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(AppSize.hs10),
+                  ),
+                  child: ExpansionTile(
+                    iconColor: ColorManager.mainColor,
+                    leading: IconWidget(
+                      icon: CupertinoIcons.globe,
+                      iconColor: ColorManager.mainColor,
+                      size: AppSize.hs14 * 2,
+                    ),
+                    title: MediumTextWidget(
+                      text: StringsManager.settingsChangeLang.tr,
+                      size: FontSize.fs18,
                       color: ColorManager.mainColor,
                     ),
-                    ListTile(
-                      horizontalTitleGap: 0,
-                      title: MediumTextWidget(
-                        text: StringsManager.settingsChangeLangEs.tr,
-                        size: FontSize.fs18,
-                        color: ColorManager.mainColor,
-                      ),
-                      // spanish
-                      trailing: Checkbox(
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        activeColor: ColorManager.mainColor,
-                        checkColor: ColorManager.white,
-                        value: sharedPreferences.getBool("esChecked") ?? false,
-                        onChanged: (value) => {
-                          viewModel.changLang("es"),
-                          viewModel.checkingController("es"),
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: AppSize.hs20),
-              //fuseau horaire
-              Container(
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  color: ColorManager.white,
-                  border: Border.all(
-                    color: ColorManager.whiteGrey,
-                    width: 1,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorManager.grey,
-                      blurRadius: AppSize.hs5,
-                      offset: const Offset(1, 2),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(AppSize.hs10),
-                ),
-                child: ExpansionTile(
-                  iconColor: ColorManager.mainColor,
-                  leading: IconWidget(
-                    icon: CupertinoIcons.globe,
-                    iconColor: ColorManager.mainColor,
-                    size: AppSize.hs25,
-                  ),
-                  title: MediumTextWidget(
-                    text: StringsManager.settingsHoraire.tr,
-                    size: FontSize.fs18,
-                    color: ColorManager.mainColor,
-                  ),
-                  expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ListTile(
-                      horizontalTitleGap: 0,
-                      title: MediumTextWidget(
-                        text: StringsManager.settingsHoraireTitle.tr,
-                        size: FontSize.fs18,
-                        color: ColorManager.mainColor,
-                      ),
-                      trailing: Switch(
-                          // thumb color (round icon)
-                          activeColor: ColorManager.mainColor,
-                          activeTrackColor: ColorManager.whiteMainColor,
-                          inactiveThumbColor: ColorManager.grey,
-                          inactiveTrackColor: ColorManager.whiteGrey,
-                          splashRadius: 70,
-                          // boolean variable value
-                          value: false,
+                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ListTile(
+                        horizontalTitleGap: 0,
+                        title: MediumTextWidget(
+                          text: StringsManager.settingsChangeLangFr.tr,
+                          size: FontSize.fs18,
+                          color: ColorManager.mainColor,
+                        ),
+                        // frensh
+                        trailing: Checkbox(
                           materialTapTargetSize:
                               MaterialTapTargetSize.shrinkWrap,
-                          // changes the state of the switch
-                          onChanged: (value) => {}),
-                    ),
-                    SizedBox(height: AppSize.hs12),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          left: AppSize.ws20, bottom: AppPadding.hp20),
-                      child: MediumTextWidget(
-                        text: StringsManager.settingsHoraireSemiTitle.tr,
-                        color: Colors.blue.shade400,
-                        size: FontSize.fs14,
+                          activeColor: ColorManager.mainColor,
+                          checkColor: ColorManager.white,
+                          value: localDataSource.getBool("frChecked"),
+                          onChanged: (value) => {
+                            viewModel.changLang("fr"),
+                            viewModel.checkingController("fr"),
+                          },
+                        ),
                       ),
-                    )
-                  ],
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: AppMargin.hm5,
+                            horizontal: AppPadding.wp25),
+                        width: double.maxFinite,
+                        height: AppSize.hs5 / 3,
+                        color: ColorManager.mainColor,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0,
+                        title: MediumTextWidget(
+                          text: StringsManager.settingsChangeLangEn.tr,
+                          size: FontSize.fs18,
+                          color: ColorManager.mainColor,
+                        ),
+                        //english
+                        trailing: Checkbox(
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          activeColor: ColorManager.mainColor,
+                          checkColor: ColorManager.white,
+                          value: sharedPreferences.getBool("enChecked") ?? true,
+                          onChanged: (value) => {
+                            viewModel.changLang("en"),
+                            viewModel.checkingController("en"),
+                          },
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical: AppMargin.hm5,
+                            horizontal: AppPadding.wp25),
+                        width: double.maxFinite,
+                        height: AppSize.hs5 / 3,
+                        color: ColorManager.mainColor,
+                      ),
+                      ListTile(
+                        horizontalTitleGap: 0,
+                        title: MediumTextWidget(
+                          text: StringsManager.settingsChangeLangEs.tr,
+                          size: FontSize.fs18,
+                          color: ColorManager.mainColor,
+                        ),
+                        // spanish
+                        trailing: Checkbox(
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          activeColor: ColorManager.mainColor,
+                          checkColor: ColorManager.white,
+                          value:
+                              sharedPreferences.getBool("esChecked") ?? false,
+                          onChanged: (value) => {
+                            viewModel.changLang("es"),
+                            viewModel.checkingController("es"),
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: AppSize.hs20),
-              //cheger email
-              GestureDetector(
-                onTap: () => SettingsDialogs().emailRapportDialog(),
-                child: Container(
+                SizedBox(height: AppSize.hs20),
+                //fuseau horaire
+                Container(
                   width: double.maxFinite,
                   decoration: BoxDecoration(
                     color: ColorManager.white,
@@ -317,69 +256,139 @@ class SettingsView extends StatelessWidget {
                     ],
                     borderRadius: BorderRadius.circular(AppSize.hs10),
                   ),
-                  child: ListTile(
-                    horizontalTitleGap: 0,
-                    title: MediumTextWidget(
-                      text: StringsManager.settingsChangeMail.tr,
-                      size: FontSize.fs18,
-                      color: ColorManager.mainColor,
-                    ),
+                  child: ExpansionTile(
+                    iconColor: ColorManager.mainColor,
                     leading: IconWidget(
-                      icon: Icons.email,
-                      iconColor: ColorManager.mainColor,
-                      size: AppSize.hs14 * 2,
-                    ),
-                    trailing: IconWidget(
-                      icon: CupertinoIcons.forward,
+                      icon: CupertinoIcons.globe,
                       iconColor: ColorManager.mainColor,
                       size: AppSize.hs25,
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(height: AppSize.hs20),
-              //cheger adresse
-              GestureDetector(
-                onTap: () => SettingsDialogs().adresseEnterpriseDialog(),
-                child: Container(
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    border: Border.all(
-                      color: ColorManager.whiteGrey,
-                      width: 1,
+                    title: MediumTextWidget(
+                      text: StringsManager.settingsHoraire.tr,
+                      size: FontSize.fs18,
+                      color: ColorManager.mainColor,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ColorManager.grey,
-                        blurRadius: AppSize.hs5,
-                        offset: const Offset(1, 2),
+                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      ListTile(
+                        horizontalTitleGap: 0,
+                        title: MediumTextWidget(
+                          text: StringsManager.settingsHoraireTitle.tr,
+                          size: FontSize.fs18,
+                          color: ColorManager.mainColor,
+                        ),
+                        trailing: Switch(
+                            // thumb color (round icon)
+                            activeColor: ColorManager.mainColor,
+                            activeTrackColor: ColorManager.whiteMainColor,
+                            inactiveThumbColor: ColorManager.grey,
+                            inactiveTrackColor: ColorManager.whiteGrey,
+                            splashRadius: 70,
+                            // boolean variable value
+                            value: false,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            // changes the state of the switch
+                            onChanged: (value) => {}),
                       ),
+                      SizedBox(height: AppSize.hs12),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: AppSize.ws20, bottom: AppPadding.hp20),
+                        child: MediumTextWidget(
+                          text: StringsManager.settingsHoraireSemiTitle.tr,
+                          color: Colors.blue.shade400,
+                          size: FontSize.fs14,
+                        ),
+                      )
                     ],
-                    borderRadius: BorderRadius.circular(AppSize.hs10),
                   ),
-                  child: ListTile(
-                    horizontalTitleGap: 0,
-                    title: MediumTextWidget(
-                      text: StringsManager.settingsChangeLocation.tr,
-                      size: FontSize.fs18,
-                      color: ColorManager.mainColor,
+                ),
+                SizedBox(height: AppSize.hs20),
+                //cheger email
+                GestureDetector(
+                  onTap: () => SettingsDialogs().emailRapportDialog(),
+                  child: Container(
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      border: Border.all(
+                        color: ColorManager.whiteGrey,
+                        width: 1,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorManager.grey,
+                          blurRadius: AppSize.hs5,
+                          offset: const Offset(1, 2),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(AppSize.hs10),
                     ),
-                    leading: IconWidget(
-                      icon: CupertinoIcons.map_pin_ellipse,
-                      iconColor: ColorManager.mainColor,
-                      size: AppSize.hs14 * 2,
-                    ),
-                    trailing: IconWidget(
-                      icon: CupertinoIcons.forward,
-                      iconColor: ColorManager.mainColor,
-                      size: AppSize.hs25,
+                    child: ListTile(
+                      horizontalTitleGap: 0,
+                      title: MediumTextWidget(
+                        text: StringsManager.settingsChangeMail.tr,
+                        size: FontSize.fs18,
+                        color: ColorManager.mainColor,
+                      ),
+                      leading: IconWidget(
+                        icon: Icons.email,
+                        iconColor: ColorManager.mainColor,
+                        size: AppSize.hs14 * 2,
+                      ),
+                      trailing: IconWidget(
+                        icon: CupertinoIcons.forward,
+                        iconColor: ColorManager.mainColor,
+                        size: AppSize.hs25,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: AppSize.hs20),
-            ],
+                SizedBox(height: AppSize.hs20),
+                //cheger adresse
+                GestureDetector(
+                  onTap: () => SettingsDialogs().adresseEnterpriseDialog(),
+                  child: Container(
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      border: Border.all(
+                        color: ColorManager.whiteGrey,
+                        width: 1,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorManager.grey,
+                          blurRadius: AppSize.hs5,
+                          offset: const Offset(1, 2),
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(AppSize.hs10),
+                    ),
+                    child: ListTile(
+                      horizontalTitleGap: 0,
+                      title: MediumTextWidget(
+                        text: StringsManager.settingsChangeLocation.tr,
+                        size: FontSize.fs18,
+                        color: ColorManager.mainColor,
+                      ),
+                      leading: IconWidget(
+                        icon: CupertinoIcons.map_pin_ellipse,
+                        iconColor: ColorManager.mainColor,
+                        size: AppSize.hs14 * 2,
+                      ),
+                      trailing: IconWidget(
+                        icon: CupertinoIcons.forward,
+                        iconColor: ColorManager.mainColor,
+                        size: AppSize.hs25,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: AppSize.hs20),
+              ],
+            ),
           ),
         ),
       ),

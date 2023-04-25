@@ -1,25 +1,28 @@
 import 'dart:async';
-
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
 import 'package:installateur/app/app_constants.dart';
+import 'package:installateur/data/data_source/local_data_source.dart';
 import 'package:installateur/domain/model/intervention.dart';
 import 'package:installateur/domain/repository/inter_repository.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import '../../data/network/failure.dart';
+import '../../domain/model/user_model.dart';
 import '../resources/colors_manager.dart';
 import '../widgets_manager/show_snack_bar_widget.dart';
 
 class HomeViewModel extends GetxController {
   final InterventionRepository _interventionRepository;
-
-  HomeViewModel(this._interventionRepository);
+  final LocalDataSource _localDataSource;
+  HomeViewModel(this._interventionRepository, this._localDataSource);
   List<InterventionModel> interventionToPlanList = [];
   List<InterventionModel> interventionPlannedList = [];
   List<InterventionModel> interventionOnholdList = [];
   bool loadingToPlan = false;
   bool? loadingPlanned;
   bool? loadingOnhold;
+  int? uId;
+  UserModel? user;
 
   List<String> planification = [
     StringsManager.homePlanificaionT1.tr,
@@ -68,10 +71,12 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> handlePlannedIntervention() async {
+    uId = _localDataSource.getInt(AppConstants.USER_ID_TOKEN);
+    print(uId);
     loadingPlanned = true;
     update();
     Either<Failure, PageIntervention> interGet = await _interventionRepository
-        .getPageIntervention(AppConstants.PLANNED, 0, 10);
+        .getPageInterPlannedByUser(uId, AppConstants.PLANNED, 0, 10);
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,

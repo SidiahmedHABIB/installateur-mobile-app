@@ -34,64 +34,66 @@ class NotificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //header
-      appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return Padding(
-              padding: EdgeInsets.only(left: AppPadding.wp20),
-              child: IconButton(
-                icon: const Icon(
-                  CupertinoIcons.back,
+    return SafeArea(
+      child: Scaffold(
+        //header
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return Padding(
+                padding: EdgeInsets.only(left: AppPadding.wp20),
+                child: IconButton(
+                  icon: const Icon(
+                    CupertinoIcons.back,
+                  ),
+                  onPressed: () {
+                    Get.to(HomeView());
+                  },
                 ),
-                onPressed: () {
-                  Get.to(HomeView());
-                },
-              ),
-            );
-          },
-        ),
-        iconTheme: IconThemeData(
-          color: ColorManager.white,
-          size: AppSize.hs25 * 1.3,
-        ),
-        //header style
-        backgroundColor: ColorManager.mainColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(AppSize.hs10),
+              );
+            },
+          ),
+          iconTheme: IconThemeData(
+            color: ColorManager.white,
+            size: AppSize.hs25 * 1.3,
+          ),
+          //header style
+          backgroundColor: ColorManager.mainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(AppSize.hs10),
+            ),
+          ),
+          centerTitle: true,
+          title: MediumTextWidget(
+            text: "Notifications",
+            color: ColorManager.white,
+            size: FontSize.fs20,
           ),
         ),
-        centerTitle: true,
-        title: MediumTextWidget(
-          text: "Notifications",
-          color: ColorManager.white,
-          size: FontSize.fs20,
-        ),
-      ),
-      //backgroundColor
-      backgroundColor: ColorManager.white,
-      body: Container(
-        child: Column(
-          children: [
-            //list of n otification cards
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                    key: const Key("10"),
-                    onDismissed: (direction) {
-                      print(index);
-                    },
-                    background: deletBgItem(),
-                    child: CardNotication(),
-                  );
-                },
-              ),
-            )
-          ],
+        //backgroundColor
+        backgroundColor: ColorManager.white,
+        body: Container(
+          child: Column(
+            children: [
+              //list of n otification cards
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return Dismissible(
+                      key: const Key("10"),
+                      onDismissed: (direction) {
+                        print(index);
+                      },
+                      background: deletBgItem(),
+                      child: CardNotication(),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
