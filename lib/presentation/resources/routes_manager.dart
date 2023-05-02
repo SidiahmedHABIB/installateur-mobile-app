@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:installateur/presentation/about_us/about_us_view.dart';
 import 'package:installateur/presentation/box_table/box_table_binding.dart';
+import 'package:installateur/presentation/calendar/calendar_binding.dart';
+import 'package:installateur/presentation/calendar/calendar_view.dart';
 import 'package:installateur/presentation/login/login_binding.dart';
 import 'package:installateur/presentation/main/home_bindings.dart';
 import 'package:installateur/presentation/notices/notice_view.dart';
@@ -29,6 +32,7 @@ class RoutesManager {
   static const String test = "/test";
   static const String profile = "/profile";
   static const String setting = "/setting";
+  static const String aboutUs = "/aboutUs";
   static const String boxTable = "/box-table";
   static const String boxDetails = "/box-details";
   static const String boxEmplacement = "/box-emplacement";
@@ -36,11 +40,14 @@ class RoutesManager {
   static const String interDetails = "/intervention-details";
   static const String interRapport = "/intervention-rapport";
   static const String notice = "/notice-screen";
+  static const String calendar = "/calendar-screen";
 
   static String getSplashScreen() => splashScreen;
   static String getLoginScreen() => loginScreen;
   static String getInitial() => initial;
   static String getProfile() => profile;
+  static String getCalendar() => calendar;
+  static String getAboutUs() => aboutUs;
   static String gettest() => test;
   static String getSetting() => setting;
   static String getBoxTable(int? companyId) => '$boxTable?companyId=$companyId';
@@ -68,8 +75,17 @@ class RoutesManager {
     ),
     GetPage(
       name: profile,
-      page: () => ProfileView(),
+      page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: calendar,
+      page: () => const CalenderView(),
+      binding: CalendarBingding(),
+    ),
+    GetPage(
+      name: aboutUs,
+      page: () => const AboutUsView(),
     ),
     GetPage(
       name: loginScreen,
@@ -79,7 +95,7 @@ class RoutesManager {
     ),
     GetPage(
       name: setting,
-      page: () => SettingsView(),
+      page: () => const SettingsView(),
     ),
     GetPage(
       name: boxDetails,
@@ -106,7 +122,7 @@ class RoutesManager {
         binding: BoxEmplacementBinding()),
     GetPage(
       name: boxDiagnostic,
-      page: () => BoxDiagnosticView(),
+      page: () => const BoxDiagnosticView(),
     ),
     GetPage(
       name: interDetails,

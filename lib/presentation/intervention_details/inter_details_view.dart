@@ -73,8 +73,7 @@ class InterventionDetailsView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () =>
-                                    Get.offNamed(RoutesManager.getInitial()),
+                                onTap: () => Navigator.of(context).pop(),
                                 child: IconWidget(
                                   icon: CupertinoIcons.back,
                                   iconColor: ColorManager.white,

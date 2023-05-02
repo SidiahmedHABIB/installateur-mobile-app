@@ -16,6 +16,7 @@ class Translation implements Translations {
           "drawerTile2": "Profil",
           "drawerTile3": "Réglage",
           "drawerTile4": "Apropos",
+          "drawerTile5": "Calendrier",
           "drawerSignOut": "Se déconnecter",
           // fr profile
           "profileTitle": "Profil",
@@ -104,6 +105,7 @@ class Translation implements Translations {
           "drawerTile2": "Profile",
           "drawerTile3": "Settings",
           "drawerTile4": "About",
+          "drawerTile5": "Calendar",
           "drawerSignOut": "Sign out",
           // en profile
           "profileTitle": "Profile",
@@ -193,6 +195,7 @@ class Translation implements Translations {
           "drawerTile2": "Perfil",
           "drawerTile3": "Configurar",
           "drawerTile4": "A propósito",
+          "drawerTile5": "Calendario",
           "drawerSignOut": "Desconectando",
           // es profile
           "profileTitle": "Perfil",

@@ -19,8 +19,8 @@ class HomeViewModel extends GetxController {
   List<InterventionModel> interventionPlannedList = [];
   List<InterventionModel> interventionOnholdList = [];
   bool loadingToPlan = false;
-  bool? loadingPlanned;
-  bool? loadingOnhold;
+  bool? loadingPlanned = false;
+  bool? loadingOnhold = false;
   int? uId;
   UserModel? user;
 

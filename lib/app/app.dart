@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:installateur/app/main_Binding.dart';
 import 'package:installateur/app/translation.dart';
 import '../data/data_source/local_data_source.dart';
+import '../presentation/calendar/calendar_view.dart';
 import '../presentation/resources/routes_manager.dart';
 import '../presentation/settings/settings_view_model.dart';
 import '../test/test.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MainBinding(),
       locale: langController.getIntialLang(),
       translations: Translation(),
-      // home: Test(),
+      //home: CalenderView(),
 
       getPages: RoutesManager.routes,
       initialRoute: RoutesManager.getSplashScreen(),

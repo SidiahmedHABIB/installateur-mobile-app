@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
-import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
-
+import '../resources/routes_manager.dart';
 import '../widgets_manager/icon_widget.dart';
 import 'drawer_view_model.dart';
 
@@ -50,29 +48,96 @@ class MyDrawer extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      ...(DrawerViewModel.menus).map((item) {
-                        return ListTile(
-                          horizontalTitleGap: AppSize.ws10,
-                          // contentPadding:
-                          //     EdgeInsets.only(left: AppPadding.wp25 * 2.5),
-                          title: MediumTextWidget(
-                            text: item['title'],
-                            size: FontSize.fs24,
-                            color: ColorManager.white,
-                            fontWeight: FontWeightManager.regular,
-                          ),
-                          leading: IconWidget(
-                            icon: item['icon'],
-                            size: AppSize.hs25 * 1.2,
-                          ),
-                          onTap: () {
-                            Get.back();
-                            Get.toNamed('${item['route']}');
-                            // Navigator.of(context).pop();
-                            // Navigator.pushNamed(context, '${item['route']}');
-                          },
-                        );
-                      })
+                      //home
+                      ListTile(
+                        horizontalTitleGap: AppSize.ws10,
+                        title: MediumTextWidget(
+                          text: StringsManager.drawerTile1.tr,
+                          size: FontSize.fs24,
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.regular,
+                        ),
+                        leading: IconWidget(
+                          icon: CupertinoIcons.house_fill,
+                          size: AppSize.hs25 * 1.2,
+                        ),
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(RoutesManager.initial);
+                        },
+                      ),
+                      //profile
+                      ListTile(
+                        horizontalTitleGap: AppSize.ws10,
+                        title: MediumTextWidget(
+                          text: StringsManager.drawerTile2.tr,
+                          size: FontSize.fs24,
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.regular,
+                        ),
+                        leading: IconWidget(
+                          icon: CupertinoIcons.person_fill,
+                          size: AppSize.hs25 * 1.2,
+                        ),
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(RoutesManager.profile);
+                        },
+                      ),
+                      //calendar
+                      ListTile(
+                        horizontalTitleGap: AppSize.ws10,
+                        title: MediumTextWidget(
+                          text: StringsManager.drawerTile5.tr,
+                          size: FontSize.fs24,
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.regular,
+                        ),
+                        leading: IconWidget(
+                          icon: CupertinoIcons.calendar,
+                          size: AppSize.hs25 * 1.2,
+                        ),
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(RoutesManager.calendar);
+                        },
+                      ),
+                      //setting
+                      ListTile(
+                        horizontalTitleGap: AppSize.ws10,
+                        title: MediumTextWidget(
+                          text: StringsManager.drawerTile3.tr,
+                          size: FontSize.fs24,
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.regular,
+                        ),
+                        leading: IconWidget(
+                          icon: CupertinoIcons.gear_alt_fill,
+                          size: AppSize.hs25 * 1.2,
+                        ),
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(RoutesManager.setting);
+                        },
+                      ),
+                      //aboutUs
+                      ListTile(
+                        horizontalTitleGap: AppSize.ws10,
+                        title: MediumTextWidget(
+                          text: StringsManager.drawerTile4.tr,
+                          size: FontSize.fs24,
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.regular,
+                        ),
+                        leading: IconWidget(
+                          icon: CupertinoIcons.info_circle_fill,
+                          size: AppSize.hs25 * 1.2,
+                        ),
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(RoutesManager.aboutUs);
+                        },
+                      ),
                     ],
                   ),
                 ),

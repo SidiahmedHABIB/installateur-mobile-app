@@ -222,9 +222,12 @@ class BoxDetailsView extends StatelessWidget {
                                           onchange: (value) {
                                             controller.updateMatricul(value);
                                           },
-                                          hintText: controller
-                                                      .boxDetails!.matricul !=
-                                                  ""
+                                          hintText: controller.boxDetails!
+                                                          .matricul !=
+                                                      "" &&
+                                                  controller.boxDetails!
+                                                          .matricul !=
+                                                      null
                                               ? controller.boxDetails!.matricul
                                                   .toString()
                                               : StringsManager
@@ -233,7 +236,10 @@ class BoxDetailsView extends StatelessWidget {
                                           icon: CupertinoIcons.car_detailed,
                                           enabled:
                                               controller.boxDetails!.matricul !=
-                                                      ""
+                                                          "" &&
+                                                      controller.boxDetails!
+                                                              .matricul !=
+                                                          null
                                                   ? false
                                                   : true,
                                         ),
@@ -250,9 +256,12 @@ class BoxDetailsView extends StatelessWidget {
                                                       .updateValeur(value);
                                                 },
                                                 hintText: controller.boxDetails!
-                                                            .matricul
-                                                            .toString() !=
-                                                        ""
+                                                                .boxValue
+                                                                .toString() !=
+                                                            "" &&
+                                                        controller.boxDetails!
+                                                                .boxValue !=
+                                                            null
                                                     ? controller
                                                         .boxDetails!.boxValue
                                                         .toString()
@@ -262,8 +271,11 @@ class BoxDetailsView extends StatelessWidget {
                                                 icon:
                                                     CupertinoIcons.speedometer,
                                                 enabled: controller.boxDetails!
-                                                            .boxValue !=
-                                                        ""
+                                                                .boxValue !=
+                                                            "" &&
+                                                        controller.boxDetails!
+                                                                .boxValue !=
+                                                            null
                                                     ? false
                                                     : true,
                                               ),

@@ -10,6 +10,7 @@ class StringsManager {
   static const drawerTile2 = "drawerTile2";
   static const drawerTile3 = "drawerTile3";
   static const drawerTile4 = "drawerTile4";
+  static const drawerTile5 = "drawerTile5";
   static const drawerSignOut = "drawerSignOut";
 
   // profile

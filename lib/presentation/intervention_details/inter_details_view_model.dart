@@ -9,9 +9,6 @@ import 'package:intl/intl.dart';
 import '../../data/network/failure.dart';
 import '../../domain/repository/inter_repository.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonts_manager.dart';
-import '../resources/values_manager.dart';
-import '../widgets_manager/medium_text_widget.dart';
 import '../widgets_manager/show_snack_bar_widget.dart';
 
 class InterventionDetailsViewModel extends GetxController {
@@ -55,10 +52,9 @@ class InterventionDetailsViewModel extends GetxController {
   Future<void> handleAddAppointement() async {
     isloading = true;
     update();
-    String? uId = _localDataSource.getString(AppConstants.USER_ID_TOKEN);
+    int? uId = _localDataSource.getInt(AppConstants.USER_ID_TOKEN);
     Either<Failure, InterventionModel> interGet =
-        await _interventionRepository.addAppointement(
-            int.parse(uId!), interDetails!.id, selectedDate.toString());
+        await _interventionRepository.addAppointement(uId, interDetails!.id);
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,

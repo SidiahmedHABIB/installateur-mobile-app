@@ -13,6 +13,7 @@ import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 import 'package:open_file/open_file.dart';
+import 'package:web_socket_channel/io.dart';
 import '../presentation/widgets_manager/icon_widget.dart';
 // generate pdf
 import 'dart:io';
@@ -30,78 +31,61 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  bool isPressed = false;
+  final channel =
+      IOWebSocketChannel.connect('ws://192.168.1.17:8081/websocket');
+  late StreamSubscription subscription;
+  List<int> numbers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    subscription = channel.stream.listen((message) {
+      final number = int.tryParse(message);
+      if (number != null) {
+        setState(() {
+          numbers.add(number);
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    channel.sink.close();
+    super.dispose();
+  }
+
+  void sendHello() {
+    channel.sink.add('/app/hello');
+  }
 
   @override
   Widget build(BuildContext context) {
-    Color color = isPressed == false ? ColorManager.grey : Colors.white;
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('GeeksForGeeks'),
-          backgroundColor: Colors.green,
-        ), // AppBar
-        body: Column(
-          children: [
-            TabBar(
-              indicator: ShapeDecoration(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: ColorManager.mainColor,
-              ),
-              tabs: [
-                Tab(
-                  child: MediumTextWidget(text: "My Requests"),
-                ),
-                Tab(
-                  child: MediumTextWidget(text: "Newsletter"),
-                ),
-                Tab(
-                  child: MediumTextWidget(text: "Newsletter"),
-                ),
-                Tab(
-                  child: MediumTextWidget(text: "Newsletter"),
-                ),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('WebSocket Demo'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton(
+            onPressed: sendHello,
+            child: Text('Send Hello'),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: numbers.length,
+              itemBuilder: (context, index) {
+                final number = numbers[index];
+                return ListTile(
+                  title: Text(number.toString()),
+                );
+              },
             ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: AppSize.hs24),
-                      ButtonWidget(
-                        text: "Show Dialog",
-                        hdn: false,
-                        onClicked: () {
-                          generateInvoice();
-                        },
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Icon(Icons.music_video),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Icon(Icons.music_video),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Icon(Icons.music_video),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ), // TabBarView
-      ), // Scaffold
+          ),
+        ],
+      ),
     );
   }
 }

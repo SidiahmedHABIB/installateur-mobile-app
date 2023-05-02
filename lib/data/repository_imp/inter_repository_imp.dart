@@ -71,14 +71,14 @@ class InterventionRepositoryImp extends GetxService
 
   @override
   Future<Either<Failure, InterventionModel>> addAppointement(
-      int? uId, int? interId, String datetime) async {
+      int? uId, int? interId) async {
     if (await _networkChercher.isConnected) {
       try {
         print("in try");
         int s = uId! + uId;
         print("somme uId $s");
-        Response response = await _remoteDataSource.getData(
-            "${AppConstants.GET_INTER_ADD_APPMT_URI}$uId&$interId&$datetime");
+        Response response = await _remoteDataSource
+            .getData("${AppConstants.GET_INTER_ADD_APPMT_URI}$uId&$interId");
         print("in after remo");
 
         if (response.statusCode == ResponseCode.SUCCESS ||
