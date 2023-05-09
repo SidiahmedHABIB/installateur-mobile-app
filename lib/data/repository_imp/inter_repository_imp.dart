@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:installateur/domain/model/intervention.dart';
 import 'package:installateur/data/network/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:installateur/domain/model/user_model.dart';
 import '../../app/app_constants.dart';
 import '../../domain/repository/inter_repository.dart';
 import '../data_source/local_data_source.dart';

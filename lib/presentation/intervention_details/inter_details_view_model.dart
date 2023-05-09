@@ -23,7 +23,7 @@ class InterventionDetailsViewModel extends GetxController {
   InterventionDetailsViewModel(
       this._interventionRepository, this._localDataSource);
 
-  Future<void> handleGetInterventionById(int id) async {
+  Future<void> handleGetInterventionById(int id, BuildContext context) async {
     isloading = true;
     update();
     Either<Failure, InterventionModel> interGet =
@@ -41,8 +41,7 @@ class InterventionDetailsViewModel extends GetxController {
       interGet.fold(
         (l) => {
           showSnackBarWidget(l.message, ColorManager.error),
-          isloading = false,
-          update(),
+          Navigator.of(context).pop(),
         },
         (r) => r,
       );

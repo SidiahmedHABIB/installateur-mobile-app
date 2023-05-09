@@ -117,48 +117,6 @@ class InstallationReportViewModel extends GetxController {
     }
   }
 
-  // Future handleSendReportEmail() async {
-  //   loadingPage = true;
-  //   update();
-  //   String serviceId = 'service_jsxofin';
-  //   String templateId = 'template_3uge25l';
-  //   String userId = 'gpcPZMaqGVeU4I5Jb';
-  //   Uri url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-  //   final response = await http.post(
-  //     url,
-  //     headers: {
-  //       'origin': 'http://locahost',
-  //       'content-type': 'application/json',
-  //     },
-  //     body: jsonEncode(
-  //       {
-  //         'service_id': serviceId,
-  //         'template_id': templateId,
-  //         'user_id': userId,
-  //         'template_params': {
-  //           'subject': 'Installation',
-  //           'compony_email': 'sidiahmedhabib@gmail.com',
-  //           'compony_name': 'soda',
-  //           'technical_name': 'sdahbb',
-  //           'message': 'we finish the installation of the box',
-  //           'starda_email': 'sidiahmedhabib@gmail.com',
-  //         },
-  //       },
-  //     ),
-  //   );
-  //   if (response.statusCode == 200 || response.statusCode == 201) {
-  //     loadingPage = false;
-  //     update();
-  //     showSnackBarWidget("Messege sent successfully", ColorManager.mainColor,
-  //         title: "Success");
-  //   } else {
-  //     print(response.body);
-  //     loadingPage = false;
-  //     update();
-  //     showSnackBarWidget("400", ColorManager.error);
-  //   }
-  // }
-
   Future<void> handleGetUser() async {
     loadingPage = true;
     update();

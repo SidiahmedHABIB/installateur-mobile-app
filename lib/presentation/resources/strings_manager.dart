@@ -72,6 +72,7 @@ class StringsManager {
   static const boxDetailsInstallPlaceButton = "boxDetailsInstallPlaceButton";
   static const boxDetailsBottomButtonIns = "boxDetailsBottomButtonIns";
   static const boxDetailsBottomButtonDes = "boxDetailsBottomButtonDes";
+  static const boxDetailsBottomButtonDep = "boxDetailsBottomButtonDep";
 
   //box details
   static const boxEmplacementTitle = "BoxEmplacementTitle";

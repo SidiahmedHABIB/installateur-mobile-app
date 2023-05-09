@@ -23,7 +23,8 @@ class InterventionDetailsView extends StatelessWidget {
   InterventionDetailsView({super.key, required this.pageId});
   @override
   Widget build(BuildContext context) {
-    Get.find<InterventionDetailsViewModel>().handleGetInterventionById(pageId);
+    Get.find<InterventionDetailsViewModel>()
+        .handleGetInterventionById(pageId, context);
     InterventionDetailsViewModel viewModel =
         Get.find<InterventionDetailsViewModel>();
     return SafeArea(
@@ -376,8 +377,8 @@ class InterventionDetailsView extends StatelessWidget {
                                     ? controller.handleAddAppointement()
                                     : ShowAlertDialog(
                                         context: context,
-                                        text:
-                                            "Fixez votre rendez-vous d'abord"),
+                                        text: "Fixez votre rendez-vous d'abord",
+                                      ),
                         text: controller.interDetails!.status ==
                                 AppConstants.PLANNED
                             ? "INTERVENIR"

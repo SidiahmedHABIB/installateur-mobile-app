@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:installateur/presentation/about_us/about_us_view.dart';
+import 'package:installateur/presentation/box_details/widgets/unstall_box_details_view.dart';
 import 'package:installateur/presentation/box_table/box_table_binding.dart';
 import 'package:installateur/presentation/calendar/calendar_binding.dart';
 import 'package:installateur/presentation/calendar/calendar_view.dart';
@@ -10,6 +11,7 @@ import 'package:installateur/presentation/profile/profile_binding.dart';
 import '../../test/test.dart';
 import '../box_details/box_details_binding.dart';
 import '../box_details/box_details_view.dart';
+import '../box_diagnostic/box_diagnostic_binding.dart';
 import '../box_diagnostic/box_diagnostic_view.dart';
 import '../box_emplacement/box_emplacement_binding.dart';
 import '../box_emplacement/box_emplacement_view.dart';
@@ -35,6 +37,7 @@ class RoutesManager {
   static const String aboutUs = "/aboutUs";
   static const String boxTable = "/box-table";
   static const String boxDetails = "/box-details";
+  static const String boxUnstall = "/box-unstall";
   static const String boxEmplacement = "/box-emplacement";
   static const String boxDiagnostic = "/box-diagnostic";
   static const String interDetails = "/intervention-details";
@@ -52,8 +55,9 @@ class RoutesManager {
   static String getSetting() => setting;
   static String getBoxTable(int? companyId) => '$boxTable?companyId=$companyId';
   static String getBoxDetails(int? boxId) => '$boxDetails?boxId=$boxId';
+  static String getBoxUnstall(int? boxId) => '$boxUnstall?boxId=$boxId';
   static String getBoxEmplacement(int? boxId) => '$boxEmplacement?boxId=$boxId';
-  static String getBoxDiagnostic() => boxDiagnostic;
+  static String getBoxDiagnostic(int? boxId) => '$boxDiagnostic?boxId=$boxId';
   static String getInterDetails(int? interId) =>
       '$interDetails?interId=$interId';
   static String getInterRapport(int? boxId) => '$interRapport?boxId=$boxId';
@@ -106,6 +110,14 @@ class RoutesManager {
       binding: BoxDetailsBinding(),
     ),
     GetPage(
+      name: boxUnstall,
+      page: () {
+        var boxId = Get.parameters['boxId'];
+        return UnstallBoxView(boxId: int.parse(boxId!));
+      },
+      binding: BoxDetailsBinding(),
+    ),
+    GetPage(
       name: boxTable,
       page: () {
         var companyId = Get.parameters['companyId'];
@@ -121,9 +133,12 @@ class RoutesManager {
         },
         binding: BoxEmplacementBinding()),
     GetPage(
-      name: boxDiagnostic,
-      page: () => const BoxDiagnosticView(),
-    ),
+        name: boxDiagnostic,
+        page: () {
+          var boxId = Get.parameters['boxId'];
+          return BoxDiagnosticView(boxId: int.parse(boxId!));
+        },
+        binding: BoxDiagnosticBinding()),
     GetPage(
       name: interDetails,
       page: () {

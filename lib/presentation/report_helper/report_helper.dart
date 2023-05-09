@@ -19,9 +19,7 @@ class ReportHelper {
     return file;
   }
 
-  static Future openFile(File file) async {
-    final url = file.path;
-
-    await OpenFile.open(url);
+  static Future openFile(String filePath) async {
+    await OpenFile.open(filePath);
   }
 }

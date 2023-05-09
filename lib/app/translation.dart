@@ -71,6 +71,7 @@ class Translation implements Translations {
           "boxDetailsInstallPlaceButton": "Afficher l'emplacement",
           "boxDetailsBottomButtonIns": "DIAGNOSTIC DU BOITIER",
           "boxDetailsBottomButtonDes": "DÉSINSTALLER",
+          "boxDetailsBottomButtonDep": "DÉPANAGE",
           // fr Emplacement details
           "BoxEmplacementTitle": "Emplacement",
           "BoxEmplacementBox": "Boitier",
@@ -161,6 +162,7 @@ class Translation implements Translations {
           "boxDetailsInstallPlaceButton": "Show location",
           "boxDetailsBottomButtonIns": "DIAGNOSIS OF THE BOX",
           "boxDetailsBottomButtonDes": "UNINSTALL",
+          "boxDetailsBottomButtonDep": "DEPANAGE",
           // en emplacement details
           "BoxEmplacementTitle": "Location",
           "BoxEmplacementBox": "Box",
@@ -251,6 +253,7 @@ class Translation implements Translations {
           "boxDetailsInstallPlaceButton": "Mostrar localización",
           "boxDetailsBottomButtonIns": "DIAGNÓSTICO DE LA CAJA",
           "boxDetailsBottomButtonDes": "DESINSTALE",
+          "boxDetailsBottomButtonDep": "DEPANÁJE",
           // es emplacement details
           "BoxEmplacementTitle": "Ubicación",
           "BoxEmplacementBox": "Caja",

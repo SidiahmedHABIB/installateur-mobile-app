@@ -8,12 +8,11 @@ import '../../widgets_manager/icon_widget.dart';
 class NoticeRow extends StatelessWidget {
   String name;
   final VoidCallback downLoadNotice;
-  bool downloading;
-  NoticeRow(
-      {super.key,
-      required this.name,
-      required this.downLoadNotice,
-      required this.downloading});
+  NoticeRow({
+    super.key,
+    required this.name,
+    required this.downLoadNotice,
+  });
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,16 +24,12 @@ class NoticeRow extends StatelessWidget {
             size: FontSize.fs20,
           ),
           GestureDetector(
-            onTap: downLoadNotice,
-            child: downloading != true
-                ? IconWidget(
-                    icon: CupertinoIcons.cloud_upload_fill,
-                    iconColor: ColorManager.mainColor,
-                    size: AppSize.hs18 * 2,
-                  )
-                : const CircularProgressIndicator(
-                    color: ColorManager.mainColor),
-          )
+              onTap: downLoadNotice,
+              child: IconWidget(
+                icon: CupertinoIcons.cloud_upload_fill,
+                iconColor: ColorManager.mainColor,
+                size: AppSize.hs18 * 2,
+              ))
         ]),
         SizedBox(height: AppSize.hs10),
         Container(

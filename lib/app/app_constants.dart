@@ -9,6 +9,10 @@ class AppConstants {
   //rd
   static const String BASE_URL = "http://192.168.1.17:8081";
 
+  // token access
+  static const String ACCESS_TOKEN = "acces-token";
+  static const String REFRESH_TOKEN = "refresh-token";
+
   //images
   static const String DOWNLOAD_IMG_URL = "/image/download/";
 
@@ -25,7 +29,7 @@ class AppConstants {
   static const String NOTINSTALLED = "NOTINSTALLED";
 
   // auth rep
-  static const String POST_LOGIN_URI = "$BASE_URL/users/login/";
+  static const String POST_LOGIN_URI = "/users/login/";
 
   // inter rep
   static const String GET_PAGE_INTER_URI = "/inter/page/";
@@ -33,12 +37,16 @@ class AppConstants {
       "/inter/pageStatusByUser/";
   static const String GET_INTER_BY_ID_URI = "/inter/id/";
   static const String GET_INTER_ADD_APPMT_URI = "/inter/addAppointment/";
+
   // box rep
   static const String GET_PAGE_BOX_ALL_URI = "/box/pageAll/";
   static const String GET_PAGE_BOX_STATUS_URI = "/box/pageStatus/";
   static const String GET_BOX_BY_ID_URI = "/box/id/";
   static const String GET_BOX_IMAGES_URI = "/box/boxImages/";
   static const String GET_BOX_ISSEND_URI = "/box/isSend-report/";
+  static const String POST_BOX_ADD_INFO_URI = "/box/addboxInfo/";
+  static const String POST_BOX_INSTALL_URI = "/box/installBox/";
+  static const String POST_BOX_UNSTALL_URI = "/box/unstallBox/";
   static const String POST_UPLOAD_BOX_IMAGES_URI =
       "$BASE_URL/box/upload-images";
   static const String POST_UPLOAD_BOX_REPORT_URI =

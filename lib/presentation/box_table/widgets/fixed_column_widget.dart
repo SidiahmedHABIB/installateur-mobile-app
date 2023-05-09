@@ -53,7 +53,7 @@ class FixedColumnWidget extends StatelessWidget {
                         insall: () => Get.toNamed(
                             RoutesManager.getBoxDetails(box.value.id)),
                         deInsall: () => Get.toNamed(
-                            RoutesManager.getBoxDetails(box.value.id)),
+                            RoutesManager.getBoxUnstall(box.value.id)),
                         depanner: () => Get.toNamed(
                             RoutesManager.getBoxDetails(box.value.id)),
                       ),

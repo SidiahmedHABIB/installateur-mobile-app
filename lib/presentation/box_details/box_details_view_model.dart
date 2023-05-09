@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/domain/model/box.dart';
+import 'package:installateur/presentation/resources/routes_manager.dart';
 import '../../data/network/failure.dart';
 import '../../domain/model/image_model.dart';
 import '../../domain/repository/box_repository.dart';
@@ -28,6 +29,78 @@ class BoxDetailsViewModel extends GetxController {
   BoxModel? boxDetails;
   bool loadingPage = false;
   List<ImageModel>? boxImages = [];
+  Future<void> handleRefreshPage(int boxId) async {
+    handleGetBoxImages(boxId);
+    handleGetBoxById(boxId);
+  }
+
+  Future<void> handleAddInstallBoxInfo() async {
+    loadingPage = true;
+    update();
+    boxDetails!.matricul = matriculController.text.trim();
+    boxDetails!.boxValue = valeurController.text.trim();
+    Either<Failure, BoxModel> boxDetailsGet =
+        await _boxRepository.addInstallBoxInfo(boxDetails!);
+    if (boxDetailsGet.isRight()) {
+      boxDetailsGet.fold(
+          (l) => null,
+          (r) => {
+                boxDetails = r,
+                update(),
+                loadingPage = false,
+                update(),
+                Get.toNamed(RoutesManager.getBoxDiagnostic(boxDetails!.id))
+              });
+    } else {
+      boxDetailsGet.fold(
+        (l) => {
+          showSnackBarWidget(l.message, ColorManager.error),
+          loadingPage = false,
+          update(),
+        },
+        (r) => r,
+      );
+    }
+  }
+
+  Future<void> handleUnstallBox(BuildContext context) async {
+    Navigator.of(context).pop();
+    loadingPage = true;
+    update();
+    Either<Failure, bool> boxDetailsGet =
+        await _boxRepository.unstallBox(boxDetails!);
+    if (boxDetailsGet.isRight()) {
+      boxDetailsGet.fold(
+          (l) => null,
+          (r) => {
+                if (r == true)
+                  {
+                    loadingPage = false,
+                    update(),
+                    showSnackBarWidget(
+                        "Box unstalled successfully", ColorManager.mainColor,
+                        title: "Done"),
+                    handleGetBoxImages(boxDetails!.id!)
+                  }
+                else
+                  {
+                    loadingPage = false,
+                    update(),
+                    showSnackBarWidget(r.toString(), ColorManager.error),
+                    handleGetBoxImages(boxDetails!.id!)
+                  }
+              });
+    } else {
+      boxDetailsGet.fold(
+        (l) => {
+          showSnackBarWidget(l.message, ColorManager.error),
+          loadingPage = false,
+          update(),
+        },
+        (r) => r,
+      );
+    }
+  }
 
   Future<void> handleGetBoxImages(int boxId) async {
     loadingPage = true;
@@ -42,6 +115,7 @@ class BoxDetailsViewModel extends GetxController {
                 update(),
                 loadingPage = false,
                 update(),
+                print(boxImages!.length),
               });
     } else {
       boxImagesGet.fold(
@@ -71,7 +145,8 @@ class BoxDetailsViewModel extends GetxController {
                 boxMatriculController = r.matricul.toString(),
                 update(),
                 boxValeurController = r.boxValue.toString(),
-                update()
+                update(),
+                print("matricul: ${boxDetails!.matricul}"),
               });
     } else {
       boxDetailsGet.fold(

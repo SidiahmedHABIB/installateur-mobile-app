@@ -235,4 +235,73 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
           Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
     }
   }
+
+  @override
+  Future<Either<Failure, BoxModel>> addInstallBoxInfo(BoxModel box) async {
+    if (await _networkChercher.isConnected) {
+      try {
+        Response response = await _remoteDataSource.postRequest(
+            AppConstants.POST_BOX_ADD_INFO_URI, box.toJson());
+        if (response.statusCode == ResponseCode.SUCCESS ||
+            response.statusCode == ResponseCode.NO_CONTENT) {
+          BoxModel boxModel = BoxModel.fromJson(response.body);
+          return Right(boxModel);
+        } else {
+          return left(
+              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+        }
+      } on Exception {
+        return (left(
+            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+      }
+    } else {
+      return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BoxModel>> installBox(BoxModel box) async {
+    if (await _networkChercher.isConnected) {
+      try {
+        Response response = await _remoteDataSource.postRequest(
+            AppConstants.POST_BOX_INSTALL_URI, box.toJson());
+        if (response.statusCode == ResponseCode.SUCCESS ||
+            response.statusCode == ResponseCode.NO_CONTENT) {
+          BoxModel boxModel = BoxModel.fromJson(response.body);
+          return Right(boxModel);
+        } else {
+          return left(
+              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+        }
+      } on Exception {
+        return (left(
+            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+      }
+    } else {
+      return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> unstallBox(BoxModel box) async {
+    if (await _networkChercher.isConnected) {
+      try {
+        Response response = await _remoteDataSource.postRequest(
+            AppConstants.POST_BOX_UNSTALL_URI, box.toJson());
+        if (response.statusCode == ResponseCode.SUCCESS ||
+            response.statusCode == ResponseCode.NO_CONTENT) {
+          bool result = response.body;
+          return Right(result);
+        } else {
+          return left(
+              Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
+        }
+      } on Exception {
+        return (left(
+            Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
+      }
+    } else {
+      return Left(Failure(ResponseCode.NO_CONTENT, ResponseMessage.NO_CONTENT));
+    }
+  }
 }

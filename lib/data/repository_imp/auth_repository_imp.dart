@@ -8,6 +8,7 @@ import 'package:installateur/data/data_source/remote_data_source.dart';
 import 'package:installateur/data/network/error_handler.dart';
 import 'package:installateur/data/network/network_checker.dart';
 import 'package:installateur/data/request/auth_request.dart';
+import 'package:installateur/domain/model/login_model.dart';
 import 'package:installateur/domain/model/user_model.dart';
 import 'package:installateur/data/network/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -24,18 +25,24 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
   Future<Either<Failure, bool>> login(String email, String password) async {
     if (await _networkChercher.isConnected) {
       try {
-        AuthRequest auth = AuthRequest(email: email, password: password);
-        http.Response response = await _remoteDataSource.postData(
+        LoginRequest auth = LoginRequest(email: email, password: password);
+        Response response = await _remoteDataSource.postRequest(
             AppConstants.POST_LOGIN_URI, auth.toJson());
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
-          Map responsebody = jsonDecode(response.body);
-          UserModel userModel = UserModel.fromJson(responsebody["user"]);
-          saveUserLocal(userModel);
-          return Right(true);
+          //Map responsebody = jsonDecode(response.body);
+          LoginResponse loginResponse = LoginResponse.fromJson(response.body);
+          if (loginResponse.status == "true") {
+            saveUserLocal(loginResponse.user);
+            return Right(true);
+          } else {
+            return left(Failure(
+                ResponseCode.SUCCESS, "User Not Found Check Your Email"));
+          }
         } else {
           print(response.body);
-          return left(Failure(ResponseCode.BAD_REQUEST, "400"));
+          return left(Failure(
+              ResponseCode.BAD_REQUEST, response.statusCode.toString()));
         }
       } on Exception {
         return (left(Failure(ResponseCode.BAD_REQUEST, "catch")));
@@ -45,8 +52,8 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
     }
   }
 
-  Future<void> saveUserLocal(UserModel userModel) async {
-    print(userModel.id);
+  Future<void> saveUserLocal(UserModel? userModel) async {
+    print(userModel!.id);
     _localDataSource.setInt(AppConstants.USER_ID_TOKEN, userModel.id);
     _localDataSource.setString(AppConstants.USER_TOKEN, jsonEncode(userModel));
   }

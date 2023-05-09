@@ -1,28 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:installateur/app/app_constants.dart';
-import 'package:installateur/presentation/resources/routes_manager.dart';
-import 'package:installateur/presentation/resources/strings_manager.dart';
-import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
-import 'package:installateur/presentation/widgets_manager/button_widget.dart';
-import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
-import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
-import '../resources/colors_manager.dart';
-import '../resources/fonts_manager.dart';
-import '../resources/values_manager.dart';
-import '../widgets_manager/icon_widget.dart';
-import '../widgets_manager/medium_text_widget.dart';
-import 'box_details_view_model.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class BoxDetailsView extends StatelessWidget {
+import '../../../app/app_constants.dart';
+import '../../resources/colors_manager.dart';
+import '../../resources/fonts_manager.dart';
+import '../../resources/routes_manager.dart';
+import '../../resources/strings_manager.dart';
+import '../../resources/values_manager.dart';
+import '../../widgets_manager/big_text_widget.dart';
+import '../../widgets_manager/button_widget.dart';
+import '../../widgets_manager/icon_widget.dart';
+import '../../widgets_manager/loading_widget.dart';
+import '../../widgets_manager/medium_text_widget.dart';
+import '../../widgets_manager/text_field_widget.dart';
+import '../box_details_view_model.dart';
+import 'unstall_confirm_dialog.dart';
+
+class UnstallBoxView extends StatelessWidget {
   int boxId;
-  BoxDetailsView({super.key, required this.boxId});
+  UnstallBoxView({super.key, required this.boxId});
 
   @override
   Widget build(BuildContext context) {
     Get.find<BoxDetailsViewModel>().handleGetBoxById(boxId);
-    Get.find<BoxDetailsViewModel>().handleGetBoxImages(boxId);
     BoxDetailsViewModel viewModel = Get.find<BoxDetailsViewModel>();
 
     return SafeArea(
@@ -404,34 +408,12 @@ class BoxDetailsView extends StatelessWidget {
                     ),
                     child: Center(
                       child: ButtonWidget(
-                        onClicked: controller.boxDetails!.matricul != "" &&
-                                controller.boxDetails!.boxValue != "" &&
-                                controller.boxDetails!.matricul != null &&
-                                controller.boxDetails!.boxValue != null
-                            ? () => Get.toNamed(
-                                  RoutesManager.getBoxDiagnostic(
-                                      controller.boxDetails!.id),
-                                )
-                            : controller.boxMatriculController != "" &&
-                                    controller.boxValeurController != "" &&
-                                    controller.boxImages!.isNotEmpty
-                                ? () => controller.handleAddInstallBoxInfo()
-                                : () => {},
-                        text: controller.boxDetails != null &&
-                                controller.boxDetails!.status ==
-                                    AppConstants.NOTINSTALLED
-                            ? StringsManager.boxDetailsBottomButtonIns.tr
-                            : StringsManager.boxDetailsBottomButtonDep.tr,
-                        hdn: controller.boxDetails!.matricul != "" &&
-                                controller.boxDetails!.boxValue != "" &&
-                                controller.boxDetails!.matricul != null &&
-                                controller.boxDetails!.boxValue != null
-                            ? false
-                            : controller.boxMatriculController != "" &&
-                                    controller.boxValeurController != "" &&
-                                    controller.boxImages!.isNotEmpty
-                                ? false
-                                : true,
+                        onClicked: () => unstallConfirmDialog(
+                          context: context,
+                          method: () => controller.handleUnstallBox(context),
+                        ),
+                        text: StringsManager.boxDetailsBottomButtonDes.tr,
+                        hdn: false,
                         textSize: FontSize.fs20,
                       ),
                     ),
