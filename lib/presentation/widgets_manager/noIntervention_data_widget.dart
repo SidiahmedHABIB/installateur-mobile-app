@@ -6,7 +6,8 @@ import '../resources/values_manager.dart';
 import 'medium_text_widget.dart';
 
 class NoInterventionDataWidget extends StatelessWidget {
-  const NoInterventionDataWidget({super.key});
+  String message;
+  NoInterventionDataWidget({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class NoInterventionDataWidget extends StatelessWidget {
         ),
         SizedBox(height: AppSize.hs16),
         MediumTextWidget(
-          text: "Aucun Intervention",
+          text: message,
           size: FontSize.fs24,
           color: ColorManager.grey,
         )

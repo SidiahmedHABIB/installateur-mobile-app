@@ -99,4 +99,7 @@ class StringsManager {
   static const loginPassword = "loginPassword";
   static const loginForgetPassword = "loginForgetPassword";
   static const loginbottombotton = "loginbottombotton";
+
+  //dilogs messages
+  static const NoIntervention = "NoIntervention";
 }

@@ -428,7 +428,7 @@ class BoxDetailsView extends StatelessWidget {
                                 controller.boxDetails!.boxValue != null
                             ? false
                             : controller.boxMatriculController != "" &&
-                                    controller.boxValeurController != "" &&
+                                    controller.boxValeurController.isNotEmpty &&
                                     controller.boxImages!.isNotEmpty
                                 ? false
                                 : true,

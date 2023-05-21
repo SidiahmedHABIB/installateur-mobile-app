@@ -1,4 +1,6 @@
 import 'package:installateur/domain/model/company_model.dart';
+import 'package:installateur/domain/model/intervention.dart';
+import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'report_model.dart';
 
 class PageBox {
@@ -19,10 +21,10 @@ class PageBox {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.boxes != null) {
-      data['boxes'] = this.boxes!.map((v) => v.toJson()).toList();
+    if (boxes != null) {
+      data['boxes'] = boxes!.map((v) => v.toJson()).toList();
     }
-    data['totalPages'] = this.totalPages;
+    data['totalPages'] = totalPages;
     return data;
   }
 }
@@ -38,7 +40,7 @@ class BoxModel {
   bool? isSend;
   String? creatAt;
   String? updateAt;
-  CompanyModel? companyBox;
+  InterventionModel? interventionBox;
   ReportModel? reportBox;
 
   BoxModel(
@@ -52,7 +54,7 @@ class BoxModel {
       this.isSend,
       this.creatAt,
       this.updateAt,
-      this.companyBox,
+      this.interventionBox,
       this.reportBox});
 
   BoxModel.fromJson(Map<String, dynamic> json) {
@@ -66,8 +68,8 @@ class BoxModel {
     isSend = json['isSend'];
     creatAt = json['creatAt'];
     updateAt = json['updateAt'];
-    companyBox = json['companyBox'] != null
-        ? new CompanyModel.fromJson(json['companyBox'])
+    interventionBox = json['interventionBox'] != null
+        ? new InterventionModel.fromJson(json['interventionBox'])
         : null;
     reportBox = json['reportBox'] != null
         ? new ReportModel.fromJson(json['reportBox'])
@@ -75,9 +77,9 @@ class BoxModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['status'] = status;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['status'] = this.status;
     data['name'] = this.name;
     data['entity'] = this.entity;
     data['matricul'] = this.matricul;
@@ -86,12 +88,13 @@ class BoxModel {
     data['isSend'] = this.isSend;
     data['creatAt'] = this.creatAt;
     data['updateAt'] = this.updateAt;
-    if (this.companyBox != null) {
-      data['companyBox'] = this.companyBox!.toJson();
+    if (this.interventionBox != null) {
+      data['interventionBox'] = this.interventionBox!.toJson();
     }
     if (this.reportBox != null) {
       data['reportBox'] = this.reportBox!.toJson();
     }
+
     return data;
   }
 }

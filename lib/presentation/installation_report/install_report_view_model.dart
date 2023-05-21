@@ -45,8 +45,8 @@ class InstallationReportViewModel extends GetxController {
             address: technical!.email.toString(),
             phone: "46411644"),
         companyReport: CompanyReport(
-          name: boxDetails!.companyBox!.name.toString(),
-          address: boxDetails!.companyBox!.location.toString(),
+          name: boxDetails!.interventionBox!.company!.name.toString(),
+          address: boxDetails!.interventionBox!.company!.location.toString(),
         ),
         box: [
           BoxInstalled(
@@ -144,6 +144,7 @@ class InstallationReportViewModel extends GetxController {
           (r) => {
                 boxDetails = r,
                 update(),
+                print(boxDetails!.isSend),
                 loadingPage = false,
                 update(),
               });

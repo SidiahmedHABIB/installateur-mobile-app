@@ -70,16 +70,13 @@ class InterventionRepositoryImp extends GetxService
 
   @override
   Future<Either<Failure, InterventionModel>> addAppointement(
-      int? uId, int? interId) async {
+      int? uId, int? interId, String? appointement) async {
     if (await _networkChercher.isConnected) {
       try {
         print("in try");
-        int s = uId! + uId;
-        print("somme uId $s");
-        Response response = await _remoteDataSource
-            .getData("${AppConstants.GET_INTER_ADD_APPMT_URI}$uId&$interId");
+        Response response = await _remoteDataSource.getData(
+            "${AppConstants.GET_INTER_ADD_APPMT_URI}$uId&$interId&$appointement");
         print("in after remo");
-
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
           print("in 200");
@@ -88,13 +85,11 @@ class InterventionRepositoryImp extends GetxService
           return Right(interventionModel);
         } else {
           print("in 400");
-
           return left(
               Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST));
         }
       } on Exception {
         print("in catch");
-
         return (left(
             Failure(ResponseCode.BAD_REQUEST, ResponseMessage.BAD_REQUEST)));
       }

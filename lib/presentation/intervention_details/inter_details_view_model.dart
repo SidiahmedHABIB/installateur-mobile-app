@@ -19,6 +19,7 @@ class InterventionDetailsViewModel extends GetxController {
   DateTime selectedDate = DateTime.now();
   bool hiddenButtom = true;
   String? formattedDate;
+  DateTime? appointement;
 
   InterventionDetailsViewModel(
       this._interventionRepository, this._localDataSource);
@@ -52,8 +53,8 @@ class InterventionDetailsViewModel extends GetxController {
     isloading = true;
     update();
     int? uId = _localDataSource.getInt(AppConstants.USER_ID_TOKEN);
-    Either<Failure, InterventionModel> interGet =
-        await _interventionRepository.addAppointement(uId, interDetails!.id);
+    Either<Failure, InterventionModel> interGet = await _interventionRepository
+        .addAppointement(uId, interDetails!.id, appointement.toString());
     if (interGet.isRight()) {
       interGet.fold(
           (l) => null,
@@ -120,7 +121,9 @@ class InterventionDetailsViewModel extends GetxController {
           pickedTime.hour,
           pickedTime.minute,
         );
-        print('Selected date and time: $selectedDate');
+        appointement = selectedDate;
+        update();
+        print('Selected date and time: ${appointement!}');
         formattedDate =
             "${DateFormat.yMd().format(selectedDate)} ${DateFormat.jm().format(selectedDate)}";
         update();

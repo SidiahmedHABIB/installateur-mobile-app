@@ -190,7 +190,7 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
     String serviceId = 'service_jsxofin';
     String templateId = 'template_3uge25l';
     String userId = 'gpcPZMaqGVeU4I5Jb';
-    String pdfUrl = AppConstants.BASE_URL +
+    String pdfUrl = AppConstants.BASE_local_URL +
         AppConstants.DOWNLOAD_REPORT_URI +
         boxDetails!.reportBox!.name
             .toString(); // replace with your PDF file URL
@@ -208,8 +208,10 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
           'user_id': userId,
           'template_params': {
             'subject': 'Installation',
-            'compony_email': boxDetails.companyBox!.email.toString(),
-            'compony_name': boxDetails.companyBox!.name.toString(),
+            'compony_email':
+                boxDetails.interventionBox!.company!.email.toString(),
+            'compony_name':
+                boxDetails.interventionBox!.company!.name.toString(),
             'technical_name': "${technical!.firstName} ${technical.lastName}",
             'message':
                 'We are pleased to inform you that the installation of your new box has been completed successfully. Our technicians have thoroughly tested the box to ensure that it is functioning properly and is ready for use.',
@@ -263,6 +265,7 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
   Future<Either<Failure, BoxModel>> installBox(BoxModel box) async {
     if (await _networkChercher.isConnected) {
       try {
+        print(box.toJson());
         Response response = await _remoteDataSource.postRequest(
             AppConstants.POST_BOX_INSTALL_URI, box.toJson());
         if (response.statusCode == ResponseCode.SUCCESS ||
@@ -286,6 +289,8 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
   Future<Either<Failure, bool>> unstallBox(BoxModel box) async {
     if (await _networkChercher.isConnected) {
       try {
+        print(box.toJson());
+
         Response response = await _remoteDataSource.postRequest(
             AppConstants.POST_BOX_UNSTALL_URI, box.toJson());
         if (response.statusCode == ResponseCode.SUCCESS ||

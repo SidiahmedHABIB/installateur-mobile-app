@@ -114,18 +114,24 @@ class RemoteDataSource extends GetConnect implements GetxService {
   }
 
   Future<http.Response> postLogin(
-      String url, Map data, String email, String password) async {
+      String url, String email, String password) async {
     try {
-      bool tokens = await withPassword(email, password);
-      final response =
-          await http.post(Uri.parse(url), body: data, headers: _mainHeaders);
-      // print("response.hashCode");
-      // print(response.hashCode);
-      // print(response.body);
+      String grantType = 'password';
+      String withRefreshToken = 'true';
+      String refreshToken = '';
+      Map formData = <String, dynamic>{};
+      formData['grantType'] = grantType;
+      formData['email'] = email;
+      formData['password'] = password;
+      formData['withRefreshToken'] = withRefreshToken;
+      formData['refreshToken'] = refreshToken;
+      http.Response response = await http.post(
+        Uri.parse(AppConstants.BASE_URL + url),
+        body: formData,
+      );
       return response;
     } catch (e) {
-      // ignore: prefer_interpolation_to_compose_strings, avoid_print
-      print("Error from the api client is : " + e.toString());
+      // ignore: avoid_print
       return http.Response(e.toString(), 500);
     }
   }
@@ -133,6 +139,19 @@ class RemoteDataSource extends GetConnect implements GetxService {
   Future<Response> postRequest(String url, Map data) async {
     try {
       Response response = await post(url, data, headers: _mainHeaders);
+      return response;
+    } catch (e) {
+      // ignore: prefer_interpolation_to_compose_strings, avoid_print
+      print("Error from the api client is " + e.toString());
+      return Response(statusCode: 1, statusText: e.toString());
+    }
+  }
+
+  Future<Response> putData(String url, Map data) async {
+    try {
+      Response response = await put(url, data, headers: _mainHeaders);
+      print("put data  response");
+      print(response.body);
       return response;
     } catch (e) {
       // ignore: prefer_interpolation_to_compose_strings, avoid_print

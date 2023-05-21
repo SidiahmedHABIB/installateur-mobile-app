@@ -109,17 +109,7 @@ class LoginView extends StatelessWidget {
                       hintText: StringsManager.loginPassword.tr,
                     ),
                     SizedBox(height: AppSize.hs16),
-                    //forget password
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MediumTextWidget(
-                          text: StringsManager.loginForgetPassword.tr,
-                          color: ColorManager.redColor,
-                          size: FontSize.fs16,
-                        )
-                      ],
-                    ),
+
                     //button
                     SizedBox(height: AppSize.hs16 * 2),
                     GetBuilder<LoginViewModel>(

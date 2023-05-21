@@ -93,6 +93,8 @@ class Translation implements Translations {
           "loginPassword": "Mot de passe",
           "loginForgetPassword": "Oublier le mot de passe?",
           "loginbottombotton": "CONNEXION",
+          // fr dialogs
+          "NoIntervention": "Aucun Intervention"
         },
         "en": {
           // en homepage
@@ -184,6 +186,8 @@ class Translation implements Translations {
           "loginPassword": "Password",
           "loginForgetPassword": "Forgot your password ?",
           "loginbottombotton": "LOG IN",
+          // en dialogs
+          "NoIntervention": "No Intervention"
         },
         "es": {
           // es home
@@ -275,6 +279,8 @@ class Translation implements Translations {
           "loginPassword": "Contraseña",
           "loginForgetPassword": "Ha olvidado su contraseña",
           "loginbottombotton": "CONEXIÓN",
+          // es dialogs
+          "NoIntervention": "No Intervención"
         },
       };
 }

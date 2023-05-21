@@ -148,7 +148,7 @@ class CalenderView extends StatelessWidget {
                                       ),
                                     ),
                                   )
-                                : const NoInterventionDataWidget()
+                                : NoInterventionDataWidget(message: StringsManager.NoIntervention.tr)
                             : LoadingWidget(size: AppSize.hs20 * 3),
                       ],
                     )

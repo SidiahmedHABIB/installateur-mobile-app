@@ -26,23 +26,25 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
     if (await _networkChercher.isConnected) {
       try {
         LoginRequest auth = LoginRequest(email: email, password: password);
-        Response response = await _remoteDataSource.postRequest(
-            AppConstants.POST_LOGIN_URI, auth.toJson());
+        http.Response response = await _remoteDataSource.postLogin(
+            AppConstants.POST_LOGIN_URI, email, password);
         if (response.statusCode == ResponseCode.SUCCESS ||
             response.statusCode == ResponseCode.NO_CONTENT) {
           //Map responsebody = jsonDecode(response.body);
-          LoginResponse loginResponse = LoginResponse.fromJson(response.body);
-          if (loginResponse.status == "true") {
-            saveUserLocal(loginResponse.user);
-            return Right(true);
-          } else {
-            return left(Failure(
-                ResponseCode.SUCCESS, "User Not Found Check Your Email"));
-          }
+          LoginResponse loginResponse =
+              LoginResponse.fromJson(jsonDecode(response.body));
+          print(loginResponse.toJson());
+          // if (loginResponse.status == "true") {
+          saveUserLocal(loginResponse);
+          //   return Right(true);
+          // } else {
+
+          // }
+          return right(true);
         } else {
           print(response.body);
-          return left(Failure(
-              ResponseCode.BAD_REQUEST, response.statusCode.toString()));
+          return left(
+              Failure(ResponseCode.SUCCESS, "User Not Found Check Your Email"));
         }
       } on Exception {
         return (left(Failure(ResponseCode.BAD_REQUEST, "catch")));
@@ -52,10 +54,15 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
     }
   }
 
-  Future<void> saveUserLocal(UserModel? userModel) async {
-    print(userModel!.id);
-    _localDataSource.setInt(AppConstants.USER_ID_TOKEN, userModel.id);
-    _localDataSource.setString(AppConstants.USER_TOKEN, jsonEncode(userModel));
+  Future<void> saveUserLocal(LoginResponse? loginResponse) async {
+    _localDataSource.setInt(
+        AppConstants.USER_ID_TOKEN, loginResponse!.data!.id);
+    _localDataSource.setString(AppConstants.ACCESS_TOKEN,
+        loginResponse.tokens!.accessToken.toString());
+    _localDataSource.setString(AppConstants.REFRESH_TOKEN,
+        loginResponse.tokens!.refreshToken.toString());
+    _localDataSource.setString(
+        AppConstants.USER_TOKEN, jsonEncode(loginResponse.data));
   }
 
   Future<UserModel> getUserFromLocal() async {

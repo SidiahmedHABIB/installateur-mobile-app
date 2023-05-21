@@ -132,6 +132,7 @@ class BoxDetailsViewModel extends GetxController {
   Future<void> handleGetBoxById(int boxId) async {
     loadingPage = true;
     update();
+    print("intdd");
     Either<Failure, BoxModel> boxDetailsGet =
         await _boxRepository.getBoxById(boxId);
     if (boxDetailsGet.isRight()) {
@@ -142,11 +143,7 @@ class BoxDetailsViewModel extends GetxController {
                 update(),
                 loadingPage = false,
                 update(),
-                boxMatriculController = r.matricul.toString(),
-                update(),
-                boxValeurController = r.boxValue.toString(),
-                update(),
-                print("matricul: ${boxDetails!.matricul}"),
+                print("matricul: ${boxDetails!.toJson()}"),
               });
     } else {
       boxDetailsGet.fold(

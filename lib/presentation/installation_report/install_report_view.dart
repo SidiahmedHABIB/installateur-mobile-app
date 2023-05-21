@@ -134,7 +134,8 @@ class InstallationReportView extends StatelessWidget {
                                   enabled: false,
                                   textController: emailController,
                                   hintText: controller.boxDetails != null
-                                      ? controller.boxDetails!.companyBox!.name
+                                      ? controller.boxDetails!.interventionBox!
+                                          .company!.name
                                           .toString()
                                       : "",
                                   icon: CupertinoIcons.building_2_fill,
@@ -146,7 +147,8 @@ class InstallationReportView extends StatelessWidget {
                                   enabled: false,
                                   textController: emailController,
                                   hintText: controller.boxDetails != null
-                                      ? controller.boxDetails!.companyBox!.email
+                                      ? controller.boxDetails!.interventionBox!
+                                          .company!.email
                                           .toString()
                                       : "",
                                   icon: Icons.email,
@@ -166,10 +168,10 @@ class InstallationReportView extends StatelessWidget {
                                   colorhint: ColorManager.mainColor,
                                 ),
                                 SizedBox(height: AppSize.hs25),
-
+                                // button generate report
                                 GestureDetector(
                                   onTap: () => controller.boxDetails != null &&
-                                          controller.boxDetails!.isSend == null
+                                          controller.boxDetails!.isSend == false
                                       ? controller.handleBuildReport()
                                       : () {},
                                   child: Container(
@@ -180,7 +182,7 @@ class InstallationReportView extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: controller.boxDetails != null &&
                                               controller.boxDetails!.isSend ==
-                                                  null
+                                                  false
                                           ? ColorManager.mainColor
                                           : ColorManager.grey,
                                       border: Border.all(
@@ -231,7 +233,7 @@ class InstallationReportView extends StatelessWidget {
             builder: (controller) {
               return controller.loadingPage == false
                   ? controller.boxDetails != null &&
-                          controller.boxDetails!.isSend == null
+                          controller.boxDetails!.isSend == false
                       ? Container(
                           height: AppSize.hs100,
                           padding: EdgeInsets.symmetric(

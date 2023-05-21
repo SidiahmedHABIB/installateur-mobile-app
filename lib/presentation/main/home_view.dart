@@ -185,7 +185,9 @@ class HomeView extends StatelessWidget {
                               : Column(
                                   children: [
                                     SizedBox(height: AppSize.hs100),
-                                    const NoInterventionDataWidget(),
+                                    NoInterventionDataWidget(
+                                        message:
+                                            StringsManager.NoIntervention.tr)
                                   ],
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
@@ -247,7 +249,9 @@ class HomeView extends StatelessWidget {
                               : Column(
                                   children: [
                                     SizedBox(height: AppSize.hs100),
-                                    const NoInterventionDataWidget(),
+                                    NoInterventionDataWidget(
+                                        message:
+                                            StringsManager.NoIntervention.tr)
                                   ],
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
@@ -310,7 +314,9 @@ class HomeView extends StatelessWidget {
                               : Column(
                                   children: [
                                     SizedBox(height: AppSize.hs100),
-                                    const NoInterventionDataWidget(),
+                                    NoInterventionDataWidget(
+                                        message:
+                                            StringsManager.NoIntervention.tr)
                                   ],
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
