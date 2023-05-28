@@ -76,55 +76,55 @@ class SettingsView extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: AppSize.hs20 * 2),
-                // Notification
-                Container(
-                  width: double.maxFinite,
-                  decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    border: Border.all(
-                      color: ColorManager.whiteGrey,
-                      width: 1,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: ColorManager.grey,
-                        blurRadius: AppSize.hs5,
-                        offset: const Offset(1, 2),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(AppSize.hs10),
-                  ),
-                  child: ListTile(
-                    horizontalTitleGap: 0,
-                    title: MediumTextWidget(
-                      text: StringsManager.settingsNotification.tr,
-                      size: FontSize.fs18,
-                      color: ColorManager.mainColor,
-                    ),
-                    leading: IconWidget(
-                      icon: Icons.notifications,
-                      iconColor: ColorManager.mainColor,
-                      size: AppSize.hs14 * 2,
-                    ),
-                    trailing: Switch(
-                        // thumb color (round icon)
-                        activeColor: ColorManager.mainColor,
-                        activeTrackColor: ColorManager.whiteMainColor,
-                        inactiveThumbColor: ColorManager.grey,
-                        inactiveTrackColor: ColorManager.whiteGrey,
-                        splashRadius: 70,
-                        // boolean variable value
-                        value: true,
-                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        // changes the state of the switch
-                        onChanged: (value) => {}),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.pushNamed(context, "/meteo");
-                    },
-                  ),
-                ),
-                SizedBox(height: AppSize.hs20),
+                // // Notification
+                // Container(
+                //   width: double.maxFinite,
+                //   decoration: BoxDecoration(
+                //     color: ColorManager.white,
+                //     border: Border.all(
+                //       color: ColorManager.whiteGrey,
+                //       width: 1,
+                //     ),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         color: ColorManager.grey,
+                //         blurRadius: AppSize.hs5,
+                //         offset: const Offset(1, 2),
+                //       ),
+                //     ],
+                //     borderRadius: BorderRadius.circular(AppSize.hs10),
+                //   ),
+                //   child: ListTile(
+                //     horizontalTitleGap: 0,
+                //     title: MediumTextWidget(
+                //       text: StringsManager.settingsNotification.tr,
+                //       size: FontSize.fs18,
+                //       color: ColorManager.mainColor,
+                //     ),
+                //     leading: IconWidget(
+                //       icon: Icons.notifications,
+                //       iconColor: ColorManager.mainColor,
+                //       size: AppSize.hs14 * 2,
+                //     ),
+                //     trailing: Switch(
+                //         // thumb color (round icon)
+                //         activeColor: ColorManager.mainColor,
+                //         activeTrackColor: ColorManager.whiteMainColor,
+                //         inactiveThumbColor: ColorManager.grey,
+                //         inactiveTrackColor: ColorManager.whiteGrey,
+                //         splashRadius: 70,
+                //         // boolean variable value
+                //         value: true,
+                //         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                //         // changes the state of the switch
+                //         onChanged: (value) => {}),
+                //     onTap: () {
+                //       Navigator.of(context).pop();
+                //       Navigator.pushNamed(context, "/meteo");
+                //     },
+                //   ),
+                // ),
+                // SizedBox(height: AppSize.hs20),
                 //languages
                 Container(
                   width: double.maxFinite,

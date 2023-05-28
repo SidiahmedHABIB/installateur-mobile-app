@@ -187,9 +187,9 @@ class BoxRepositoryImp extends GetxService implements BoxRepository {
   @override
   Future<Either<Failure, BoxModel>> sendBoxReport(
       BoxModel? boxDetails, UserModel? technical) async {
-    String serviceId = 'service_jsxofin';
-    String templateId = 'template_3uge25l';
-    String userId = 'gpcPZMaqGVeU4I5Jb';
+    String serviceId = 'service_tyu2rs5';
+    String templateId = 'template_3yhdhhy';
+    String userId = 'dXYmXM3J7D1zCDmtb';
     String pdfUrl = AppConstants.BASE_local_URL +
         AppConstants.DOWNLOAD_REPORT_URI +
         boxDetails!.reportBox!.name

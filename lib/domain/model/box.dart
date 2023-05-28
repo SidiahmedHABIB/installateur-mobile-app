@@ -41,6 +41,7 @@ class BoxModel {
   String? creatAt;
   String? updateAt;
   InterventionModel? interventionBox;
+  CompanyModel? companyBox;
   ReportModel? reportBox;
 
   BoxModel(
@@ -55,6 +56,7 @@ class BoxModel {
       this.creatAt,
       this.updateAt,
       this.interventionBox,
+      this.companyBox,
       this.reportBox});
 
   BoxModel.fromJson(Map<String, dynamic> json) {
@@ -70,6 +72,9 @@ class BoxModel {
     updateAt = json['updateAt'];
     interventionBox = json['interventionBox'] != null
         ? new InterventionModel.fromJson(json['interventionBox'])
+        : null;
+    companyBox = json['companyBox'] != null
+        ? new CompanyModel.fromJson(json['companyBox'])
         : null;
     reportBox = json['reportBox'] != null
         ? new ReportModel.fromJson(json['reportBox'])
@@ -90,6 +95,9 @@ class BoxModel {
     data['updateAt'] = this.updateAt;
     if (this.interventionBox != null) {
       data['interventionBox'] = this.interventionBox!.toJson();
+    }
+    if (this.companyBox != null) {
+      data['companyBox'] = this.companyBox!.toJson();
     }
     if (this.reportBox != null) {
       data['reportBox'] = this.reportBox!.toJson();

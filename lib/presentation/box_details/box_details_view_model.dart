@@ -19,6 +19,13 @@ class BoxDetailsViewModel extends GetxController {
     update();
   }
 
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    boxDetails = null;
+  }
+
   TextEditingController valeurController = TextEditingController();
   String boxValeurController = "";
   void updateValeur(String value) {
@@ -80,14 +87,15 @@ class BoxDetailsViewModel extends GetxController {
                     showSnackBarWidget(
                         "Box unstalled successfully", ColorManager.mainColor,
                         title: "Done"),
-                    handleGetBoxImages(boxDetails!.id!)
+                    handleGetBoxImages(boxDetails!.id!),
                   }
                 else
                   {
                     loadingPage = false,
                     update(),
                     showSnackBarWidget(r.toString(), ColorManager.error),
-                    handleGetBoxImages(boxDetails!.id!)
+                    handleGetBoxImages(boxDetails!.id!),
+                    Navigator.of(context).pop()
                   }
               });
     } else {

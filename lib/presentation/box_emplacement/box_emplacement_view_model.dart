@@ -18,6 +18,12 @@ class BoxEmplacementViewModel extends GetxController {
   bool loadingPage = false;
   List<ImageModel>? boxImages = [];
   List<File> imagePiked = [];
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+    boxImages = [];
+  }
 
   Future<void> handleDeletePickImage(int index) async {
     imagePiked.removeAt(index);

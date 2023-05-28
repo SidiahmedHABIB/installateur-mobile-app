@@ -8,6 +8,7 @@ import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
+import '../box_emplacement/widgets/image_network_widget.dart';
 import '../widgets_manager/big_text_widget.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/icon_widget.dart';
@@ -19,6 +20,7 @@ class BoxDiagnosticView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<BoxDiagnosticViewModel>().handleGetBoxById(boxId);
+    Get.find<BoxDiagnosticViewModel>().handleGetBoxImages(boxId);
 
     var commentController = TextEditingController();
     return SafeArea(
@@ -199,13 +201,15 @@ class BoxDiagnosticView extends StatelessWidget {
                                           Row(
                                             children: [
                                               MediumTextWidget(
-                                                text: "VRN :",
+                                                text: "Matricul :",
                                                 color: ColorManager.mainColor,
                                                 size: FontSize.fs18,
                                               ),
                                               SizedBox(width: AppSize.ws5),
                                               BigTextWidget(
-                                                text: "XX-XX-XXX ",
+                                                text: controller
+                                                    .boxDetails!.matricul
+                                                    .toString(),
                                                 color: ColorManager.mainColor,
                                                 size: FontSize.fs18,
                                               ),
@@ -213,12 +217,21 @@ class BoxDiagnosticView extends StatelessWidget {
                                           ),
                                           Row(
                                             children: [
-                                              IconWidget(
-                                                icon: Icons.check,
-                                                iconColor:
-                                                    Colors.green.shade400,
-                                                size: AppSize.hs25,
-                                              ),
+                                              controller.boxDetails!.matricul !=
+                                                      null
+                                                  ? IconWidget(
+                                                      icon: Icons.check,
+                                                      iconColor:
+                                                          Colors.green.shade400,
+                                                      size: AppSize.hs25,
+                                                    )
+                                                  : IconWidget(
+                                                      icon:
+                                                          CupertinoIcons.clear,
+                                                      iconColor:
+                                                          ColorManager.redColor,
+                                                      size: AppSize.hs25,
+                                                    ),
                                               SizedBox(width: AppSize.ws5),
                                               IconWidget(
                                                 icon: CupertinoIcons
@@ -248,13 +261,15 @@ class BoxDiagnosticView extends StatelessWidget {
                                           Row(
                                             children: [
                                               MediumTextWidget(
-                                                text: "VIN :",
+                                                text: "Value :",
                                                 color: ColorManager.mainColor,
                                                 size: FontSize.fs18,
                                               ),
                                               SizedBox(width: AppSize.ws5),
                                               BigTextWidget(
-                                                text: " ",
+                                                text: controller
+                                                    .boxDetails!.boxValue
+                                                    .toString(),
                                                 color: ColorManager.mainColor,
                                                 size: FontSize.fs18,
                                               ),
@@ -262,12 +277,21 @@ class BoxDiagnosticView extends StatelessWidget {
                                           ),
                                           Row(
                                             children: [
-                                              IconWidget(
-                                                icon: CupertinoIcons.clear,
-                                                iconColor:
-                                                    ColorManager.redColor,
-                                                size: AppSize.hs25,
-                                              ),
+                                              controller.boxDetails!.boxValue !=
+                                                      null
+                                                  ? IconWidget(
+                                                      icon: Icons.check,
+                                                      iconColor:
+                                                          Colors.green.shade400,
+                                                      size: AppSize.hs25,
+                                                    )
+                                                  : IconWidget(
+                                                      icon:
+                                                          CupertinoIcons.clear,
+                                                      iconColor:
+                                                          ColorManager.redColor,
+                                                      size: AppSize.hs25,
+                                                    ),
                                               SizedBox(width: AppSize.ws5),
                                               IconWidget(
                                                 icon: CupertinoIcons
@@ -283,110 +307,110 @@ class BoxDiagnosticView extends StatelessWidget {
                                         ],
                                       ),
                                       SizedBox(height: AppSize.hs10),
-                                      Container(
-                                        width: double.maxFinite,
-                                        height: AppSize.hs5 / 3,
-                                        color: ColorManager.whiteGrey,
-                                      ),
-                                      SizedBox(height: AppSize.hs10),
-                                      // IMEI
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              MediumTextWidget(
-                                                text: "IMEI :",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              BigTextWidget(
-                                                text: " ",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconWidget(
-                                                icon: CupertinoIcons.clear,
-                                                iconColor:
-                                                    ColorManager.redColor,
-                                                size: AppSize.hs25,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              IconWidget(
-                                                icon: CupertinoIcons
-                                                    .exclamationmark,
-                                                iconColor: ColorManager.white,
-                                                size: AppSize.hs24,
-                                                bColor: ColorManager.mainColor,
-                                                hp: AppPadding.hp5,
-                                                wp: AppPadding.wp5,
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(height: AppSize.hs10),
-                                      Container(
-                                        width: double.maxFinite,
-                                        height: AppSize.hs5 / 3,
-                                        color: ColorManager.whiteGrey,
-                                      ),
-                                      SizedBox(height: AppSize.hs10),
-                                      // ICCID
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              MediumTextWidget(
-                                                text: "ICCID :",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              BigTextWidget(
-                                                text: " ",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconWidget(
-                                                icon: Icons.check,
-                                                iconColor:
-                                                    Colors.green.shade400,
-                                                size: AppSize.hs25,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              IconWidget(
-                                                icon: CupertinoIcons
-                                                    .exclamationmark,
-                                                iconColor: ColorManager.white,
-                                                size: AppSize.hs24,
-                                                bColor: ColorManager.mainColor,
-                                                hp: AppPadding.hp5,
-                                                wp: AppPadding.wp5,
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(height: AppSize.hs20),
-                                      TextFieldWidget(
-                                          textController: commentController,
-                                          hintText: StringsManager
-                                              .boxDiagnosticEnvirmentAddComment
-                                              .tr,
-                                          icon: Icons.comment)
+                                      // Container(
+                                      //   width: double.maxFinite,
+                                      //   height: AppSize.hs5 / 3,
+                                      //   color: ColorManager.whiteGrey,
+                                      // ),
+                                      // SizedBox(height: AppSize.hs10),
+                                      // // IMEI
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   children: [
+                                      //     Row(
+                                      //       children: [
+                                      //         MediumTextWidget(
+                                      //           text: "IMEI :",
+                                      //           color: ColorManager.mainColor,
+                                      //           size: FontSize.fs18,
+                                      //         ),
+                                      //         SizedBox(width: AppSize.ws5),
+                                      //         BigTextWidget(
+                                      //           text: " ",
+                                      //           color: ColorManager.mainColor,
+                                      //           size: FontSize.fs18,
+                                      //         ),
+                                      //       ],
+                                      //     ),
+                                      //     Row(
+                                      //       children: [
+                                      //         IconWidget(
+                                      //           icon: CupertinoIcons.clear,
+                                      //           iconColor:
+                                      //               ColorManager.redColor,
+                                      //           size: AppSize.hs25,
+                                      //         ),
+                                      //         SizedBox(width: AppSize.ws5),
+                                      //         IconWidget(
+                                      //           icon: CupertinoIcons
+                                      //               .exclamationmark,
+                                      //           iconColor: ColorManager.white,
+                                      //           size: AppSize.hs24,
+                                      //           bColor: ColorManager.mainColor,
+                                      //           hp: AppPadding.hp5,
+                                      //           wp: AppPadding.wp5,
+                                      //         ),
+                                      //       ],
+                                      //     )
+                                      //   ],
+                                      // ),
+                                      // SizedBox(height: AppSize.hs10),
+                                      // Container(
+                                      //   width: double.maxFinite,
+                                      //   height: AppSize.hs5 / 3,
+                                      //   color: ColorManager.whiteGrey,
+                                      // ),
+                                      // SizedBox(height: AppSize.hs10),
+                                      // // ICCID
+                                      // Row(
+                                      //   mainAxisAlignment:
+                                      //       MainAxisAlignment.spaceBetween,
+                                      //   children: [
+                                      //     Row(
+                                      //       children: [
+                                      //         MediumTextWidget(
+                                      //           text: "ICCID :",
+                                      //           color: ColorManager.mainColor,
+                                      //           size: FontSize.fs18,
+                                      //         ),
+                                      //         SizedBox(width: AppSize.ws5),
+                                      //         BigTextWidget(
+                                      //           text: " ",
+                                      //           color: ColorManager.mainColor,
+                                      //           size: FontSize.fs18,
+                                      //         ),
+                                      //       ],
+                                      //     ),
+                                      //     Row(
+                                      //       children: [
+                                      //         IconWidget(
+                                      //           icon: Icons.check,
+                                      //           iconColor:
+                                      //               Colors.green.shade400,
+                                      //           size: AppSize.hs25,
+                                      //         ),
+                                      //         SizedBox(width: AppSize.ws5),
+                                      //         IconWidget(
+                                      //           icon: CupertinoIcons
+                                      //               .exclamationmark,
+                                      //           iconColor: ColorManager.white,
+                                      //           size: AppSize.hs24,
+                                      //           bColor: ColorManager.mainColor,
+                                      //           hp: AppPadding.hp5,
+                                      //           wp: AppPadding.wp5,
+                                      //         ),
+                                      //       ],
+                                      //     )
+                                      //   ],
+                                      // ),
+                                      // SizedBox(height: AppSize.hs20),
+                                      // TextFieldWidget(
+                                      //     textController: commentController,
+                                      //     hintText: StringsManager
+                                      //         .boxDiagnosticEnvirmentAddComment
+                                      //         .tr,
+                                      //     icon: Icons.comment)
                                     ],
                                   ),
                                 ),
@@ -400,7 +424,7 @@ class BoxDiagnosticView extends StatelessWidget {
                 GetBuilder<BoxDiagnosticViewModel>(builder: (controller) {
                   return controller.loadingPage == false
                       ? Positioned(
-                          top: AppPadding.hp100 * 5.85,
+                          top: AppPadding.hp100 * 3.85,
                           left: AppPadding.wp25,
                           right: AppPadding.wp25,
                           child: Container(
@@ -433,8 +457,7 @@ class BoxDiagnosticView extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       MediumTextWidget(
-                                        text: StringsManager
-                                            .boxDiagnosticAntennes.tr,
+                                        text: "Location",
                                         color: ColorManager.white,
                                         size: FontSize.fs20,
                                       ),
@@ -443,115 +466,136 @@ class BoxDiagnosticView extends StatelessWidget {
                                 ),
                                 // white container form
                                 Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: AppPadding.wp18,
-                                    vertical: AppPadding.hp20,
-                                  ),
-                                  width: double.maxFinite,
-                                  decoration: BoxDecoration(
-                                    color: ColorManager.white,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(AppSize.hs14),
-                                      bottomRight:
-                                          Radius.circular(AppSize.hs14),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: AppPadding.wp18,
+                                      vertical: AppPadding.hp20,
                                     ),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      // CSm
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              MediumTextWidget(
-                                                text: "CSm :",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              BigTextWidget(
-                                                text: "CSQ > 5",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconWidget(
-                                                icon: Icons.check,
-                                                iconColor:
-                                                    Colors.green.shade400,
-                                                size: AppSize.hs25,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              IconWidget(
-                                                icon: CupertinoIcons
-                                                    .exclamationmark,
-                                                iconColor: ColorManager.white,
-                                                size: AppSize.hs24,
-                                                bColor: ColorManager.mainColor,
-                                                hp: AppPadding.hp5,
-                                                wp: AppPadding.wp5,
-                                              ),
-                                            ],
-                                          )
-                                        ],
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                      color: ColorManager.white,
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft:
+                                            Radius.circular(AppSize.hs14),
+                                        bottomRight:
+                                            Radius.circular(AppSize.hs14),
                                       ),
-                                      SizedBox(height: AppSize.hs10),
-                                      Container(
-                                        width: double.maxFinite,
-                                        height: AppSize.hs5 / 3,
-                                        color: ColorManager.whiteGrey,
+                                    ),
+                                    child: SizedBox(
+                                      height: AppSize.hs100 * 1.2,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: controller.boxImages!.length,
+                                        itemBuilder: (context, index) =>
+                                            ImageNetworkWidget(
+                                          imageUrl: controller.boxImages != []
+                                              ? AppConstants.BASE_URL +
+                                                  AppConstants
+                                                      .DOWNLOAD_IMG_URL +
+                                                  controller
+                                                      .boxImages![index].name
+                                                      .toString()
+                                              : "",
+                                        ),
                                       ),
-                                      SizedBox(height: AppSize.hs10),
-                                      // GPS
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              MediumTextWidget(
-                                                text: "GPS :",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              BigTextWidget(
-                                                text: "Fix OK",
-                                                color: ColorManager.mainColor,
-                                                size: FontSize.fs18,
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              IconWidget(
-                                                icon: CupertinoIcons.clear,
-                                                iconColor:
-                                                    ColorManager.redColor,
-                                                size: AppSize.hs25,
-                                              ),
-                                              SizedBox(width: AppSize.ws5),
-                                              IconWidget(
-                                                icon: CupertinoIcons
-                                                    .exclamationmark,
-                                                iconColor: ColorManager.white,
-                                                size: AppSize.hs24,
-                                                bColor: ColorManager.mainColor,
-                                                hp: AppPadding.hp5,
-                                                wp: AppPadding.wp5,
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                    )
+
+                                    // Column(
+                                    //   children: [
+                                    //     // CSm
+                                    //     Row(
+                                    //       mainAxisAlignment:
+                                    //           MainAxisAlignment.spaceBetween,
+                                    //       children: [
+                                    //         Row(
+                                    //           children: [
+                                    //             MediumTextWidget(
+                                    //               text: "CSm :",
+                                    //               color: ColorManager.mainColor,
+                                    //               size: FontSize.fs18,
+                                    //             ),
+                                    //             SizedBox(width: AppSize.ws5),
+                                    //             BigTextWidget(
+                                    //               text: "CSQ > 5",
+                                    //               color: ColorManager.mainColor,
+                                    //               size: FontSize.fs18,
+                                    //             ),
+                                    //           ],
+                                    //         ),
+                                    //         Row(
+                                    //           children: [
+                                    //             IconWidget(
+                                    //               icon: Icons.check,
+                                    //               iconColor:
+                                    //                   Colors.green.shade400,
+                                    //               size: AppSize.hs25,
+                                    //             ),
+                                    //             SizedBox(width: AppSize.ws5),
+                                    //             IconWidget(
+                                    //               icon: CupertinoIcons
+                                    //                   .exclamationmark,
+                                    //               iconColor: ColorManager.white,
+                                    //               size: AppSize.hs24,
+                                    //               bColor: ColorManager.mainColor,
+                                    //               hp: AppPadding.hp5,
+                                    //               wp: AppPadding.wp5,
+                                    //             ),
+                                    //           ],
+                                    //         )
+                                    //       ],
+                                    //     ),
+                                    //     SizedBox(height: AppSize.hs10),
+                                    //     Container(
+                                    //       width: double.maxFinite,
+                                    //       height: AppSize.hs5 / 3,
+                                    //       color: ColorManager.whiteGrey,
+                                    //     ),
+                                    //     SizedBox(height: AppSize.hs10),
+                                    //     // GPS
+                                    //     Row(
+                                    //       mainAxisAlignment:
+                                    //           MainAxisAlignment.spaceBetween,
+                                    //       children: [
+                                    //         Row(
+                                    //           children: [
+                                    //             MediumTextWidget(
+                                    //               text: "GPS :",
+                                    //               color: ColorManager.mainColor,
+                                    //               size: FontSize.fs18,
+                                    //             ),
+                                    //             SizedBox(width: AppSize.ws5),
+                                    //             BigTextWidget(
+                                    //               text: "Fix OK",
+                                    //               color: ColorManager.mainColor,
+                                    //               size: FontSize.fs18,
+                                    //             ),
+                                    //           ],
+                                    //         ),
+                                    //         Row(
+                                    //           children: [
+                                    //             IconWidget(
+                                    //               icon: CupertinoIcons.clear,
+                                    //               iconColor:
+                                    //                   ColorManager.redColor,
+                                    //               size: AppSize.hs25,
+                                    //             ),
+                                    //             SizedBox(width: AppSize.ws5),
+                                    //             IconWidget(
+                                    //               icon: CupertinoIcons
+                                    //                   .exclamationmark,
+                                    //               iconColor: ColorManager.white,
+                                    //               size: AppSize.hs24,
+                                    //               bColor: ColorManager.mainColor,
+                                    //               hp: AppPadding.hp5,
+                                    //               wp: AppPadding.wp5,
+                                    //             ),
+                                    //           ],
+                                    //         )
+                                    //       ],
+                                    //     ),
+                                    //   ],
+                                    // ),
+
+                                    ),
                               ],
                             ),
                           ),
@@ -596,7 +640,7 @@ class BoxDiagnosticView extends StatelessWidget {
                         child: ButtonWidget(
                           onClicked: controller.boxDetails!.status ==
                                   AppConstants.NOTINSTALLED
-                              ? () => controller.handleInstallBox()
+                              ? () => controller.handleInstallBox(context)
                               : () => {},
                           text: controller.boxDetails!.status ==
                                   AppConstants.NOTINSTALLED

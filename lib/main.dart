@@ -1,13 +1,9 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:installateur/presentation/drawer/drawer_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 import 'app/app.dart';
-import 'domain/model/message.dart';
 
 late SharedPreferences sharedPreferences;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();

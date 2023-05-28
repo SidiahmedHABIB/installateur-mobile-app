@@ -62,18 +62,6 @@ class HomeView extends StatelessWidget {
               color: ColorManager.white,
               size: FontSize.fs20,
             ),
-            actions: [
-              GestureDetector(
-                onTap: () => Get.to(const NotificationView()),
-                child: Padding(
-                  padding: EdgeInsets.only(right: AppPadding.wp20),
-                  child: IconWidget(
-                    icon: Icons.notifications,
-                    size: AppSize.hs25 * 1.3,
-                  ),
-                ),
-              ),
-            ],
           ),
           backgroundColor: ColorManager.white,
           //nav bar
@@ -182,13 +170,23 @@ class HomeView extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : Column(
-                                  children: [
-                                    SizedBox(height: AppSize.hs100),
-                                    NoInterventionDataWidget(
-                                        message:
-                                            StringsManager.NoIntervention.tr)
-                                  ],
+                              : RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(height: AppSize.hs100),
+                                          NoInterventionDataWidget(
+                                              message: StringsManager
+                                                  .NoIntervention.tr)
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
                       //Planned
@@ -246,13 +244,23 @@ class HomeView extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : Column(
-                                  children: [
-                                    SizedBox(height: AppSize.hs100),
-                                    NoInterventionDataWidget(
-                                        message:
-                                            StringsManager.NoIntervention.tr)
-                                  ],
+                              : RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(height: AppSize.hs100),
+                                          NoInterventionDataWidget(
+                                              message: StringsManager
+                                                  .NoIntervention.tr)
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
 
@@ -311,13 +319,23 @@ class HomeView extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : Column(
-                                  children: [
-                                    SizedBox(height: AppSize.hs100),
-                                    NoInterventionDataWidget(
-                                        message:
-                                            StringsManager.NoIntervention.tr)
-                                  ],
+                              : RefreshIndicator(
+                                  onRefresh: () async {
+                                    await controller.handleRefreshData();
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: 1,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        children: [
+                                          SizedBox(height: AppSize.hs100),
+                                          NoInterventionDataWidget(
+                                              message: StringsManager
+                                                  .NoIntervention.tr)
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 )
                           : LoadingWidget(size: AppSize.hs20 * 3),
                     ],
