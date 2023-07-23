@@ -23,7 +23,6 @@ class CalenderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CalendarViewModel viewModel = Get.find<CalendarViewModel>();
     return SafeArea(
       child: Scaffold(
           //header

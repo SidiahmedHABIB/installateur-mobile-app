@@ -10,7 +10,7 @@ class HomeBinding extends Bindings {
   void dependencies() {
     Get.lazyPut(() => DrawerViewModel());
     Get.lazyPut<InterventionRepository>(
-      () => InterventionRepositoryImp(Get.find(), Get.find(), Get.find()),
+      () => InterventionRepositoryImp(Get.find(), Get.find()),
     );
     Get.lazyPut(() => HomeViewModel(Get.find(), Get.find()));
     Get.lazyPut(() => NetworkChecker());

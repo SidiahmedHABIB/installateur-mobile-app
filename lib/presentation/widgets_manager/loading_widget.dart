@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
 import '../resources/colors_manager.dart';
-import '../resources/values_manager.dart';
 
+// ignore: must_be_immutable
 class LoadingWidget extends StatelessWidget {
   double size;
   LoadingWidget({super.key, required this.size});

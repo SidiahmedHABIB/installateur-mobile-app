@@ -15,6 +15,7 @@ import '../widgets_manager/text_cart.dart';
 import 'widgets/fixed_column_widget.dart';
 import 'widgets/scrollable_column_widget.dart';
 
+// ignore: must_be_immutable
 class BoxTableView extends StatelessWidget {
   int companyId;
   BoxTableView({super.key, required this.companyId});

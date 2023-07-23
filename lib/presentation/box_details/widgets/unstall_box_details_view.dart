@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../app/app_constants.dart';
 import '../../resources/colors_manager.dart';
 import '../../resources/fonts_manager.dart';
 import '../../resources/routes_manager.dart';
@@ -20,6 +18,7 @@ import '../../widgets_manager/text_field_widget.dart';
 import '../box_details_view_model.dart';
 import 'unstall_confirm_dialog.dart';
 
+// ignore: must_be_immutable
 class UnstallBoxView extends StatelessWidget {
   int boxId;
   UnstallBoxView({super.key, required this.boxId});

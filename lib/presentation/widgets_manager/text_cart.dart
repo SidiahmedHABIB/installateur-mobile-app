@@ -3,8 +3,8 @@ import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 
 import 'big_text_widget.dart';
-import 'medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class TextCart extends StatelessWidget {
   double hpadding;
   double vpadding;

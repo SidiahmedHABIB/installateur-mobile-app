@@ -7,6 +7,7 @@ import '../../domain/model/installation_report.dart';
 import '../../domain/model/user_model.dart';
 import '../../domain/repository/box_repository.dart';
 import '../../domain/repository/profile_repository.dart';
+import '../report_helper/report_helper.dart';
 import '../report_helper/report_widget.dart';
 import '../resources/colors_manager.dart';
 import '../widgets_manager/show_snack_bar_widget.dart';
@@ -18,6 +19,7 @@ class InstallationReportViewModel extends GetxController {
   InstallationReportViewModel(this._boxRepository, this._profileRepository);
   BoxModel? boxDetails;
   bool loadingPage = false;
+  bool openReport = false;
   UserModel? technical;
   File? reportPdf;
 
@@ -56,6 +58,8 @@ class InstallationReportViewModel extends GetxController {
     reportPdf =
         await ReportGenerator.generate(boxDetails!.name.toString(), report);
     update();
+    openReport = true;
+    update();
     Either<Failure, BoxModel> boxDetailsGet =
         await _boxRepository.saveBoxReport(reportPdf, boxDetails!.id);
     if (boxDetailsGet.isRight()) {
@@ -81,6 +85,12 @@ class InstallationReportViewModel extends GetxController {
       );
     }
     //ReportHelper.openFile(reportPdf);
+  }
+
+  Future handleOpenReport() async {
+    print("opening");
+    ReportHelper.openFile(reportPdf!.path);
+    print("opened");
   }
 
   Future handleSendReportEmail() async {

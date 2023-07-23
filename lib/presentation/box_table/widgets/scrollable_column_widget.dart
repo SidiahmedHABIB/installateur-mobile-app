@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import '../../../domain/model/box.dart';
-import '../../../test/test.dart';
 import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/medium_text_widget.dart';
-import '../box_table_view_model.dart';
 
 class ScrollableColumnWidget extends StatelessWidget {
   final List<BoxModel> listBoxes;

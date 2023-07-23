@@ -7,7 +7,7 @@ class BoxTableBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<BoxRepository>(
-      () => BoxRepositoryImp(Get.find(), Get.find(), Get.find()),
+      () => BoxRepositoryImp(Get.find(), Get.find()),
     );
     Get.lazyPut(() => BoxTableViewModel(Get.find()));
   }

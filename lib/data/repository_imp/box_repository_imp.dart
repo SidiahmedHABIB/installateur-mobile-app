@@ -9,18 +9,15 @@ import 'package:installateur/domain/model/image_model.dart';
 import '../../app/app_constants.dart';
 import '../../domain/model/user_model.dart';
 import '../../domain/repository/box_repository.dart';
-import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/error_handler.dart';
 import '../network/network_checker.dart';
 
 class BoxRepositoryImp extends GetxService implements BoxRepository {
   final RemoteDataSource _remoteDataSource;
-  final LocalDataSource _localDataSource;
   final NetworkChecker _networkChercher;
 
-  BoxRepositoryImp(
-      this._remoteDataSource, this._localDataSource, this._networkChercher);
+  BoxRepositoryImp(this._remoteDataSource, this._networkChercher);
   @override
   Future<Either<Failure, PageBox>> getPageBoxByCompany(
       int companyId, int page, int size) async {

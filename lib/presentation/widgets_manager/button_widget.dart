@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import 'medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class ButtonWidget extends StatelessWidget {
   String text;
   bool hdn;

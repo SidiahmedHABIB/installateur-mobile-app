@@ -4,7 +4,6 @@ import 'package:installateur/data/network/failure.dart';
 import 'package:dartz/dartz.dart';
 import '../../app/app_constants.dart';
 import '../../domain/repository/inter_repository.dart';
-import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/error_handler.dart';
 import '../network/network_checker.dart';
@@ -12,11 +11,9 @@ import '../network/network_checker.dart';
 class InterventionRepositoryImp extends GetxService
     implements InterventionRepository {
   final RemoteDataSource _remoteDataSource;
-  final LocalDataSource _localDataSource;
   final NetworkChecker _networkChercher;
 
-  InterventionRepositoryImp(
-      this._remoteDataSource, this._localDataSource, this._networkChercher);
+  InterventionRepositoryImp(this._remoteDataSource, this._networkChercher);
   @override
   Future<Either<Failure, PageIntervention>> getPageIntervention(
       String status, int page, int size) async {

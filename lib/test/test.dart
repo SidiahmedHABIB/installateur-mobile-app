@@ -2,24 +2,13 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:installateur/app/app_constants.dart';
-import 'package:installateur/domain/model/installation_report.dart';
-import 'package:installateur/presentation/report_helper/report_helper.dart';
-import 'package:installateur/presentation/report_helper/report_widget.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
-import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/button_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
-import 'package:open_file/open_file.dart';
 import 'package:web_socket_channel/io.dart';
 import '../presentation/widgets_manager/icon_widget.dart';
-// generate pdf
-import 'dart:io';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
 
 class Test extends StatefulWidget {
   Test({

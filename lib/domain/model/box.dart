@@ -1,6 +1,5 @@
 import 'package:installateur/domain/model/company_model.dart';
 import 'package:installateur/domain/model/intervention.dart';
-import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'report_model.dart';
 
 class PageBox {

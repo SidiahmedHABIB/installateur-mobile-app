@@ -1,14 +1,8 @@
-import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
-import 'package:installateur/presentation/widgets_manager/expandable_text_widget.dart';
-import 'package:installateur/presentation/widgets_manager/small_text_widget.dart';
-
 import '../drawer/drawer_widgets.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
@@ -71,6 +65,5 @@ class AboutUsView extends StatelessWidget {
                   ),
                   "automotive boxes, such as infotainment systems, navigation systems, and other electronic components. However, the current system for managing these installations is often manual and time-consuming, leading to delays and frustration for customers. To address these issues, a proposed solution is to develop a mobile app for managing automotive box installation interventions. The app would provide features such as scheduling,communication, inventory management, installation status updates, payment options, and customer feedback. By providing a centralized, automated system, the app can help streamline the installation process, improve communication and transparency, and enhance the customer experience."),
             )));
-    ;
   }
 }

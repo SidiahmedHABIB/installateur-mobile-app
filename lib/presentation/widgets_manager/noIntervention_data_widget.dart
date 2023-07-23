@@ -5,6 +5,7 @@ import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import 'medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class NoInterventionDataWidget extends StatelessWidget {
   String message;
   NoInterventionDataWidget({super.key, required this.message});

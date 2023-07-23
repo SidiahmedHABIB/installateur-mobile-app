@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:installateur/app/app_constants.dart';
-import 'package:installateur/presentation/profile/profile_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import '../../resources/colors_manager.dart';
 import '../../resources/fonts_manager.dart';

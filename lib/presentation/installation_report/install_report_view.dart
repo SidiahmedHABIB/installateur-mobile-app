@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,20 +5,16 @@ import 'package:installateur/presentation/installation_report/install_report_vie
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import 'package:intl/intl.dart';
-import '../../domain/model/installation_report.dart';
-import '../report_helper/report_helper.dart';
-import '../report_helper/report_widget.dart';
 import '../resources/assets_manager.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/big_text_widget.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/loading_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
-import 'widgets/confirm_dialog.dart';
 
+// ignore: must_be_immutable
 class InstallationReportView extends StatelessWidget {
   int boxId;
   InstallationReportView({super.key, required this.boxId});
@@ -169,54 +163,78 @@ class InstallationReportView extends StatelessWidget {
                                 ),
                                 SizedBox(height: AppSize.hs25),
                                 // button generate report
-                                GestureDetector(
-                                  onTap: () => controller.boxDetails != null &&
-                                          controller.boxDetails!.isSend == false
-                                      ? controller.handleBuildReport()
-                                      : () {},
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: AppPadding.hp16,
-                                        horizontal: AppPadding.wp10),
-                                    width: AppSize.ws100 * 2.5,
-                                    decoration: BoxDecoration(
-                                      color: controller.boxDetails != null &&
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => controller.boxDetails !=
+                                                  null &&
                                               controller.boxDetails!.isSend ==
                                                   false
-                                          ? ColorManager.mainColor
-                                          : ColorManager.grey,
-                                      border: Border.all(
-                                        color: ColorManager.whiteGrey,
-                                        width: 1,
+                                          ? controller.handleBuildReport()
+                                          : () {},
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: AppPadding.hp16,
+                                            horizontal: AppPadding.wp10),
+                                        width: AppSize.ws100 * 2.5,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              controller.boxDetails != null &&
+                                                      controller.boxDetails!
+                                                              .isSend ==
+                                                          false
+                                                  ? ColorManager.mainColor
+                                                  : ColorManager.grey,
+                                          border: Border.all(
+                                            color: ColorManager.whiteGrey,
+                                            width: 1,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: ColorManager.grey,
+                                              blurRadius: AppSize.hs5,
+                                              offset: const Offset(1, 2),
+                                            ),
+                                          ],
+                                          borderRadius: BorderRadius.circular(
+                                              AppSize.hs25),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            BigTextWidget(
+                                              text: "Generate Report",
+                                              size: FontSize.fs20,
+                                              color: ColorManager.white,
+                                            ),
+                                            SizedBox(width: AppSize.ws16),
+                                            IconWidget(
+                                              icon: Icons.file_upload,
+                                              iconColor: ColorManager.white,
+                                              size: AppSize.hs25,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: ColorManager.grey,
-                                          blurRadius: AppSize.hs5,
-                                          offset: const Offset(1, 2),
-                                        ),
-                                      ],
-                                      borderRadius:
-                                          BorderRadius.circular(AppSize.hs25),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        BigTextWidget(
-                                          text: "Generate Report",
-                                          size: FontSize.fs20,
-                                          color: ColorManager.white,
-                                        ),
-                                        SizedBox(width: AppSize.ws16),
-                                        IconWidget(
-                                          icon: Icons.file_upload,
-                                          iconColor: ColorManager.white,
-                                          size: AppSize.hs25,
-                                        ),
-                                      ],
+                                    SizedBox(width: AppSize.ws8),
+                                    GestureDetector(
+                                      onTap: controller.openReport == false
+                                          ? () {}
+                                          : () => controller.handleOpenReport(),
+                                      child: IconWidget(
+                                        icon: Icons.open_in_new,
+                                        bColor: controller.openReport == false
+                                            ? ColorManager.grey
+                                            : ColorManager.mainColor,
+                                        hp: AppPadding.hp12,
+                                        wp: AppPadding.wp12,
+                                        br: AppSize.hs10,
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                                 SizedBox(height: AppSize.hs14),
                               ],

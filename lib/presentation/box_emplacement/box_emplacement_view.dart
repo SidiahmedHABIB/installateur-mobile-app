@@ -19,6 +19,7 @@ import '../widgets_manager/medium_text_widget.dart';
 import 'widgets/image_file_widget.dart';
 import 'widgets/image_network_widget.dart';
 
+// ignore: must_be_immutable
 class BoxEmplacementView extends StatelessWidget {
   int boxId;
   BoxEmplacementView({super.key, required this.boxId});
@@ -26,7 +27,6 @@ class BoxEmplacementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.find<BoxEmplacementViewModel>().handleGetBoxImages(boxId);
-    BoxEmplacementViewModel viewModel = Get.find<BoxEmplacementViewModel>();
 
     return SafeArea(
       child: Scaffold(

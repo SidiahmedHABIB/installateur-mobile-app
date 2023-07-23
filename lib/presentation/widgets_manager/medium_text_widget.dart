@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../resources/colors_manager.dart';
 import '../resources/fonts_manager.dart';
 
+// ignore: must_be_immutable
 class MediumTextWidget extends StatelessWidget {
   Color? color;
   final String? text;

@@ -3,6 +3,7 @@ import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 
+// ignore: must_be_immutable
 class TextFieldWidget extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;

@@ -15,6 +15,7 @@ import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
 import 'box_details_view_model.dart';
 
+// ignore: must_be_immutable
 class BoxDetailsView extends StatelessWidget {
   int boxId;
   BoxDetailsView({super.key, required this.boxId});
