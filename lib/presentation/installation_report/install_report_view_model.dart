@@ -1,11 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'package:installateur/app/app_constants.dart';
-
 import '../../data/network/failure.dart';
 import '../../domain/model/box.dart';
 import '../../domain/model/installation_report.dart';

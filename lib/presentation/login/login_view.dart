@@ -11,6 +11,7 @@ import '../resources/values_manager.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/text_field_widget.dart';
 
+// ignore: must_be_immutable
 class LoginView extends StatelessWidget {
   // String contaierHero;
   // LoginView({super.key, required this.contaierHero});

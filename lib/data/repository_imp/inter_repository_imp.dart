@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:installateur/domain/model/intervention.dart';
 import 'package:installateur/data/network/failure.dart';

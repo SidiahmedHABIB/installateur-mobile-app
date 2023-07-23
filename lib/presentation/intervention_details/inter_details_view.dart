@@ -18,6 +18,7 @@ import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/expandable_text_widget.dart';
 import '../widgets_manager/show_alert_dialog.dart';
 
+// ignore: must_be_immutable
 class InterventionDetailsView extends StatelessWidget {
   int pageId;
   InterventionDetailsView({super.key, required this.pageId});

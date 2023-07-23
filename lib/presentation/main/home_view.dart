@@ -5,17 +5,16 @@ import 'package:installateur/presentation/main/home_view_model.dart';
 import 'package:installateur/presentation/main/widgets/intervention_cart.dart';
 import 'package:installateur/presentation/widgets_manager/noIntervention_data_widget.dart';
 import 'package:installateur/presentation/main/widgets/planned_inter_cart.dart';
-import 'package:installateur/presentation/notification/notification_view.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
-import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/medium_text_widget.dart';
 import 'package:intl/intl.dart';
 import '../drawer/drawer_widgets.dart';
 import '../resources/strings_manager.dart';
 import '../widgets_manager/loading_widget.dart';
 
+// ignore: must_be_immutable
 class HomeView extends StatelessWidget {
   HomeView({super.key});
   HomeViewModel homeViewModel = Get.find<HomeViewModel>();

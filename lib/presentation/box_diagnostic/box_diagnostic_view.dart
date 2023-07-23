@@ -7,13 +7,13 @@ import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/resources/values_manager.dart';
 import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
-import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import '../box_emplacement/widgets/image_network_widget.dart';
 import '../widgets_manager/big_text_widget.dart';
 import '../widgets_manager/button_widget.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class BoxDiagnosticView extends StatelessWidget {
   int boxId;
   BoxDiagnosticView({super.key, required this.boxId});
@@ -22,7 +22,6 @@ class BoxDiagnosticView extends StatelessWidget {
     Get.find<BoxDiagnosticViewModel>().handleGetBoxById(boxId);
     Get.find<BoxDiagnosticViewModel>().handleGetBoxImages(boxId);
 
-    var commentController = TextEditingController();
     return SafeArea(
       child: Scaffold(
           backgroundColor: ColorManager.white,

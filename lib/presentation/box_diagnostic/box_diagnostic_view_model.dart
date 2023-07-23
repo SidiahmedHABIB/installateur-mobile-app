@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:installateur/presentation/resources/routes_manager.dart';
 import '../../data/network/failure.dart';
 import '../../domain/model/box.dart';
 import '../../domain/model/image_model.dart';

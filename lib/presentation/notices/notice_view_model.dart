@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:get/get.dart';
-import 'package:installateur/app/app_constants.dart';
 import 'package:installateur/domain/repository/notice_repository.dart';
 import '../../data/network/failure.dart';
 import '../../domain/model/notice_model.dart';

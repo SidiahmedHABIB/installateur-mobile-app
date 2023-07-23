@@ -12,7 +12,6 @@ import '../../app/app_constants.dart';
 import '../data_source/local_data_source.dart';
 import '../data_source/remote_data_source.dart';
 import '../network/network_checker.dart';
-import '../request/profile_request.dart';
 
 class ProfileRepositoryImp extends GetxService implements ProfileRepository {
   final RemoteDataSource _remoteDataSource;

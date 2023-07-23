@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
 import 'package:installateur/presentation/settings/settings_view_model.dart';
-import 'package:installateur/presentation/widgets_manager/button_widget.dart';
-import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
 import '../../data/data_source/local_data_source.dart';
 import '../../main.dart';
 import '../drawer/drawer_widgets.dart';
 import '../resources/colors_manager.dart';
-import '../resources/fonts_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/icon_widget.dart';
 import '../widgets_manager/medium_text_widget.dart';
@@ -22,8 +19,6 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     SettingsViewModel viewModel = Get.find();
     LocalDataSource localDataSource = Get.find();
-
-    var emailEnterpriseController = TextEditingController();
 
     return SafeArea(
       child: Scaffold(

@@ -1,10 +1,9 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:installateur/presentation/resources/colors_manager.dart';
 import 'package:installateur/presentation/resources/fonts_manager.dart';
 
+// ignore: must_be_immutable
 class ExpandableTextWidget extends StatelessWidget {
   String text;
   int maxlines;

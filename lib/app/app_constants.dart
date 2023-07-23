@@ -5,9 +5,9 @@ class AppConstants {
 
   static const String BASE_local_URL = "http://localhost:8081";
   // vd
-  static const String BASE_URL = "http://10.0.2.2:8081";
+  //static const String BASE_URL = "http://10.0.2.2:8081";
   //rd
-  //static const String BASE_URL = "http://192.168.1.17:8081";
+  static const String BASE_URL = "http://192.168.1.17:8081";
 
   // token access
   static const String ACCESS_TOKEN = "acces-token";
@@ -29,7 +29,7 @@ class AppConstants {
   static const String NOTINSTALLED = "NOTINSTALLED";
 
   // auth rep
-  static const String POST_LOGIN_URI = "/auth/technician/";
+  static const String POST_LOGIN_URI = "/auth/technician";
 
   // inter rep
   static const String GET_PAGE_INTER_URI = "/inter/page/";

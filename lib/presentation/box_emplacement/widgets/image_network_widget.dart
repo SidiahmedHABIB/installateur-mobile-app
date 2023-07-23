@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../resources/colors_manager.dart';
 import '../../resources/values_manager.dart';
-import '../../widgets_manager/icon_widget.dart';
 
+// ignore: must_be_immutable
 class ImageNetworkWidget extends StatelessWidget {
   String? imageUrl;
   ImageNetworkWidget({

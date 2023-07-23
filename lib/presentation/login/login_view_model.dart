@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:installateur/domain/repository/auth_repository.dart';
 import 'package:installateur/presentation/resources/routes_manager.dart';
 import '../../data/network/failure.dart';
-import '../../domain/model/user_model.dart';
 import '../resources/colors_manager.dart';
 import '../widgets_manager/show_snack_bar_widget.dart';
 

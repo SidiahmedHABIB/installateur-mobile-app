@@ -141,6 +141,7 @@ class BoxDetailsViewModel extends GetxController {
     loadingPage = true;
     update();
     print("intdd");
+    print(boxId);
     Either<Failure, BoxModel> boxDetailsGet =
         await _boxRepository.getBoxById(boxId);
     if (boxDetailsGet.isRight()) {
@@ -149,16 +150,17 @@ class BoxDetailsViewModel extends GetxController {
           (r) => {
                 boxDetails = r,
                 update(),
+                print(boxDetails!.toJson()),
+                print("matricul: ${boxDetails!.toJson()}"),
                 loadingPage = false,
                 update(),
-                print("matricul: ${boxDetails!.toJson()}"),
               });
     } else {
       boxDetailsGet.fold(
         (l) => {
           showSnackBarWidget(l.message, ColorManager.error),
-          loadingPage = false,
-          update(),
+          // loadingPage = false,
+          // update(),
         },
         (r) => r,
       );

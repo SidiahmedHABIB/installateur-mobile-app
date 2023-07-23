@@ -6,7 +6,6 @@ import '../../widgets_manager/big_text_widget.dart';
 import '../../widgets_manager/expandable_text_widget.dart';
 import '../../widgets_manager/icon_widget.dart';
 import '../../widgets_manager/medium_text_widget.dart';
-import '../../widgets_manager/small_text_widget.dart';
 
 class CardNotication extends StatelessWidget {
   const CardNotication({super.key});

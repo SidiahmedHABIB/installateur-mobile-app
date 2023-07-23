@@ -23,11 +23,18 @@ class ProfileViewModel extends GetxController {
     handleGetUser();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+    profileModel = null;
+  }
+
   Future<void> handleGetUser() async {
     PageLoading = true;
     update();
 
     UserModel user = await _profileRepository.getUserFromLocal();
+    // ignore: unnecessary_null_comparison
     if (user != null) {
       profileModel = user;
       update();
@@ -61,6 +68,7 @@ class ProfileViewModel extends GetxController {
   }
 
   Future<void> handleUpdateProfile() async {
+    // ignore: unnecessary_null_comparison
     if (imageFile != null) {
       Either<Failure, UserModel> profile = await _profileRepository
           .updateProfile(imageFile[0], profileModel!.id);

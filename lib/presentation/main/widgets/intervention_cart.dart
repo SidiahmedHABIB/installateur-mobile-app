@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:installateur/app/app_constants.dart';
+import 'package:installateur/presentation/profile/profile_view_model.dart';
 import 'package:installateur/presentation/resources/assets_manager.dart';
 import '../../resources/colors_manager.dart';
 import '../../resources/fonts_manager.dart';
 import '../../resources/values_manager.dart';
-import '../../widgets_manager/big_text_widget.dart';
 import '../../widgets_manager/icon_widget.dart';
 import '../../widgets_manager/medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class InterventionCart extends StatelessWidget {
   String companyName;
   String location;
@@ -42,7 +44,7 @@ class InterventionCart extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: AppSize.hs100 * 1.05,
+              height: AppSize.hs100 * 1.1,
               padding: EdgeInsets.only(
                 left: AppPadding.wp10,
                 top: AppPadding.hp14,
@@ -130,7 +132,7 @@ class InterventionCart extends StatelessWidget {
           ),
           // main color parte
           Container(
-            height: AppSize.hs100 * 1.05,
+            height: AppSize.hs100 * 1.1,
             decoration: BoxDecoration(
               color: ColorManager.mainColor,
               borderRadius: BorderRadius.only(
@@ -147,6 +149,5 @@ class InterventionCart extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

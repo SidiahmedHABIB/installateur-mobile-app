@@ -9,6 +9,7 @@ import '../../widgets_manager/big_text_widget.dart';
 import '../../widgets_manager/icon_widget.dart';
 import '../../widgets_manager/medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class PlannedInterventionCart extends StatelessWidget {
   String companyName;
   String location;
@@ -48,7 +49,7 @@ class PlannedInterventionCart extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              height: AppSize.hs100 * 1.05,
+              height: AppSize.hs100 * 1.1,
               padding: EdgeInsets.only(
                 left: AppPadding.wp10,
                 top: AppPadding.hp14,
@@ -186,7 +187,7 @@ class PlannedInterventionCart extends StatelessWidget {
             ),
           ),
           Container(
-            height: AppSize.hs100 * 1.05,
+            height: AppSize.hs100 * 1.1,
             decoration: BoxDecoration(
               color: ColorManager.mainColor,
               borderRadius: BorderRadius.only(
@@ -203,6 +204,5 @@ class PlannedInterventionCart extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

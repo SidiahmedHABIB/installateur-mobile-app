@@ -7,7 +7,6 @@ import 'package:installateur/data/data_source/local_data_source.dart';
 import 'package:installateur/data/data_source/remote_data_source.dart';
 import 'package:installateur/data/network/error_handler.dart';
 import 'package:installateur/data/network/network_checker.dart';
-import 'package:installateur/data/request/auth_request.dart';
 import 'package:installateur/domain/model/login_model.dart';
 import 'package:installateur/domain/model/user_model.dart';
 import 'package:installateur/data/network/failure.dart';
@@ -25,7 +24,6 @@ class AuthRepositoryImp extends GetxService implements AuthRepository {
   Future<Either<Failure, bool>> login(String email, String password) async {
     if (await _networkChercher.isConnected) {
       try {
-        LoginRequest auth = LoginRequest(email: email, password: password);
         http.Response response = await _remoteDataSource.postLogin(
             AppConstants.POST_LOGIN_URI, email, password);
         if (response.statusCode == ResponseCode.SUCCESS ||

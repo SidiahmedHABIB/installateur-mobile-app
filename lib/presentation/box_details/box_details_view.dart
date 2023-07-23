@@ -404,8 +404,9 @@ class BoxDetailsView extends StatelessWidget {
                     ),
                     child: Center(
                       child: ButtonWidget(
-                        onClicked: controller.boxDetails!.matricul != "" &&
-                                controller.boxDetails!.boxValue != "" &&
+                        onClicked: controller.boxDetails != null &&
+                                controller.boxDetails!.matricul != null &&
+                                controller.boxDetails!.boxValue != null &&
                                 controller.boxDetails!.matricul != null &&
                                 controller.boxDetails!.boxValue != null
                             ? () => Get.toNamed(
@@ -422,8 +423,9 @@ class BoxDetailsView extends StatelessWidget {
                                     AppConstants.NOTINSTALLED
                             ? StringsManager.boxDetailsBottomButtonIns.tr
                             : StringsManager.boxDetailsBottomButtonDep.tr,
-                        hdn: controller.boxDetails!.matricul != "" &&
-                                controller.boxDetails!.boxValue != "" &&
+                        hdn: controller.boxDetails != null &&
+                                controller.boxDetails!.matricul != null &&
+                                controller.boxDetails!.boxValue != null &&
                                 controller.boxDetails!.matricul != null &&
                                 controller.boxDetails!.boxValue != null
                             ? false
@@ -434,6 +436,69 @@ class BoxDetailsView extends StatelessWidget {
                                 : true,
                         textSize: FontSize.fs20,
                       ),
+                      // controller.boxDetails!.matricul != "" &&
+                      //             controller.boxDetails!.boxValue != "" &&
+                      //             controller.boxDetails!.matricul != null &&
+                      //             controller.boxDetails!.boxValue != null
+                      //         ? ButtonWidget(
+                      //             text:
+                      //                 StringsManager.boxDetailsBottomButtonIns.tr,
+                      //             hdn: false,
+                      //             onClicked: () => Get.toNamed(
+                      //               RoutesManager.getBoxDiagnostic(
+                      //                   controller.boxDetails!.id),
+                      //             ),
+                      //             textSize: FontSize.fs20,
+                      //           )
+                      //         : controller.boxMatriculController != "" &&
+                      //                 controller.boxValeurController != "" &&
+                      //                 controller.boxImages!.isNotEmpty
+                      //             ? ButtonWidget(
+                      //                 text: StringsManager
+                      //                     .boxDetailsBottomButtonDep.tr,
+                      //                 hdn: false,
+                      //                 onClicked: () =>
+                      //                     controller.handleAddInstallBoxInfo(),
+                      //                 textSize: FontSize.fs20,
+                      //               )
+                      //             : ButtonWidget(
+                      //                 text: StringsManager
+                      //                     .boxDetailsBottomButtonIns.tr,
+                      //                 hdn: true,
+                      //                 onClicked: () => {},
+                      //                 textSize: FontSize.fs20,
+                      //               )
+                      //     //           ButtonWidget(
+                      //     //   onClicked: controller.boxDetails!.matricul != "" &&
+                      //     //           controller.boxDetails!.boxValue != "" &&
+                      //           controller.boxDetails!.matricul != null &&
+                      //           controller.boxDetails!.boxValue != null
+                      //       ? () => Get.toNamed(
+                      //             RoutesManager.getBoxDiagnostic(
+                      //                 controller.boxDetails!.id),
+                      //           )
+                      //       : controller.boxMatriculController != "" &&
+                      //               controller.boxValeurController != "" &&
+                      //               controller.boxImages!.isNotEmpty
+                      //           ? () => controller.handleAddInstallBoxInfo()
+                      //           : () => {},
+                      //   text: controller.boxDetails != null &&
+                      //           controller.boxDetails!.status ==
+                      //               AppConstants.NOTINSTALLED
+                      //       ? StringsManager.boxDetailsBottomButtonIns.tr
+                      //       : StringsManager.boxDetailsBottomButtonDep.tr,
+                      //   hdn: controller.boxDetails!.matricul != "" &&
+                      //           controller.boxDetails!.boxValue != "" &&
+                      //           controller.boxDetails!.matricul != null &&
+                      //           controller.boxDetails!.boxValue != null
+                      //       ? false
+                      //       : controller.boxMatriculController != "" &&
+                      //               controller.boxValeurController.isNotEmpty &&
+                      //               controller.boxImages!.isNotEmpty
+                      //           ? false
+                      //           : true,
+                      //   textSize: FontSize.fs20,
+                      // ),
                     ),
                   )
                 : Container(

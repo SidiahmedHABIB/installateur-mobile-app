@@ -1,20 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:installateur/presentation/box_table/box_table_view.dart';
 import 'package:installateur/presentation/notices/notice_view_model.dart';
 import 'package:installateur/presentation/notices/widgets/notice_row.dart';
-import 'package:installateur/presentation/resources/routes_manager.dart';
 import 'package:installateur/presentation/resources/strings_manager.dart';
-import 'package:installateur/presentation/widgets_manager/big_text_widget.dart';
-import 'package:installateur/presentation/widgets_manager/icon_widget.dart';
 import 'package:installateur/presentation/widgets_manager/loading_widget.dart';
 import 'package:installateur/presentation/widgets_manager/text_field_widget.dart';
-import '../main/home_view.dart';
 import '../resources/colors_manager.dart';
 import '../resources/values_manager.dart';
 import '../widgets_manager/medium_text_widget.dart';
 
+// ignore: must_be_immutable
 class NoticesView extends StatelessWidget {
   int companyId;
   NoticesView({super.key, required this.companyId});

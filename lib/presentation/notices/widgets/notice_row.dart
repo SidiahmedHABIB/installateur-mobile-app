@@ -5,6 +5,7 @@ import '../../resources/values_manager.dart';
 import '../../widgets_manager/big_text_widget.dart';
 import '../../widgets_manager/icon_widget.dart';
 
+// ignore: must_be_immutable
 class NoticeRow extends StatelessWidget {
   String name;
   final VoidCallback downLoadNotice;

@@ -6,6 +6,7 @@ import '../../resources/colors_manager.dart';
 import '../../resources/values_manager.dart';
 import '../../widgets_manager/icon_widget.dart';
 
+// ignore: must_be_immutable
 class ImageFileWidget extends StatelessWidget {
   File? fileUrl;
   VoidCallback clear;
